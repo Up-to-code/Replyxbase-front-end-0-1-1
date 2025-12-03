@@ -3,10 +3,14 @@
 import React, { useState } from 'react';
 import { authClient } from '@/lib/auth-client';
 import { useRouter } from 'next/navigation';
-import { Loader2, Building2, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Building2, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
-
+import { Button } from '@/components/ui/Button';
+import { Input } from '@/components/ui/Input';
+import { Alert } from '@/components/ui/Alert';
+import { Card, CardHeader, CardContent } from '@/components/ui/Card';
+import { Spinner } from '@/components/ui/Spinner';
 import { checkSlugAvailability } from '@/app/actions';
 import { useDebounce } from 'use-debounce';
 
@@ -71,14 +75,14 @@ export function CreateOrganization() {
             setLoading(false);
         }
       });
-    } catch (err) {
+    } catch {
       setError(t("error"));
       setLoading(false);
     }
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50/50 p-4">
+    <div className="flex min-h-screen items-center justify-center bg-slate-50 p-4">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -86,7 +90,7 @@ export function CreateOrganization() {
         className="w-full max-w-md"
       >
         {/* Card */}
-        <div className="bg-white rounded-2xl border border-gray-100 shadow-xl shadow-gray-100/50 overflow-hidden relative">
+        <Card className="overflow-hidden relative">
           <AnimatePresence mode="wait">
             {success ? (
               <motion.div
@@ -96,13 +100,13 @@ export function CreateOrganization() {
                 exit={{ opacity: 0, scale: 0.95 }}
                 className="flex flex-col items-center justify-center py-16 px-8 text-center"
               >
-                <div className="mb-6 rounded-full bg-green-50 p-3 text-green-600">
+                <div className="mb-6 rounded-full bg-green-50 border-2 border-green-200 p-3 text-green-600">
                   <CheckCircle2 className="h-12 w-12" />
                 </div>
-                <h3 className="text-2xl font-semibold text-gray-900 mb-2">
+                <h3 className="text-2xl font-bold text-slate-900 mb-2">
                   {t("success")}
                 </h3>
-                <p className="text-gray-500">
+                <p className="text-slate-600">
                   Redirecting to your dashboard...
                 </p>
               </motion.div>
@@ -114,32 +118,31 @@ export function CreateOrganization() {
                 exit={{ opacity: 0 }}
               >
                 {/* Header */}
-                <div className="px-8 pt-8 pb-6 text-center">
-                  <div className="mx-auto mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-[#2A4D9A]">
+                <CardHeader className="text-center">
+                  <div className="mx-auto mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-[#005bbc]/10 border-2 border-[#005bbc]/20 text-[#005bbc]">
                     <Building2 className="h-6 w-6" />
                   </div>
-                  <h2 className="text-2xl font-semibold tracking-tight text-gray-900">
+                  <h2 className="text-2xl font-bold tracking-tight text-slate-900">
                     {t("title")}
                   </h2>
-                  <p className="mt-2 text-sm text-gray-500">
+                  <p className="mt-2 text-sm text-slate-600">
                     {t("subtitle")}
                   </p>
-                </div>
+                </CardHeader>
 
                 {/* Form */}
-                <div className="px-8 pb-8">
+                <CardContent>
                   <form className="space-y-5" onSubmit={handleSubmit}>
                     <div className="space-y-4">
-                      <div className="space-y-1.5">
-                        <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                      <div className="space-y-2">
+                        <label htmlFor="name" className="block text-sm font-medium text-slate-700">
                           {t("nameLabel")}
                         </label>
-                        <input
+                        <Input
                           id="name"
                           name="name"
                           type="text"
                           required
-                          className="block w-full rounded-xl border-gray-200 bg-gray-50 px-4 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:border-[#2A4D9A] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#2A4D9A] transition-all duration-200"
                           placeholder={t("namePlaceholder")}
                           value={name}
                           onChange={(e) => {
@@ -151,75 +154,65 @@ export function CreateOrganization() {
                         />
                       </div>
 
-                      <div className="space-y-1.5">
-                        <label htmlFor="slug" className="block text-sm font-medium text-gray-700">
+                      <div className="space-y-2">
+                        <label htmlFor="slug" className="block text-sm font-medium text-slate-700">
                           {t("slugLabel")}
                         </label>
                         <div className="relative">
-                          <input
+                          <Input
                             id="slug"
                             name="slug"
                             type="text"
                             required
-                            className={`block w-full rounded-xl border-gray-200 bg-gray-50 px-4 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-1 transition-all duration-200 ${
-                              slugError 
-                                ? 'border-red-300 focus:border-red-500 focus:ring-red-500' 
-                                : isSlugAvailable 
-                                  ? 'border-green-300 focus:border-green-500 focus:ring-green-500'
-                                  : 'focus:border-[#2A4D9A] focus:ring-[#2A4D9A]'
-                            }`}
+                            error={!!slugError}
                             placeholder={t("slugPlaceholder")}
                             value={slug}
                             onChange={(e) => setSlug(e.target.value)}
+                            className={isSlugAvailable ? "border-green-500 focus:border-green-500" : ""}
                           />
                           {isCheckingSlug && (
-                            <div className="absolute right-3 top-2.5">
-                              <Loader2 className="h-4 w-4 animate-spin text-gray-400" />
+                            <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                              <Spinner size="sm" />
                             </div>
                           )}
                         </div>
                         <div className="min-h-[20px]">
                           {slugError ? (
-                            <p className="text-xs text-red-500">{slugError}</p>
+                            <p className="text-xs text-red-600">{slugError}</p>
                           ) : isSlugAvailable ? (
                             <p className="text-xs text-green-600">{t("slugAvailable")}</p>
                           ) : (
-                            <p className="text-xs text-gray-400">{t("slugDescription")}</p>
+                            <p className="text-xs text-slate-500">{t("slugDescription")}</p>
                           )}
                         </div>
                       </div>
                     </div>
 
                     {error && (
-                      <div className="rounded-xl bg-red-50 p-3 text-sm text-red-600 flex items-center gap-2">
-                        <div className="h-1.5 w-1.5 rounded-full bg-red-500" />
+                      <Alert variant="error" onClose={() => setError('')}>
                         {error}
-                      </div>
+                      </Alert>
                     )}
 
-                    <button
+                    <Button
                       type="submit"
+                      variant="primary"
                       disabled={loading || !isSlugAvailable || isCheckingSlug}
-                      className="group relative flex w-full items-center justify-center gap-2 rounded-xl bg-[#2A4D9A] px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-[#234184] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2A4D9A] disabled:opacity-70 disabled:cursor-not-allowed transition-all duration-200"
+                      loading={loading}
+                      className="w-full"
+                      icon={ArrowRight}
                     >
-                      {loading ? (
-                        <Loader2 className="h-4 w-4 animate-spin" />
-                      ) : (
-                        <>
-                          {t("submit")}
-                          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-                        </>
-                      )}
-                    </button>
+                      {t("submit")}
+                    </Button>
                   </form>
-                </div>
+                </CardContent>
               </motion.div>
             )}
           </AnimatePresence>
-        </div>
+        </Card>
         
         {/* Footer */}
-        <p className="mt-6 text-center text-xs text-gray-400">
+        <p className="mt-6 text-center text-xs text-slate-500">
           {t("terms")}
         </p>
       </motion.div>

@@ -3,6 +3,8 @@
     "languageSwitchLabel": "Language",
     "localeEnglish": "English",
     "localeArabic": "Arabic",
+    "localeFrench": "French",
+    "localeSpanish": "Spanish",
     "getStarted": "Get Started",
     "watchDemo": "Watch Demo",
     "logIn": "Log In",
@@ -19,16 +21,176 @@
       "description": "Automate your customer support and sales with AI agents. Connect WhatsApp, Telegram, and more."
     },
     "Hero": {
-      "badge": "New: WhatsApp Business API Integration",
-      "title": "One Brain. <highlight>All Channels.</highlight> Zero Chaos.",
-      "subtitle": "Connect WhatsApp, Telegram, and Webchat to a single AI that handles support, sales, and bookings automatically.",
-      "cta": "Explore AI Agents",
-      "feature1Title": "Instant Responses",
-      "feature1Desc": "Zero wait time for your customers.",
-      "feature2Title": "Smart Handoff",
-      "feature2Desc": "Seamlessly transfer complex issues to humans.",
-      "feature3Title": "Custom Personality",
-      "feature3Desc": "Match your brand's voice and tone."
+      "ariaLabel": "Hero section",
+      "badge": {
+        "text": "All-in-One AI Agent",
+        "ariaLabel": "All-in-One AI Agent badge"
+      },
+      "heading": {
+        "line1": "AI agents for magical customer experiences"
+      },
+      "description": "Replyxbase is the complete platform for building & deploying AI support agents for your business.",
+      "highlights": {
+        "ariaLabel": "Key highlights",
+        "llm": "Purpose-built for LLMs",
+        "llmDesc": "Language models with reasoning capabilities for effective responses",
+        "simple": "Designed for simplicity",
+        "simpleDesc": "Create, manage, and deploy AI agents easily, even without technical skills",
+        "secure": "Engineered for security",
+        "secureDesc": "Robust encryption and strict compliance standards for peace of mind",
+        "complete": "Complete platform",
+        "completeDesc": "Everything you need to build and deploy AI support agents"
+      },
+      "HowItWorks": {
+        "title": "An end-to-end solution for conversational AI",
+        "description": "With Replyxbase, your customers can effortlessly find answers, resolve issues, and take meaningful actions through seamless AI-driven conversations.",
+        "step1": {
+          "title": "Build & Deploy",
+          "desc": "Train an agent on your business data, configure actions, then deploy for your customers"
+        },
+        "step2": {
+          "title": "Agent Solves Problems",
+          "desc": "Your AI agent handles customer queries and resolves issues automatically"
+        },
+        "step3": {
+          "title": "Refine & Optimize",
+          "desc": "Continuously improve your agent's performance based on real interactions"
+        },
+        "step4": {
+          "title": "Route to Humans",
+          "desc": "Smart escalation routes complex issues to human agents when needed"
+        },
+        "step5": {
+          "title": "Review Analytics",
+          "desc": "Gain insights and optimize agent performance with detailed analytics"
+        }
+      },
+      "Integrations": {
+        "title": "Works with your tools",
+        "description": "Integrate diverse data sources to enrich your agent's knowledge and capabilities.",
+        "website": {
+          "desc": "Connect your website chat widget"
+        },
+        "whatsapp": {
+          "desc": "Integrate WhatsApp Business API"
+        },
+        "messenger": {
+          "desc": "Connect Facebook Messenger"
+        },
+        "email": {
+          "desc": "Sync with your email system"
+        },
+        "slack": {
+          "desc": "Add agent to your Slack workspace"
+        },
+        "crm": {
+          "desc": "Connect to your CRM system"
+        },
+        "learnMore": "Learn more",
+        "features": {
+          "title": "Build the perfect customer-facing AI agent",
+          "description": "Replyxbase gives you all the tools you need to train your perfect AI agent and connect it to your systems.",
+          "api": {
+            "title": "Compare AI models",
+            "desc": "Experiment with various models and configurations to make sure you have the best setup for your use case."
+          },
+          "actions": {
+            "title": "Smart escalation",
+            "desc": "Give your agent instructions in natural language on when to escalate queries to human agents."
+          },
+          "analytics": {
+            "title": "Advanced reporting",
+            "desc": "Gain insights and optimize agent performance with detailed analytics."
+          }
+        }
+      },
+      "advantages": {
+        "title": "Works like the best customer service agents",
+        "description": "Replyxbase is designed to work with your existing tools and workflows.",
+        "personalized": {
+          "title": "Personalized answers",
+          "desc": "Your agent knows the logged-in user and retrieves their information for personalized responses"
+        },
+        "instant": {
+          "title": "Instant actions",
+          "desc": "Execute actions immediately based on customer requests and context"
+        },
+        "empathetic": {
+          "title": "Empathetic & on-brand",
+          "desc": "Maintains your brand voice and provides empathetic, human-like interactions"
+        },
+        "secure": {
+          "title": "Enterprise guardrails",
+          "desc": "AI-powered guardrails prevent misinformation and maintain professionalism"
+        }
+      },
+      "platforms": {
+        "title": "Works across channels",
+        "description": "Easily integrate your AI Agent with various platforms, ensuring seamless functionality across all channels.",
+        "ariaLabel": "Supported platforms",
+        "website": {
+          "label": "Website",
+          "text": "Works on Website"
+        },
+        "whatsapp": {
+          "label": "WhatsApp",
+          "text": "Works on WhatsApp"
+        }
+      },
+      "cta": {
+        "buildAgent": "Build your agent",
+        "getStarted": {
+          "text": "Get Started",
+          "ariaLabel": "Get started with AI agent"
+        },
+        "watchDemo": {
+          "text": "Watch Demo",
+          "ariaLabel": "Watch demo video"
+        },
+        "noCreditCard": "No credit card required"
+      },
+      "trust": {
+        "ariaLabel": "Trust indicators",
+        "title": "Trusted by businesses worldwide",
+        "customer": "Customer",
+        "businesses": "10,000+",
+        "using": "Use our AI agent",
+        "worldwide": "businesses worldwide",
+        "rating": "Customer Rating"
+      },
+      "highlights": {
+        "title": "The complete platform for AI support agents",
+        "llm": {
+          "title": "Purpose-built for LLMs",
+          "desc": "Language models with reasoning capabilities for effective responses to complex queries."
+        },
+        "simplicity": {
+          "title": "Designed for simplicity",
+          "desc": "Create, manage, and deploy AI Agents easily, even without technical skills."
+        },
+        "security": {
+          "title": "Engineered for security",
+          "desc": "Enjoy peace of mind with robust encryption and strict compliance standards."
+        }
+      },
+      "showcase": {
+        "ai": {
+          "title": "AI-Powered",
+          "desc": "Advanced AI that understands context and provides intelligent responses"
+        },
+        "fast": {
+          "title": "Lightning Fast",
+          "desc": "Instant responses to keep your customers engaged 24/7"
+        },
+        "team": {
+          "title": "Team Ready",
+          "desc": "Seamless handoff to human agents when needed"
+        },
+        "growth": {
+          "title": "Scale Fast",
+          "desc": "Grow your business without scaling your support team"
+        }
+      }
     },
     "Marquee": {
       "realEstate": "Real Estate Empire",
@@ -140,52 +302,152 @@
         "subtitle": "Watch how Replyxbase unifies every customer interaction into a single, powerful stream of actionable data."
       }
     },
+    "PlatformShowcase": {
+      "title": "Unlock the power of AI-driven Agents",
+      "description": "Easily integrate your AI Agent with various platforms, ensuring seamless functionality across all channels.",
+      "website": {
+        "title": "Website Chat",
+        "desc": "Connect to your website"
+      },
+      "whatsapp": {
+        "title": "WhatsApp Bot",
+        "desc": "Connect to WhatsApp"
+      },
+      "messenger": {
+        "title": "Messenger Bot",
+        "desc": "Connect to Messenger"
+      },
+      "learnMore": "Learn more"
+    },
+    "Integrations": {
+      "title": "Works with your tools",
+      "description": "Integrate diverse data sources to enrich your agent's knowledge and capabilities.",
+      "website": {
+        "desc": "Connect your website chat widget"
+      },
+      "whatsapp": {
+        "desc": "Integrate WhatsApp Business API"
+      },
+      "crm": {
+        "desc": "Connect to your CRM system"
+      },
+      "learnMore": "Learn more",
+      "features": {
+        "seamless": {
+          "title": "Seamless Integrations",
+          "desc": "Connect with popular tools and platforms your team already uses."
+        },
+        "monitoring": {
+          "title": "24/7 Monitoring & Security",
+          "desc": "Real-time monitoring and enterprise-grade security for your integrations."
+        },
+        "security": {
+          "title": "Enterprise-grade Security",
+          "desc": "Secure connections with industry-standard encryption and compliance."
+        }
+      }
+    },
     "Testimonials": {
-      "title": "Trusted by Teams",
-      "subtitle": "See how Replyxbase is changing the way businesses communicate.",
-      "quote1": "Replyxbase transformed our support. The AI agent is a lifesaver.",
-      "author1": "Sarah Jenkins",
-      "role1": "Head of Support",
-      "company1": "TechFlow",
-      "quote2": "Finally, a real unified inbox. It just works.",
-      "author2": "Michael Chen",
-      "role2": "Founder",
-      "company2": "GrowthLabs",
-      "quote3": "The CRM integration is seamless. Highly recommended.",
-      "author3": "Emma Wilson",
-      "role3": "Sales Director",
-      "company3": "Elevate"
+      "title": "What people say",
+      "subtitle": "With over 10,000 clients served, here's what they have to say",
+      "customers": "10,000+ Customers",
+      "reviews": "140+ 5-star reviews",
+      "testimonial1": {
+        "quote": "Replyxbase is a strong signal of how customer support will evolve. It is an early adopter of the agentic approach, which will become increasingly effective, trusted, and prominent.",
+        "author": "Greg Kogan",
+        "role": "CEO",
+        "company": "Pinecone"
+      },
+      "testimonial2": {
+        "quote": "An overpowered tool built with the OP stack.",
+        "author": "Sarah Jenkins",
+        "role": "Head of Support",
+        "company": "TechFlow"
+      },
+      "testimonial3": {
+        "quote": "The CRM integration is seamless. Highly recommended.",
+        "author": "Emma Wilson",
+        "role": "Sales Director",
+        "company": "Elevate"
+      }
+    },
+    "Security": {
+      "title": "Enterprise-grade security & privacy",
+      "description": "Your data is only accessible to your AI agent and is never used to train models. All data is encrypted at rest and in transit.",
+      "dataOwnership": {
+        "title": "Your data stays yours",
+        "desc": "Your data is only accessible to your AI agent and is never used to train models."
+      },
+      "encryption": {
+        "title": "Data encryption",
+        "desc": "All data is encrypted at rest and in transit. We use industry-standard encryption algorithms."
+      },
+      "integrations": {
+        "title": "Secure integrations",
+        "desc": "We use verified variables to ensure users can access only their own data in your systems."
+      }
     },
     "Pricing": {
-      "title": "Simple Pricing",
-      "subtitle": "Start for free. Upgrade as you grow.",
+      "title": "Simple, Transparent Pricing",
+      "subtitle": "Start free, scale as you grow",
+      "month": "mo",
+      "mostPopular": "Most Popular",
+      "free": "Free",
+      "freeDesc": "Perfect for getting started",
+      "starter": "Starter",
+      "starterDesc": "For growing teams",
+      "pro": "Pro",
+      "proDesc": "For businesses",
+      "enterprise": "Enterprise",
+      "enterpriseDesc": "Unlimited everything",
+      "features": {
+        "1agent": "1 AI Agent",
+        "1000conv": "1,000 messages/month",
+        "website": "Website integration",
+        "whatsapp": "WhatsApp integration",
+        "basicSupport": "Basic support",
+        "5agents": "5 AI Agents",
+        "10kconv": "10,000 messages/month",
+        "5members": "5 team members",
+        "allIntegrations": "All integrations",
+        "prioritySupport": "Priority support",
+        "advancedAnalytics": "Advanced analytics",
+        "unlimitedAgents": "Unlimited AI Agents",
+        "50kconv": "50,000 messages/month",
+        "unlimitedMembers": "Unlimited team members",
+        "customIntegrations": "Custom integrations",
+        "support247": "24/7 support",
+        "advancedCRM": "Advanced CRM features",
+        "unlimitedConv": "Unlimited messages",
+        "whiteLabel": "White-label option",
+        "dedicatedSupport": "Dedicated support",
+        "customSLA": "Custom SLA"
+      },
+      "terms": {
+        "text": "All plans include our core features.",
+        "viewTerms": "View terms",
+        "and": "and",
+        "privacyPolicy": "privacy policy",
+        "noCreditCard": "No credit card required",
+        "cancelAnytime": "Cancel anytime",
+        "guarantee": "14-day guarantee"
+      },
       "monthly": "Monthly",
       "yearly": "Yearly",
       "save": "Save 20%",
-      "starter": "Starter",
-      "starterDesc": "Perfect for individuals.",
-      "pro": "Pro",
-      "proDesc": "For growing teams.",
-      "enterprise": "Enterprise",
-      "enterpriseDesc": "For large organizations.",
-      "features": {
-        "1agent": "1 AI Agent",
-        "100conv": "100 Conversations/mo",
-        "community": "Community Support",
-        "3agents": "3 AI Agents",
-        "unlimitedConv": "Unlimited Conversations",
-        "priority": "Priority Support",
-        "analytics": "Advanced Analytics",
-        "branding": "Custom Branding",
-        "unlimitedAgents": "Unlimited Agents",
-        "successManager": "Dedicated Success Manager",
-        "sla": "99.9% SLA",
-        "customIntegrations": "Custom Integrations"
-      }
+      "community": "Community Support",
+      "3agents": "3 AI Agents",
+      "100conv": "100 Conversations/mo",
+      "priority": "Priority Support",
+      "analytics": "Advanced Analytics",
+      "branding": "Custom Branding",
+      "successManager": "Dedicated Success Manager",
+      "sla": "99.9% SLA"
     },
     "CTA": {
-      "title": "Ready to get started?",
-      "subtitle": "Join thousands of businesses using Replyxbase today."
+      "title": "Make customer experience your competitive edge",
+      "subtitle": "Use Replyxbase to deliver exceptional support experiences that set you apart from the competition.",
+      "noCreditCard": "No credit card required"
     },
     "Footer": {
       "desc": "The future of customer communication.",
@@ -297,23 +559,49 @@
     "Header": {
       "organizations": "Organizations",
       "available": "Available",
-      "createOrganization": "Create Organization"
-    },
-    "ProfileMenu": {
-      "profile": "Profile",
-      "profileDesc": "View your personal profile",
-      "billing": "Billing",
-      "billingDesc": "Manage billing and subscription",
-      "security": "Security",
-      "securityDesc": "Security and privacy settings",
-      "downloads": "Downloads",
-      "downloadsDesc": "Your downloaded files",
-      "settings": "Settings",
-      "settingsDesc": "Account and app settings",
-      "help": "Help",
-      "helpDesc": "Get help and support",
-      "signOut": "Sign Out",
-      "signOutDesc": "Sign out of your account"
+      "createOrganization": "Create Organization",
+      "notifications": "Notifications",
+      "unreadMessages": "{count} unread",
+      "markAllRead": "Mark all as read",
+      "viewAllNotifications": "View all notifications",
+      "Notifications": {
+        "messageFromSarah": "New message from Sarah",
+        "paymentReceived": "Payment received for order #2842",
+        "systemUpdate": "System update available",
+        "securityAlert": "Security alert: New login detected",
+        "subscriptionRenew": "Your subscription renews in 7 days",
+        "newFollower": "New follower: TechCorp Inc",
+        "downloadCompleted": "Download completed: Monthly report",
+        "2minAgo": "2 min ago",
+        "1hourAgo": "1 hour ago",
+        "2hoursAgo": "2 hours ago",
+        "3hoursAgo": "3 hours ago",
+        "5hoursAgo": "5 hours ago",
+        "6hoursAgo": "6 hours ago",
+        "1dayAgo": "1 day ago"
+      },
+      "ProfileMenu": {
+        "profile": "Profile",
+        "profileDesc": "View your personal profile",
+        "billing": "Billing",
+        "billingDesc": "Manage billing and subscription",
+        "security": "Security",
+        "securityDesc": "Security and privacy settings",
+        "downloads": "Downloads",
+        "downloadsDesc": "Your downloaded files",
+        "settings": "Settings",
+        "settingsDesc": "Account and app settings",
+        "help": "Help",
+        "helpDesc": "Get help and support",
+        "signOut": "Sign Out",
+        "signOutDesc": "Sign out of your account",
+        "LogoutModal": {
+          "title": "Sign Out",
+          "description": "Are you sure you want to sign out? You'll need to sign in again to access your account.",
+          "cancel": "Cancel",
+          "confirm": "Sign Out"
+        }
+      }
     },
     "Notifications": {
       "messageFromSarah": "New message from Sarah",
@@ -375,9 +663,10 @@
         "conversion": "Conversion"
       },
       "bookings": {
-        "title": "Today's Calls",
+        "title": "Upcoming Bookings",
         "upcoming": "{count} Upcoming",
-        "viewCalendar": "View Calendar"
+        "viewCalendar": "View Calendar",
+        "noBookings": "No upcoming bookings"
       },
       "channels": {
         "title": "Connected Channels",
@@ -403,6 +692,278 @@
         "users": "Users",
         "satisfaction": "Satisfaction",
         "viewDashboard": "View Dashboard"
+      },
+      "Detail": {
+        "title": "Agent Details",
+        "notFoundTitle": "Agent Not Found",
+        "notFoundSubtitle": "The agent you're looking for doesn't exist or has been deleted.",
+        "backToAgents": "Back to Agents",
+        "lastActive": "Last active {time}",
+        "tabs": {
+          "overview": "Overview",
+          "knowledge": "Knowledge",
+          "integrations": "Integrations",
+          "settings": "Settings"
+        },
+        "status": {
+          "pause": "Pause"
+        },
+        "knowledge": {
+          "add": "Add Source",
+          "title": "Knowledge Base",
+          "subtitle": "Manage the documents your agent uses to answer questions.",
+          "searchPlaceholder": "Search files...",
+          "table": {
+            "name": "Name",
+            "type": "Type",
+            "dateAdded": "Date Added",
+            "status": "Status",
+            "actions": "Actions"
+          }
+        },
+        "overview": {
+          "stats": {
+            "totalConversations": "Total Conversations",
+            "avgResponseTime": "Avg Response Time",
+            "satisfactionRate": "Satisfaction Rate",
+            "activeUsers": "Active Users"
+          },
+          "chart": {
+            "title": "Conversation Volume",
+            "subtitle": "Weekly activity overview"
+          },
+          "activity": {
+            "title": "Recent Activity",
+            "replied": "Replied to customer query",
+            "booked": "Booked a demo call",
+            "statusChanged": "Agent status changed to Active",
+            "handledCall": "Handled incoming call",
+            "time2min": "2 min ago",
+            "time15min": "15 min ago",
+            "time1hour": "1 hour ago",
+            "time2hours": "2 hours ago"
+          }
+        },
+        "settings": {
+          "general": {
+            "title": "General Information",
+            "agentName": "Agent Name",
+            "agentNamePlaceholder": "e.g. Support Bot",
+            "role": "Role / Title",
+            "rolePlaceholder": "e.g. Customer Success",
+            "systemPrompt": "System Prompt",
+            "instructions": "Instructions",
+            "systemPromptPlaceholder": "You are a helpful assistant...",
+            "systemPromptHint": "Define the agent's personality, tone, and constraints.",
+            "saveChanges": "Save Changes"
+          },
+          "danger": {
+            "title": "Danger Zone",
+            "deleteTitle": "Delete Agent",
+            "deleteDescription": "Permanently remove this agent and all of its data. This action cannot be undone.",
+            "deleteButton": "Delete Agent"
+          }
+        },
+        "retry": "Retry",
+        "integrations": {
+          "title": "Integrations",
+          "subtitle": "Connect your agent to different channels and platforms.",
+          "add": "Add Integration",
+          "status": {
+            "active": "Active",
+            "available": "Available"
+          },
+          "manage": "Manage Integration",
+          "connect": "Connect",
+          "whatsapp": {
+            "description": "Connect your business number to automate replies on WhatsApp.",
+            "title": "WhatsApp Integration",
+            "subtitle": "Connect your agent to WhatsApp Business API.",
+            "configSteps": "Configuration Steps",
+            "configStepsDesc": "Follow these steps to connect your number.",
+            "step1": "API Credentials",
+            "step1Desc": "Go to the Meta Developer Portal, select your app, and copy your Phone Number ID and Access Token.",
+            "step2": "Webhook Configuration",
+            "step2Desc": "Copy these values to the \"Configuration\" section in your Meta App settings to receive messages.",
+            "phoneNumberId": "Phone Number ID",
+            "phoneNumberIdPlaceholder": "e.g. 104928...",
+            "accessToken": "Permanent Access Token",
+            "accessTokenPlaceholder": "EAAG...",
+            "callbackUrl": "Callback URL",
+            "verifyToken": "Verify Token",
+            "codeCopied": "Copied to clipboard!",
+            "settingsSaved": "WhatsApp settings saved successfully",
+            "settingsSaveError": "Failed to save settings",
+            "saving": "Saving...",
+            "saveConfiguration": "Save Configuration"
+          },
+          "website": {
+            "description": "Embed the AI assistant directly on your website.",
+            "title": "Widget Builder",
+            "subtitle": "Customize your website chat widget.",
+            "launcherTextDefault": "Chat with us",
+            "welcomeMessageDefault": "Hello! How can I help you today?",
+            "actionDefaultLabel": "Book a Call",
+            "newAction": "New Action",
+            "codeCopied": "Code copied to clipboard!",
+            "settingsSaved": "Widget settings saved successfully",
+            "settingsSaveError": "Failed to save settings",
+            "saving": "Saving...",
+            "saveChanges": "Save Changes",
+            "tabs": {
+              "design": "Design",
+              "content": "Content",
+              "settings": "Settings",
+              "install": "Install"
+            },
+            "design": {
+              "brandColor": "Brand Color",
+              "launcherStyle": "Launcher Style",
+              "circle": "Circle",
+              "pill": "Pill",
+              "launcherTextPlaceholder": "Launcher Text (e.g. Chat with us)",
+              "position": "Position",
+              "bottomLeft": "Bottom Left",
+              "bottomRight": "Bottom Right",
+              "customLogo": "Custom Logo",
+              "logoPlaceholder": "https://example.com/logo.png",
+              "logoHint": "Paste a URL to your logo image."
+            },
+            "content": {
+              "welcomeMessage": "Welcome Message",
+              "welcomeMessagePlaceholder": "Enter the first message...",
+              "faqs": "FAQs",
+              "questionsCount": "{count} questions",
+              "questionPlaceholder": "Question (e.g. What are your hours?)",
+              "answerPlaceholder": "Answer...",
+              "addQuestion": "Add Question"
+            },
+            "settings": {
+              "language": "Language",
+              "english": "English (LTR)",
+              "arabic": "Arabic (RTL)",
+              "actions": "Actions",
+              "addAction": "Add Action",
+              "actionLabel": "Label",
+              "actionType": "Type",
+              "booking": "Booking",
+              "call": "Call",
+              "link": "Link",
+              "actionIcon": "Icon",
+              "iconCalendar": "Calendar",
+              "iconPhone": "Phone",
+              "iconUser": "User",
+              "iconLink": "Link",
+              "iconMessage": "Message",
+              "phoneNumber": "Phone Number",
+              "url": "URL",
+              "phonePlaceholder": "+1 234 567 890",
+              "urlPlaceholder": "https://example.com",
+              "allowedDomains": "Allowed Domains",
+              "domainsPlaceholder": "example.com, myapp.com",
+              "domainsHint": "Comma separated list of domains where the widget can be loaded. Leave empty to allow all.",
+              "removeBranding": "Remove Branding",
+              "brandingHint": "Hide the \"Powered by ReplyXBase\" footer."
+            },
+            "install": {
+              "title": "Installation Instructions",
+              "description": "Copy the code below and paste it into the",
+              "descriptionCode": "head",
+              "descriptionEnd": "tag of your website."
+            },
+            "preview": {
+              "livePreview": "Live Preview",
+              "connected": "Connected",
+              "supportAgent": "Support Agent",
+              "online": "Online",
+              "chat": "Chat",
+              "help": "Help",
+              "noFaqs": "No FAQs added yet.",
+              "typeMessage": "Type a message...",
+              "poweredBy": "Powered by ReplyXBase"
+            }
+          },
+          "whatsapp": {
+            "title": "WhatsApp Integration",
+            "subtitle": "Connect your agent to WhatsApp Business API.",
+            "configSteps": "Configuration Steps",
+            "configStepsDesc": "Follow these steps to connect your number.",
+            "step1": "API Credentials",
+            "step1Desc": "Go to the Meta Developer Portal, select your app, and copy your Phone Number ID and Access Token.",
+            "step2": "Webhook Configuration",
+            "step2Desc": "Copy these values to the \"Configuration\" section in your Meta App settings to receive messages.",
+            "phoneNumberId": "Phone Number ID",
+            "phoneNumberIdPlaceholder": "e.g. 104928...",
+            "accessToken": "Permanent Access Token",
+            "accessTokenPlaceholder": "EAAG...",
+            "callbackUrl": "Callback URL",
+            "verifyToken": "Verify Token",
+            "codeCopied": "Copied to clipboard!",
+            "settingsSaved": "WhatsApp settings saved successfully",
+            "settingsSaveError": "Failed to save settings",
+            "saving": "Saving...",
+            "saveConfiguration": "Save Configuration"
+          }
+        }
+      },
+      "Create": {
+        "title": "Create New Agent",
+        "subtitle": "Build a custom AI agent tailored to your business needs.",
+        "backToAgents": "Back to Agents",
+        "successTitle": "Agent Created Successfully!",
+        "successSubtitle": "Your AI agent is ready to use. You can configure it further from the agent dashboard.",
+        "goToDashboard": "Go to Dashboard",
+        "steps": {
+          "1": "Basic Information",
+          "2": "Knowledge & Training"
+        },
+        "basicInfo": {
+          "title": "Basic Information",
+          "subtitle": "Set up your agent's name, model, and core capabilities."
+        },
+        "form": {
+          "name": "Agent Name",
+          "namePlaceholder": "e.g. Support Bot, Sales Assistant",
+          "model": "AI Model",
+          "capabilities": "Capabilities"
+        },
+        "knowledge": {
+          "title": "Knowledge & Training",
+          "subtitle": "Train your agent with industry knowledge and custom instructions.",
+          "systemPromptLabel": "System Prompt",
+          "improveWithAI": "Improve with AI",
+          "systemPromptPlaceholder": "You are a helpful assistant for...",
+          "uploadTitle": "Upload Knowledge Base",
+          "uploadDesc": "Upload documents, PDFs, or connect a website to train your agent."
+        },
+        "industry": "Industry",
+        "common": {
+          "back": "Back",
+          "create": "Create Agent",
+          "next": "Next",
+          "creating": "Creating..."
+        },
+        "capabilitiesList": {
+          "crm": "CRM Integration",
+          "booking": "Booking Management",
+          "support": "Customer Support"
+        },
+        "models": {
+          "gpt4": "GPT-4o",
+          "gpt4Desc": "Best for complex reasoning",
+          "claude": "Claude 3.5 Sonnet",
+          "claudeDesc": "Natural & articulate",
+          "gemini": "Gemini 1.5 Pro",
+          "geminiDesc": "Fast & multimodal"
+        },
+        "industries": {
+          "realEstate": "Real Estate",
+          "ecommerce": "E-commerce",
+          "healthcare": "Healthcare",
+          "technology": "Technology",
+          "finance": "Finance",
+          "other": "Other"
+        }
       },
       "Stats": {
         "overview": "Overview",
@@ -600,79 +1161,105 @@
       },
       "Settings": {
         "title": "Settings",
-        "subtitle": "Manage your account settings"
-      },
-      "Organization": {
-        "title": "Organization Settings",
-        "description": "Manage your workspace details and branding.",
-        "form": {
-          "name": "Organization Name",
-          "domain": "Workspace Domain",
-          "logo": "Organization Logo",
-          "save": "Save Changes"
-        }
-      },
-      "Team": {
-        "title": "Team Members",
-        "description": "Manage your team members and their roles.",
-        "invite": "Invite Member",
-        "table": {
-          "member": "Member",
-          "role": "Role",
-          "status": "Status",
-          "actions": "Actions"
+        "subtitle": "Manage your account settings and workspace preferences.",
+        "nav": {
+          "profile": "Profile",
+          "account": "Account",
+          "notifications": "Notifications",
+          "appearance": "Appearance",
+          "billing": "Billing"
         },
-        "roles": {
-          "owner": "Owner",
-          "admin": "Admin",
-          "member": "Member"
-        },
-        "Modals": {
-          "AddMember": {
-            "title": "Invite Team Member",
+        "Profile": {
+          "title": "Profile Settings",
+          "description": "Update your personal information and profile picture.",
+          "form": {
+            "fullName": "Full Name",
             "email": "Email Address",
-            "role": "Role",
-            "cancel": "Cancel",
-            "submit": "Send Invitation"
-          },
-          "RemoveMember": {
-            "title": "Remove Member",
-            "confirmation": "Are you sure you want to remove {name} from the team? This action cannot be undone.",
-            "cancel": "Cancel",
-            "confirm": "Remove Member"
+            "bio": "Bio",
+            "save": "Save Changes",
+            "cancel": "Cancel"
           }
-        }
-      },
-      "Notifications": {
-        "title": "Notifications",
-        "description": "Manage how you receive notifications.",
-        "email": {
-          "title": "Email Notifications",
-          "description": "Receive emails about your account activity."
         },
-        "push": {
-          "title": "Push Notifications",
-          "description": "Receive push notifications on your devices."
-        }
-      },
-      "Appearance": {
-        "title": "Appearance",
-        "description": "Customize the look and feel of your dashboard.",
-        "theme": {
-          "title": "Theme"
+        "Organization": {
+          "title": "Organization Settings",
+          "description": "Manage your workspace details and branding.",
+          "form": {
+            "name": "Organization Name",
+            "domain": "Workspace Domain",
+            "logo": "Organization Logo",
+            "save": "Save Changes"
+          }
         },
-        "language": {
-          "title": "Language"
-        }
-      },
-      "Billing": {
-        "title": "Billing & Plans",
-        "description": "Manage your subscription and payment methods.",
-        "paymentMethods": {
-          "title": "Payment Methods"
+          "Team": {
+          "title": "Team Members",
+          "description": "Manage your team members and their roles.",
+          "invite": "Invite Member",
+          "table": {
+            "member": "Member",
+            "role": "Role",
+            "status": "Status",
+            "actions": "Actions"
+          },
+          "roles": {
+            "owner": "Owner",
+            "admin": "Admin",
+            "member": "Member"
+          },
+          "Modals": {
+            "AddMember": {
+              "title": "Invite Team Member",
+              "email": "Email Address",
+              "role": "Role",
+              "cancel": "Cancel",
+              "submit": "Send Invitation"
+            },
+            "RemoveMember": {
+              "title": "Remove Member",
+              "confirmation": "Are you sure you want to remove {name} from the team? This action cannot be undone.",
+              "cancel": "Cancel",
+              "confirm": "Remove Member"
+            },
+            "EditMember": {
+              "title": "Edit Member",
+              "role": "Role",
+              "cancel": "Cancel",
+              "save": "Save Changes"
+            }
+          }
         },
-        "history": {
-          "title": "Billing History"
+        "Notifications": {
+          "title": "Notifications",
+          "description": "Manage how you receive notifications.",
+          "email": {
+            "title": "Email Notifications",
+            "description": "Receive emails about your account activity."
+          },
+          "push": {
+            "title": "Push Notifications",
+            "description": "Receive push notifications on your devices."
+          }
+        },
+        "Appearance": {
+          "title": "Appearance",
+          "description": "Customize the look and feel of your dashboard.",
+          "theme": {
+            "title": "Theme"
+          },
+          "language": {
+            "title": "Language",
+            "description": "Choose your preferred language for the interface.",
+            "note": "Changes will apply immediately and refresh the page."
+          }
+        },
+        "Billing": {
+          "title": "Billing & Plans",
+          "description": "Manage your subscription and payment methods.",
+          "paymentMethods": {
+            "title": "Payment Methods"
+          },
+          "history": {
+            "title": "Billing History"
+          }
         }
       }
     },

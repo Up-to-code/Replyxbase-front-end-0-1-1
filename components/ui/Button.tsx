@@ -14,20 +14,20 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const baseStyles = "inline-flex items-center justify-center font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95";
     
     const variants = {
-      primary: "bg-primary text-primary-foreground hover:bg-primary/90 focus:ring-primary shadow-sm border border-transparent",
-      secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 focus:ring-ring border border-input shadow-sm",
-      outline: "bg-transparent text-foreground border border-input hover:bg-accent hover:text-accent-foreground focus:ring-ring",
-      ghost: "bg-transparent text-muted-foreground hover:text-foreground hover:bg-accent focus:ring-ring",
-      danger: "bg-destructive text-destructive-foreground hover:bg-destructive/90 focus:ring-destructive shadow-sm border border-transparent",
-      success: "bg-green-600 text-white hover:bg-green-700 focus:ring-green-600 shadow-sm border border-transparent",
-      white: "bg-white text-gray-900 hover:bg-gray-50 focus:ring-gray-200 shadow-sm border border-gray-200"
+      primary: "bg-[#005bbc] text-white hover:bg-[#004a9f] focus:ring-2 focus:ring-[#005bbc]/20 border border-[#005bbc]",
+      secondary: "bg-white text-slate-700 hover:bg-slate-50 focus:ring-2 focus:ring-slate-200 border-2 border-slate-200",
+      outline: "bg-transparent text-slate-700 border-2 border-slate-200 hover:bg-slate-50 focus:ring-2 focus:ring-slate-200",
+      ghost: "bg-transparent text-slate-600 hover:text-slate-900 hover:bg-slate-50 focus:ring-2 focus:ring-slate-200",
+      danger: "bg-red-600 text-white hover:bg-red-700 focus:ring-2 focus:ring-red-200 border border-red-600",
+      success: "bg-green-600 text-white hover:bg-green-700 focus:ring-2 focus:ring-green-200 border border-green-600",
+      white: "bg-white text-slate-900 hover:bg-slate-50 focus:ring-2 focus:ring-slate-200 border-2 border-slate-200"
     };
 
     const sizes = {
-      sm: "h-8 px-3 text-xs rounded-lg gap-1.5",
-      md: "h-10 px-4 text-sm rounded-lg gap-2",
-      lg: "h-12 px-6 text-base rounded-lg gap-2.5",
-      icon: "h-10 w-10 p-0 rounded-lg"
+      sm: "h-8 px-3 text-xs rounded-xl gap-1.5",
+      md: "h-10 px-4 text-sm rounded-xl gap-2",
+      lg: "h-12 px-6 text-base rounded-xl gap-2.5",
+      icon: "h-10 w-10 p-0 rounded-xl"
     };
 
     return (

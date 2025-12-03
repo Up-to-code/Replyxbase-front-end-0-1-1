@@ -29,33 +29,49 @@ export const ActivityForm: React.FC<ActivityFormProps> = ({ onSubmit, isLoading 
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-3 bg-white p-4 rounded-lg border border-gray-200">
+    <form onSubmit={handleSubmit} className="space-y-3 bg-white p-4 rounded-xl border-2 border-slate-200">
       <div className="flex gap-2 mb-2">
         <button
           type="button"
           onClick={() => setType('note')}
-          className={`p-2 rounded-md flex-1 flex justify-center items-center gap-2 text-sm transition-colors ${type === 'note' ? 'bg-yellow-100 text-yellow-700' : 'bg-gray-50 text-gray-600 hover:bg-gray-100'}`}
+          className={`p-2 rounded-xl flex-1 flex justify-center items-center gap-2 text-sm transition-colors border-2 ${
+            type === 'note' 
+              ? 'bg-[#ffd600]/10 text-[#ffd600] border-[#ffd600]/20' 
+              : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100 hover:border-slate-300'
+          }`}
         >
           <FileText className="w-4 h-4" /> {t("note")}
         </button>
         <button
           type="button"
           onClick={() => setType('call')}
-          className={`p-2 rounded-md flex-1 flex justify-center items-center gap-2 text-sm transition-colors ${type === 'call' ? 'bg-green-100 text-green-700' : 'bg-gray-50 text-gray-600 hover:bg-gray-100'}`}
+          className={`p-2 rounded-xl flex-1 flex justify-center items-center gap-2 text-sm transition-colors border-2 ${
+            type === 'call' 
+              ? 'bg-[#10B981]/10 text-[#10B981] border-[#10B981]/20' 
+              : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100 hover:border-slate-300'
+          }`}
         >
           <Phone className="w-4 h-4" /> {t("call")}
         </button>
         <button
           type="button"
           onClick={() => setType('email')}
-          className={`p-2 rounded-md flex-1 flex justify-center items-center gap-2 text-sm transition-colors ${type === 'email' ? 'bg-blue-100 text-blue-700' : 'bg-gray-50 text-gray-600 hover:bg-gray-100'}`}
+          className={`p-2 rounded-xl flex-1 flex justify-center items-center gap-2 text-sm transition-colors border-2 ${
+            type === 'email' 
+              ? 'bg-[#005bbc]/10 text-[#005bbc] border-[#005bbc]/20' 
+              : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100 hover:border-slate-300'
+          }`}
         >
           <Mail className="w-4 h-4" /> {t("email")}
         </button>
         <button
           type="button"
           onClick={() => setType('meeting')}
-          className={`p-2 rounded-md flex-1 flex justify-center items-center gap-2 text-sm transition-colors ${type === 'meeting' ? 'bg-purple-100 text-purple-700' : 'bg-gray-50 text-gray-600 hover:bg-gray-100'}`}
+          className={`p-2 rounded-xl flex-1 flex justify-center items-center gap-2 text-sm transition-colors border-2 ${
+            type === 'meeting' 
+              ? 'bg-[#005bbc]/10 text-[#005bbc] border-[#005bbc]/20' 
+              : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100 hover:border-slate-300'
+          }`}
         >
           <Users className="w-4 h-4" /> {t("meeting")}
         </button>
@@ -66,14 +82,14 @@ export const ActivityForm: React.FC<ActivityFormProps> = ({ onSubmit, isLoading 
           value={content}
           onChange={(e) => setContent(e.target.value)}
           placeholder={t("placeholder", { type: t(type) })}
-          className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 min-h-[100px] resize-none"
+          className="w-full p-3 border-2 border-slate-200 rounded-xl focus:border-[#005bbc] focus:ring-0 min-h-[100px] resize-none transition-all"
           disabled={isLoading}
         />
         <div className="absolute bottom-3 right-3 rtl:right-auto rtl:left-3">
           <button
             type="submit"
             disabled={!content.trim() || isLoading}
-            className="bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="bg-[#005bbc] hover:bg-[#004a9f] text-white p-2 rounded-full border-2 border-[#005bbc] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             <Send className="w-4 h-4 rtl:rotate-180" />
           </button>

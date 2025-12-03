@@ -27,8 +27,8 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6 p-4">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">{t("title")}</h1>
-        <p className="text-sm text-gray-600 mt-1">
+        <h1 className="text-2xl font-bold text-slate-900">{t("title")}</h1>
+        <p className="text-sm text-slate-600 mt-1">
           {t("subtitle")}
         </p>
       </div>
@@ -36,7 +36,7 @@ export const Header: React.FC<HeaderProps> = ({
         <button
           onClick={onRefresh}
           disabled={isLoading}
-          className="px-4 py-2.5 bg-white border border-gray-300 text-gray-700 rounded-lg font-medium flex items-center gap-2 hover:bg-gray-50 text-sm transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="px-4 py-2.5 bg-white border-2 border-slate-200 text-slate-700 rounded-xl font-medium flex items-center gap-2 hover:bg-slate-50 hover:border-slate-300 text-sm transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} />
           {t("refresh")}
@@ -44,7 +44,7 @@ export const Header: React.FC<HeaderProps> = ({
         <button
           onClick={onNewBooking}
           disabled={isLoading}
-          className="px-4 py-2.5 bg-blue-600 text-white rounded-lg font-medium flex items-center gap-2 hover:bg-blue-700 text-sm transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="px-4 py-2.5 bg-[#005bbc] hover:bg-[#004a9f] text-white border-2 border-[#005bbc] rounded-xl font-medium flex items-center gap-2 text-sm transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <Plus className="w-4 h-4" />
           {t("newBooking")}

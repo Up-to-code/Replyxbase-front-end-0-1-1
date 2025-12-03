@@ -14,7 +14,10 @@ import { Agent, NavigationItem, Translator } from "./types";
 import { NAVIGATION } from "./constants";
 import { useRTL } from "@/hooks/useRTL";
 
-// Logo Component
+/**
+ * Logo Section Component
+ * Displays the app logo and sidebar toggle button
+ */
 function LogoSection({
   sidebarOpen,
   onToggle,
@@ -25,23 +28,24 @@ function LogoSection({
   const { isRTL } = useRTL();
   
   return (
-    <div className="h-16 border-b border-gray-100 flex items-center px-6 bg-white">
+    <div className="h-16 border-b-2 border-slate-200 flex items-center px-4 sm:px-6 bg-white shrink-0">
       <div className="flex items-center justify-between w-full">
         {sidebarOpen && (
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-[#2A4D9A] rounded-lg flex items-center justify-center shadow-sm shadow-blue-900/20">
+          <div className="flex items-center gap-3 min-w-0 flex-1">
+            <div className="w-8 h-8 bg-[#005bbc] rounded-xl flex items-center justify-center border-2 border-[#005bbc] shrink-0">
               <Zap className="w-4 h-4 text-white" />
             </div>
-            <div>
-              <h1 className="text-gray-900 text-lg font-bold">Replyxbase</h1>
-              <p className="text-gray-500 text-xs">AI Platform</p>
+            <div className="min-w-0">
+              <h1 className="text-slate-900 text-lg font-bold truncate">Replyxbase</h1>
+              <p className="text-slate-500 text-xs truncate">AI Platform</p>
             </div>
           </div>
         )}
         <button
           onClick={onToggle}
-          className="text-gray-400 hover:text-gray-600 p-2 rounded-lg hover:bg-gray-100 transition-all duration-300 ease-in-out"
+          className="text-slate-400 hover:text-slate-600 p-2 rounded-xl hover:bg-slate-50 transition-all duration-200 border-2 border-transparent hover:border-slate-200 active:scale-95 flex-shrink-0"
           aria-label="Toggle sidebar"
+          aria-expanded={sidebarOpen}
           type="button"
         >
           {sidebarOpen ? (
@@ -55,7 +59,10 @@ function LogoSection({
   );
 }
 
-// Navigation Component
+/**
+ * Navigation Button Component
+ * Individual navigation item with active state styling
+ */
 function NavigationButton({
   item,
   isActive,
@@ -74,20 +81,24 @@ function NavigationButton({
     <button
       type="button"
       onClick={onClick}
-      className={`flex items-center w-full px-4 py-3 rounded-lg transition-all duration-200 ease-in-out group ${
+      className={`flex items-center w-full px-4 py-3 rounded-xl transition-all duration-200 group border-2 active:scale-[0.98] ${
         isActive
-          ? "bg-[#2A4D9A] text-white shadow-md shadow-blue-900/10"
-          : "text-gray-500 hover:text-gray-900 hover:bg-gray-100"
+          ? "bg-[#005bbc] text-white border-[#005bbc] shadow-sm"
+          : "text-slate-500 hover:text-slate-900 hover:bg-slate-50 border-transparent hover:border-slate-200"
       }`}
       aria-current={isActive ? "page" : undefined}
+      aria-label={sidebarOpen ? undefined : label}
     >
-      <Icon className={`w-5 h-5 shrink-0 ${isActive ? "text-white" : "text-gray-400 group-hover:text-gray-600"}`} />
-      {sidebarOpen && <span className="ms-3 font-medium">{label}</span>}
+      <Icon className={`w-5 h-5 shrink-0 ${isActive ? "text-white" : "text-slate-400 group-hover:text-slate-600"}`} />
+      {sidebarOpen && <span className="ms-3 font-medium truncate">{label}</span>}
     </button>
   );
 }
 
-// Agent Component
+/**
+ * Agent Button Component
+ * Individual agent item with status indicator
+ */
 function AgentButton({
   agent,
   isActive,
@@ -97,39 +108,42 @@ function AgentButton({
   isActive: boolean;
   onClick: () => void;
 }) {
-  // Default icon for now, can be customized based on role or other data
   const AgentIcon = User;
   
   return (
     <button
       type="button"
       onClick={onClick}
-      className={`flex items-center w-full px-4 py-3 rounded-lg transition-all duration-200 ease-in-out text-start group ${
+      className={`flex items-center w-full px-4 py-3 rounded-xl transition-all duration-200 text-start group border-2 active:scale-[0.98] ${
         isActive
-          ? "bg-blue-50 text-[#2A4D9A] border border-blue-100 shadow-sm"
-          : "text-gray-500 hover:text-gray-900 hover:bg-gray-100 border border-transparent"
+          ? "bg-[#005bbc]/10 text-[#005bbc] border-[#005bbc]/20"
+          : "text-slate-500 hover:text-slate-900 hover:bg-slate-50 border-transparent hover:border-slate-200"
       }`}
+      aria-label={`Agent: ${agent.name}`}
     >
-      <div className="flex items-center gap-3 w-full">
-        <div className="flex items-center gap-3 flex-1 min-w-0">
-          <div className="relative flex items-center justify-center">
-            <div className="w-4 h-4 rounded-full overflow-hidden flex items-center justify-center bg-gray-100">
+      <div className="flex items-center gap-3 w-full min-w-0">
+        <div className="relative flex items-center justify-center shrink-0">
+            <div className="w-4 h-4 rounded-full overflow-hidden flex items-center justify-center bg-slate-100 border-2 border-slate-200">
                {agent.avatar ? (
-                  <img src={agent.avatar} alt={agent.name} className="w-full h-full object-cover" />
+              <img 
+                src={agent.avatar} 
+                alt={agent.name} 
+                className="w-full h-full object-cover" 
+              />
                ) : (
-                  <AgentIcon className={`w-3 h-3 ${isActive ? "text-[#2A4D9A]" : "text-gray-400 group-hover:text-gray-600"}`} />
+                  <AgentIcon className={`w-3 h-3 ${isActive ? "text-[#005bbc]" : "text-slate-400 group-hover:text-slate-600"}`} />
                )}
             </div>
             <div
-              className={`absolute -top-0.5 -end-0.5 w-2 h-2 rounded-full border border-white ${
-                  agent.status === 'active' ? 'bg-green-500' : 'bg-gray-400'
+              className={`absolute -top-0.5 -end-0.5 w-2 h-2 rounded-full border-2 border-white ${
+                  agent.status === 'active' ? 'bg-green-500' : 'bg-slate-400'
               }`}
+            aria-label={agent.status === 'active' ? 'Active' : 'Inactive'}
             />
-          </div>
-          <span className="truncate text-sm font-medium flex-1">{agent.name}</span>
         </div>
+        <span className="truncate text-sm font-medium flex-1 min-w-0">{agent.name}</span>
         {isActive && (
-          <Sparkles className="w-3 h-3 text-[#2A4D9A] shrink-0" />
+          <Sparkles className="w-3 h-3 text-[#005bbc] shrink-0" aria-hidden="true" />
         )}
       </div>
     </button>
@@ -163,15 +177,20 @@ export function Sidebar({
 
   return (
     <aside
-      className={`bg-white border-e border-gray-200 flex flex-col transition-all duration-300 ease-in-out h-full sticky top-0 z-30 ${
+      className={`bg-white border-e-2 border-slate-200 flex flex-col transition-all duration-300 ease-in-out h-full sticky top-0 z-30 ${
         sidebarOpen ? "w-64" : "w-20"
       }`}
+      aria-label="Sidebar navigation"
     >
       <LogoSection sidebarOpen={sidebarOpen} onToggle={onToggle} />
 
       {/* Navigation */}
-      <nav className="flex-1 p-4 space-y-1 overflow-y-auto bg-white scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent">
+      <nav 
+        className="flex-1 p-4 space-y-1 overflow-y-auto bg-white scrollbar-thin scrollbar-thumb-slate-200 scrollbar-track-transparent"
+        aria-label="Main navigation"
+      >
         {/* Main Navigation */}
+        <div className="space-y-1">
         {NAVIGATION.map((item) => (
           <NavigationButton
             key={item.href}
@@ -182,25 +201,27 @@ export function Sidebar({
             label={t(`Sidebar.${item.label.toLowerCase()}`)}
           />
         ))}
+        </div>
 
         {/* Divider */}
-        <div className="border-t border-gray-100 my-4" />
+        <div className="border-t-2 border-slate-200 my-4" />
 
-        {/* Create Agent */}
+        {/* Create Agent Button */}
         <button
           onClick={onCreateAgent}
-          className="flex items-center w-full px-4 py-3 text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-all duration-300 ease-in-out group"
+          className="flex items-center w-full px-4 py-3 text-slate-500 hover:text-slate-900 hover:bg-slate-50 rounded-xl transition-all duration-200 group border-2 border-transparent hover:border-slate-200 active:scale-[0.98]"
+          aria-label={sidebarOpen ? t("createAgent") : "Create agent"}
         >
-          <Plus className="w-5 h-5 group-hover:text-[#2A4D9A] transition-colors" />
+          <Plus className="w-5 h-5 group-hover:text-[#005bbc] transition-colors flex-shrink-0" />
           {sidebarOpen && (
             <span className="ms-3 font-medium">{t("createAgent")}</span>
           )}
         </button>
 
-        {/* Existing Agents */}
-        {sidebarOpen && (
+        {/* Existing Agents Section */}
+        {sidebarOpen && agents.length > 0 && (
           <div className="mt-6">
-            <h3 className="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-3 px-1">
+            <h3 className="text-slate-400 text-xs font-semibold uppercase tracking-wider mb-3 px-1">
               {t("existingAgents")}
             </h3>
             <div className="space-y-1">
@@ -208,16 +229,26 @@ export function Sidebar({
                 <AgentButton
                   key={agent.id}
                   agent={agent}
-                  isActive={pathname === `/dashboard/agent/${agent.id}`}
+                  isActive={pathname === `/dashboard/agents/${agent.id}`}
                   onClick={() => onAgentClick(agent.id)}
                 />
               ))}
             </div>
           </div>
         )}
+
+        {/* Empty State for Agents */}
+        {sidebarOpen && agents.length === 0 && (
+          <div className="mt-6 p-4 text-center">
+            <p className="text-xs text-slate-400">
+              {t("existingAgents")}
+            </p>
+            <p className="text-xs text-slate-300 mt-1">
+              No agents yet
+            </p>
+          </div>
+        )}
       </nav>
-
-
     </aside>
   );
 }

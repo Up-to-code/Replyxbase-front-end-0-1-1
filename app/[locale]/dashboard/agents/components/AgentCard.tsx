@@ -19,16 +19,16 @@ export const AgentCard: React.FC<AgentCardProps> = ({ agent }) => {
   };
 
   const statusColors = {
-    active: 'bg-green-100 text-green-700',
-    inactive: 'bg-gray-100 text-gray-700',
-    training: 'bg-primary/10 text-primary'
+    active: 'bg-[#10B981]/10 text-[#10B981] border-[#10B981]/20',
+    inactive: 'bg-slate-100 text-slate-700 border-slate-200',
+    training: 'bg-[#005bbc]/10 text-[#005bbc] border-[#005bbc]/20'
   };
 
   return (
-    <div className="group bg-white border border-gray-100 rounded-xl p-6 hover:border-gray-200 transition-all duration-300">
+    <div className="group bg-white border-2 border-slate-200 rounded-2xl p-6 hover:border-[#005bbc]/30 transition-all duration-300">
       <div className="flex justify-between items-start mb-6">
         <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-xl bg-gray-50 flex items-center justify-center text-gray-900 font-bold text-xl border border-gray-100 group-hover:scale-105 transition-transform overflow-hidden">
+          <div className="w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center text-slate-900 font-bold text-xl border-2 border-slate-200 group-hover:scale-105 transition-transform overflow-hidden">
              {agent.avatar ? (
                 <img src={agent.avatar} alt={agent.name} className="w-full h-full object-cover" />
              ) : (
@@ -36,15 +36,15 @@ export const AgentCard: React.FC<AgentCardProps> = ({ agent }) => {
              )}
           </div>
           <div>
-            <h3 className="font-bold text-gray-900 text-lg">{agent.name}</h3>
-            <p className="text-sm text-gray-500 capitalize">{agent.role}</p>
+            <h3 className="font-bold text-slate-900 text-lg">{agent.name}</h3>
+            <p className="text-sm text-slate-600 capitalize">{agent.role}</p>
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <span className={`px-3 py-1 rounded-full text-xs font-medium ${statusColors[agent.status as keyof typeof statusColors] || statusColors.active}`}>
+          <span className={`px-3 py-1 rounded-full text-xs font-medium border ${statusColors[agent.status as keyof typeof statusColors] || statusColors.active}`}>
             {agent.status}
           </span>
-          <button className="p-2 hover:bg-gray-50 rounded-lg text-gray-400 hover:text-gray-600 transition-colors">
+          <button className="p-2 hover:bg-slate-50 rounded-lg text-slate-400 hover:text-slate-600 transition-colors">
             <MoreHorizontal className="w-5 h-5" />
           </button>
         </div>
@@ -53,49 +53,49 @@ export const AgentCard: React.FC<AgentCardProps> = ({ agent }) => {
       {/* Platforms */}
       <div className="flex gap-2 mb-4">
         {agent.isWebsiteEnabled && (
-          <div className="p-1.5 bg-blue-50 text-blue-600 rounded-lg" title="Website Widget">
+          <div className="p-1.5 bg-[#005bbc]/10 text-[#005bbc] rounded-lg border border-[#005bbc]/20" title="Website Widget">
             <Globe className="w-4 h-4" />
           </div>
         )}
         {agent.isWhatsappEnabled && (
-          <div className="p-1.5 bg-green-50 text-green-600 rounded-lg" title="WhatsApp">
+          <div className="p-1.5 bg-[#10B981]/10 text-[#10B981] rounded-lg border border-[#10B981]/20" title="WhatsApp">
             <MessageCircle className="w-4 h-4" />
           </div>
         )}
         {agent.isDmEnabled && (
-          <div className="p-1.5 bg-purple-50 text-purple-600 rounded-lg" title="Direct Message">
+          <div className="p-1.5 bg-[#ffd600]/10 text-[#ffd600] rounded-lg border border-[#ffd600]/20" title="Direct Message">
             <MessageSquare className="w-4 h-4" />
           </div>
         )}
       </div>
 
-      <div className="grid grid-cols-3 gap-4 mb-6 py-6 border-y border-gray-50">
+      <div className="grid grid-cols-3 gap-4 mb-6 py-6 border-y border-slate-200">
         <div className="text-center">
-          <div className="flex items-center justify-center gap-1 text-gray-400 mb-1">
+          <div className="flex items-center justify-center gap-1 text-slate-400 mb-1">
             <MessageSquare className="w-4 h-4" />
           </div>
-          <p className="font-bold text-gray-900">{stats.conversations}</p>
-          <p className="text-xs text-gray-500">{t('conversations')}</p>
+          <p className="font-bold text-slate-900">{stats.conversations}</p>
+          <p className="text-xs text-slate-500">{t('conversations')}</p>
         </div>
-        <div className="text-center border-x border-gray-50">
-          <div className="flex items-center justify-center gap-1 text-gray-400 mb-1">
+        <div className="text-center border-x border-slate-200">
+          <div className="flex items-center justify-center gap-1 text-slate-400 mb-1">
             <Users className="w-4 h-4" />
           </div>
-          <p className="font-bold text-gray-900">{stats.users}</p>
-          <p className="text-xs text-gray-500">{t('users')}</p>
+          <p className="font-bold text-slate-900">{stats.users}</p>
+          <p className="text-xs text-slate-500">{t('users')}</p>
         </div>
         <div className="text-center">
-          <div className="flex items-center justify-center gap-1 text-gray-400 mb-1">
+          <div className="flex items-center justify-center gap-1 text-slate-400 mb-1">
             <Activity className="w-4 h-4" />
           </div>
-          <p className="font-bold text-gray-900">{stats.satisfaction}%</p>
-          <p className="text-xs text-gray-500">{t('satisfaction')}</p>
+          <p className="font-bold text-slate-900">{stats.satisfaction}%</p>
+          <p className="text-xs text-slate-500">{t('satisfaction')}</p>
         </div>
       </div>
 
       <Link 
         href={`/dashboard/agents/${agent.id}`}
-        className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-gray-50 text-gray-900 font-medium hover:bg-primary hover:text-primary-foreground transition-all group-hover:bg-primary group-hover:text-primary-foreground"
+        className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-slate-50 text-slate-900 font-medium hover:bg-[#005bbc] hover:text-white border-2 border-slate-200 hover:border-[#005bbc] transition-all group-hover:bg-[#005bbc] group-hover:text-white group-hover:border-[#005bbc]"
       >
         {t('viewDashboard')}
         <ArrowRight className="w-4 h-4" />

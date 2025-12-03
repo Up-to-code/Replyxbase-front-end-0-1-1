@@ -84,22 +84,22 @@ export const Filters: React.FC<FiltersProps> = ({
   ];
 
   return (
-    <div className="mb-6 mx-6">
+    <div className="mb-6">
       {/* Main Filter Row */}
       <div className="flex flex-col lg:flex-row gap-3">
         <div className="flex-1">
           <div className="relative group">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 rtl:left-auto rtl:right-3 group-focus-within:text-primary transition-colors" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4 rtl:left-auto rtl:right-3 group-focus-within:text-[#005bbc] transition-colors" />
             <input
               type="text"
               placeholder={t("searchPlaceholder")}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-10 py-2.5 bg-white border border-gray-200 rounded-[20px] focus:border-primary/50 focus:ring-4 focus:ring-primary/10 transition-all duration-200 rtl:pl-10 rtl:pr-10 shadow-sm"
+              className="w-full pl-10 pr-10 py-2.5 bg-white border-2 border-slate-200 rounded-xl focus:border-[#005bbc] focus:ring-0 transition-all duration-200 rtl:pl-10 rtl:pr-10"
             />
             {isLoading && (
               <div className="absolute right-3 top-1/2 transform -translate-y-1/2 rtl:right-auto rtl:left-3">
-                <div className="w-4 h-4 border-2 border-primary/30 border-t-primary rounded-full animate-spin"></div>
+                <div className="w-4 h-4 border-2 border-[#005bbc]/30 border-t-[#005bbc] rounded-full animate-spin"></div>
               </div>
             )}
           </div>
@@ -108,16 +108,16 @@ export const Filters: React.FC<FiltersProps> = ({
         <div className="flex gap-2">
           <button
             onClick={() => setShowFilters(!showFilters)}
-            className={`px-4 py-2.5 rounded-[20px] font-medium flex items-center gap-2 transition-all duration-200 border ${
+            className={`px-4 py-2.5 rounded-xl font-medium flex items-center gap-2 transition-all duration-200 border-2 ${
               showFilters 
-                ? 'bg-primary/5 text-primary border-primary/20' 
-                : 'bg-white text-gray-700 border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+                ? 'bg-[#005bbc]/10 text-[#005bbc] border-[#005bbc]/20' 
+                : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300 hover:bg-slate-50'
             }`}
           >
             <Filter className="w-4 h-4" />
             {t("filters")}
             {dynamicFilters.length > 0 && (
-              <span className="bg-primary text-white text-[10px] px-1.5 py-0.5 rounded-full min-w-[1.25rem] text-center">
+              <span className="bg-[#005bbc] text-white text-[10px] px-1.5 py-0.5 rounded-full min-w-5 text-center">
                 {dynamicFilters.length}
               </span>
             )}
@@ -145,12 +145,12 @@ export const Filters: React.FC<FiltersProps> = ({
             exit={{ opacity: 0, height: 0, marginTop: 0 }}
             className="overflow-hidden"
           >
-            <div className="bg-white border border-gray-200 rounded-[20px] p-5">
+            <div className="bg-white border-2 border-slate-200 rounded-2xl p-5">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6">
                 
                 {/* Status Filter */}
                 <div className="lg:col-span-5">
-                  <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+                  <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">
                     {t("statusFilter")}
                   </label>
                   <div className="flex flex-wrap gap-2">
@@ -158,10 +158,10 @@ export const Filters: React.FC<FiltersProps> = ({
                       <button
                         key={status}
                         onClick={() => setStatusFilter(status)}
-                        className={`px-3 py-1.5 rounded-[14px] text-sm font-medium transition-all duration-200 border ${
+                        className={`px-3 py-1.5 rounded-xl text-sm font-medium transition-all duration-200 border-2 ${
                           statusFilter === status
-                            ? 'bg-gray-900 text-white border-gray-900'
-                            : 'bg-white text-gray-600 border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+                            ? 'bg-[#005bbc] text-white border-[#005bbc]'
+                            : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300 hover:bg-slate-50'
                         }`}
                       >
                         {status === 'all' ? t("allStatuses") : tStatus(status as any)}
@@ -172,7 +172,7 @@ export const Filters: React.FC<FiltersProps> = ({
                 
                 {/* Service Type */}
                 <div className="lg:col-span-3">
-                  <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+                  <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">
                     {t("serviceType")}
                   </label>
                   <Select
@@ -184,7 +184,7 @@ export const Filters: React.FC<FiltersProps> = ({
 
                 {/* Date Range */}
                 <div className="lg:col-span-4">
-                  <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+                  <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">
                     {t("dateRange")}
                   </label>
                   <div className="flex gap-2">
@@ -193,7 +193,7 @@ export const Filters: React.FC<FiltersProps> = ({
                         type="date"
                         value={dateRange.start ? dateRange.start.toISOString().split('T')[0] : ''}
                         onChange={(e) => setDateRange && setDateRange({ ...dateRange, start: e.target.value ? new Date(e.target.value) : null })}
-                        className="w-full px-3 py-2.5 bg-gray-50 border-transparent rounded-[20px] focus:bg-white focus:border-gray-200 focus:outline-none focus:ring-0 text-sm transition-all"
+                        className="w-full px-3 py-2.5 bg-slate-50 border-2 border-transparent rounded-xl focus:bg-white focus:border-[#005bbc] focus:outline-none focus:ring-0 text-sm transition-all"
                       />
                     </div>
                     <div className="relative flex-1">
@@ -201,7 +201,7 @@ export const Filters: React.FC<FiltersProps> = ({
                         type="date"
                         value={dateRange.end ? dateRange.end.toISOString().split('T')[0] : ''}
                         onChange={(e) => setDateRange && setDateRange({ ...dateRange, end: e.target.value ? new Date(e.target.value) : null })}
-                        className="w-full px-3 py-2.5 bg-gray-50 border-transparent rounded-[20px] focus:bg-white focus:border-gray-200 focus:outline-none focus:ring-0 text-sm transition-all"
+                        className="w-full px-3 py-2.5 bg-slate-50 border-2 border-transparent rounded-xl focus:bg-white focus:border-[#005bbc] focus:outline-none focus:ring-0 text-sm transition-all"
                       />
                     </div>
                   </div>
@@ -209,12 +209,12 @@ export const Filters: React.FC<FiltersProps> = ({
               </div>
 
               {addDynamicFilter && (
-                <div className="border-t border-gray-100 mt-5 pt-5">
+                <div className="border-t-2 border-slate-200 mt-5 pt-5">
                   <div className="flex justify-between items-center mb-4">
-                    <h4 className="text-sm font-medium text-gray-900">{t("advancedFilters")}</h4>
+                    <h4 className="text-sm font-medium text-slate-900">{t("advancedFilters")}</h4>
                     <button
                       onClick={addDynamicFilter}
-                      className="text-xs font-medium text-primary hover:text-primary/80 flex items-center gap-1 bg-primary/5 px-2 py-1 rounded-md transition-colors"
+                      className="text-xs font-medium text-[#005bbc] hover:text-[#004a9f] flex items-center gap-1 bg-[#005bbc]/10 px-2 py-1 rounded-lg border-2 border-transparent hover:border-[#005bbc]/20 transition-colors"
                     >
                       <Plus className="w-3 h-3" />
                       {t("addFilterRule")}
@@ -228,7 +228,7 @@ export const Filters: React.FC<FiltersProps> = ({
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: 10 }}
-                        className="flex flex-wrap gap-3 items-center bg-gray-50/50 p-3 rounded-[20px] border border-gray-100"
+                        className="flex flex-wrap gap-3 items-center bg-slate-50/50 p-3 rounded-xl border-2 border-slate-200"
                       >
                         <div className="w-32">
                           <Select
@@ -261,19 +261,19 @@ export const Filters: React.FC<FiltersProps> = ({
                           value={filter.value}
                           onChange={(e) => updateDynamicFilter?.(filter.id, { value: e.target.value })}
                           placeholder={t("Dynamic.valuePlaceholder")}
-                          className="flex-1 min-w-[150px] px-3 py-2.5 bg-white border border-gray-200 rounded-[20px] focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm"
+                          className="flex-1 min-w-[150px] px-3 py-2.5 bg-white border-2 border-slate-200 rounded-xl focus:outline-none focus:ring-0 focus:border-[#005bbc] text-sm transition-all"
                         />
                         
                         <button
                           onClick={() => removeDynamicFilter?.(filter.id)}
-                          className="p-2 text-gray-400 hover:text-rose-500 hover:bg-rose-50 rounded-lg transition-colors"
+                          className="p-2 text-slate-400 hover:text-[#EF4444] hover:bg-[#EF4444]/10 rounded-lg transition-colors border-2 border-transparent hover:border-[#EF4444]/20"
                         >
                           <Trash2 className="w-4 h-4" />
                         </button>
                       </motion.div>
                     ))}
                     {dynamicFilters.length === 0 && (
-                      <p className="text-sm text-gray-400 italic">{t("noAdvancedFilters")}</p>
+                      <p className="text-sm text-slate-400 italic">{t("noAdvancedFilters")}</p>
                     )}
                   </div>
                 </div>

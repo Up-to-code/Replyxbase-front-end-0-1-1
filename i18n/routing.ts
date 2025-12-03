@@ -3,7 +3,7 @@ import { defineRouting } from "next-intl/routing";
 
 // Define your route structure here if you want to use strongly-typed Pathnames
 export const routing = defineRouting({
-  locales: ["ar", "en"] as const,
+  locales: ["ar", "en", "fr", "es"] as const,
   defaultLocale: "ar",
   // To enable Pathnames typings, define pathnames here, e.g.:
   /*

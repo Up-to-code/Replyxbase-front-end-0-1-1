@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { Paperclip, Loader2, Send } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { useRTL } from '@/hooks/useRTL';
 
 interface ChatInputProps {
   newMessage: string;
@@ -23,10 +24,11 @@ export const ChatInput: React.FC<ChatInputProps> = ({
 }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const t = useTranslations("Dashboard.Inbox");
+  const { isRTL } = useRTL();
 
   return (
-    <div className="p-6 bg-white border-t border-gray-100">
-      <div className="flex items-center gap-4 max-w-5xl mx-auto">
+    <div className="p-4 sm:p-6 bg-white border-t-2 border-slate-200">
+      <div className="flex items-center gap-3 sm:gap-4 max-w-5xl mx-auto">
         <input 
           type="file" 
           ref={fileInputRef}
@@ -38,27 +40,28 @@ export const ChatInput: React.FC<ChatInputProps> = ({
           type="button"
           onClick={() => fileInputRef.current?.click()}
           disabled={isUploading || isSending}
-          className="p-3 text-gray-400 hover:text-gray-600 hover:bg-gray-50 rounded-full transition-colors disabled:opacity-50"
+          className="p-2.5 sm:p-3 text-slate-400 hover:text-slate-600 hover:bg-slate-50 rounded-xl transition-colors disabled:opacity-50 border-2 border-transparent hover:border-slate-200"
           title="Attach File or Image"
         >
-          <Paperclip className="w-6 h-6 rtl:rotate-180" />
+          <Paperclip className={`w-5 h-5 sm:w-6 sm:h-6 ${isRTL ? 'rotate-180' : ''}`} />
         </button>
         
-        <form onSubmit={onSendMessage} className="flex-1 flex items-center gap-4">
+        <form onSubmit={onSendMessage} className="flex-1 flex items-center gap-3 sm:gap-4">
           <input
             type="text"
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
             placeholder={isAIMode ? t("aiActive") : t("typeMessage")}
             disabled={isSending || isAIMode}
-            className="flex-1 py-4 px-6 bg-gray-50 border-transparent focus:bg-white focus:border-[#2A4D9A] focus:ring-1 focus:ring-[#2A4D9A] rounded-2xl transition-all duration-200 outline-none text-base disabled:opacity-70 disabled:cursor-not-allowed"
+            className="flex-1 py-3 sm:py-4 px-4 sm:px-6 bg-slate-50 border-2 border-slate-200 focus:bg-white focus:border-[#005bbc] focus:ring-2 focus:ring-[#005bbc]/20 rounded-xl transition-all duration-200 outline-none text-sm sm:text-base disabled:opacity-70 disabled:cursor-not-allowed"
+            dir="auto"
           />
           <button
             type="submit"
             disabled={!newMessage.trim() || isSending || isAIMode}
-            className="p-4 bg-[#2A4D9A] text-white rounded-2xl hover:bg-blue-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-lg hover:shadow-xl hover:shadow-blue-900/20"
+            className="p-3 sm:p-4 bg-[#005bbc] text-white rounded-xl hover:bg-[#004a9f] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 border border-[#005bbc]"
           >
-            {isSending ? <Loader2 className="w-6 h-6 animate-spin" /> : <Send className="w-6 h-6 rtl:rotate-180" />}
+            {isSending ? <Loader2 className="w-5 h-5 sm:w-6 sm:h-6 animate-spin" /> : <Send className={`w-5 h-5 sm:w-6 sm:h-6 ${isRTL ? 'rotate-180' : ''}`} />}
           </button>
         </form>
       </div>

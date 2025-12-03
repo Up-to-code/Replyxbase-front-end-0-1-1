@@ -1,59 +1,91 @@
+"use client";
 import React from "react";
-import { getTranslations } from "next-intl/server";
-import { Star } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { Star, Quote } from "lucide-react";
 
-const TestimonialCard = ({ quote, author, role, company }: { quote: string, author: string, role: string, company: string }) => (
-    <div className="bg-white p-8 rounded-3xl border border-gray-100 hover:border-[#2A4D9A]/20 transition-all duration-300 group">
-        <div className="mb-6 flex gap-1">
-            {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+const TestimonialsSection = () => {
+  const t = useTranslations("Landing.Testimonials");
+
+  const testimonials = [
+    {
+      quote: t("testimonial1.quote"),
+      author: t("testimonial1.author"),
+      role: t("testimonial1.role"),
+      company: t("testimonial1.company"),
+      rating: 5
+    },
+    {
+      quote: t("testimonial2.quote"),
+      author: t("testimonial2.author"),
+      role: t("testimonial2.role"),
+      company: t("testimonial2.company"),
+      rating: 5
+    },
+    {
+      quote: t("testimonial3.quote"),
+      author: t("testimonial3.author"),
+      role: t("testimonial3.role"),
+      company: t("testimonial3.company"),
+      rating: 5
+    },
+  ];
+
+  return (
+    <section className="py-20 lg:py-28 bg-slate-50">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
+              {t("title")}
+            </h2>
+            <p className="text-lg text-slate-600 mb-6">
+              {t("subtitle")}
+            </p>
+            <div className="flex items-center justify-center gap-2 text-sm font-semibold text-slate-700">
+              <span>{t("customers")}</span>
+              <span className="text-slate-400">•</span>
+              <div className="flex items-center gap-1">
+                {[1,2,3,4,5].map(i => (
+                  <Star key={i} className="w-4 h-4 fill-[#ffd600] text-[#ffd600]" aria-hidden="true" />
+                ))}
+              </div>
+              <span>{t("reviews")}</span>
+            </div>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {testimonials.map((testimonial, idx) => (
+              <div
+                key={idx}
+                className="p-6 bg-white rounded-2xl border-2 border-slate-200 hover:border-slate-300 transition-all group"
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <Quote className="w-8 h-8 text-[#005bbc]/20" aria-hidden="true" />
+                  <div className="flex gap-0.5">
+                    {[1,2,3,4,5].map(i => (
+                      <Star key={i} className="w-3 h-3 fill-[#ffd600] text-[#ffd600]" aria-hidden="true" />
+                    ))}
+                  </div>
+                </div>
+                <p className="text-base text-slate-700 mb-6 leading-relaxed">
+                  "{testimonial.quote}"
+                </p>
+                <div className="flex items-center gap-3 pt-4 border-t-2 border-slate-200">
+                  <div className="w-12 h-12 rounded-xl bg-[#005bbc]/10 flex items-center justify-center border-2 border-[#005bbc]/20">
+                    <div className="w-6 h-6 bg-[#005bbc] rounded-lg" />
+                  </div>
+                  <div>
+                    <div className="text-sm font-bold text-slate-900">{testimonial.author}</div>
+                    <div className="text-xs text-slate-600">{testimonial.role}, {testimonial.company}</div>
+                  </div>
+                </div>
+              </div>
             ))}
+          </div>
         </div>
-        <p className="text-lg text-gray-700 mb-8 leading-relaxed font-medium">"{quote}"</p>
-        <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-[#2A4D9A]/10 rounded-full flex items-center justify-center text-[#2A4D9A] font-bold text-lg group-hover:scale-110 transition-transform">
-                {author[0]}
-            </div>
-            <div>
-                <div className="font-bold text-gray-900">{author}</div>
-                <div className="text-sm text-gray-500">{role}, {company}</div>
-            </div>
-        </div>
-    </div>
-);
-
-const TestimonialsSection = async () => {
-    const t = await getTranslations("Landing.Testimonials");
-    return (
-        <section className="py-24 bg-white border-t border-gray-100">
-            <div className="container mx-auto px-6">
-                <div className="text-center mb-16 max-w-2xl mx-auto">
-                    <h2 className="text-4xl font-bold text-gray-900 mb-6 tracking-tight">{t("title")}</h2>
-                    <p className="text-xl text-gray-600">{t("subtitle")}</p>
-                </div>
-                <div className="grid md:grid-cols-3 gap-8">
-                    <TestimonialCard 
-                        quote={t("quote1")}
-                        author={t("author1")}
-                        role={t("role1")}
-                        company={t("company1")}
-                    />
-                    <TestimonialCard 
-                        quote={t("quote2")}
-                        author={t("author2")}
-                        role={t("role2")}
-                        company={t("company2")}
-                    />
-                    <TestimonialCard 
-                        quote={t("quote3")}
-                        author={t("author3")}
-                        role={t("role3")}
-                        company={t("company3")}
-                    />
-                </div>
-            </div>
-        </section>
-    );
+      </div>
+    </section>
+  );
 };
 
 export default TestimonialsSection;

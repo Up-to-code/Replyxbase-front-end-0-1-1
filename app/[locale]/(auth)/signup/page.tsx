@@ -3,10 +3,11 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Github, Loader2, AlertCircle } from 'lucide-react';
+import { Github } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
+import { Alert } from '@/components/ui/Alert';
 import { authClient } from '@/lib/auth-client';
 import { toast } from 'sonner';
 
@@ -25,9 +26,10 @@ export default function SignupPage() {
         provider: "google",
         callbackURL: "/dashboard",
       });
-    } catch (err: any) {
-      setError(err.message || "Failed to sign in with Google");
-      toast.error(err.message || "Failed to sign in with Google");
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : "Failed to sign in with Google";
+      setError(errorMessage);
+      toast.error(errorMessage);
     } finally {
       setIsLoading(false);
     }
@@ -41,9 +43,10 @@ export default function SignupPage() {
         provider: "github",
         callbackURL: "/dashboard",
       });
-    } catch (err: any) {
-      setError(err.message || "Failed to sign in with GitHub");
-      toast.error(err.message || "Failed to sign in with GitHub");
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : "Failed to sign in with GitHub";
+      setError(errorMessage);
+      toast.error(errorMessage);
     } finally {
       setIsLoading(false);
     }
@@ -86,9 +89,9 @@ export default function SignupPage() {
         toast.success(t("success"));
         router.push("/dashboard");
       }
-    } catch (err: any) {
+    } catch (err) {
       console.error("Signup exception:", err);
-      const errorMessage = err.message || t("error");
+      const errorMessage = err instanceof Error ? err.message : t("error");
       setError(errorMessage);
       toast.error(errorMessage);
     } finally {
@@ -100,10 +103,10 @@ export default function SignupPage() {
     <div className="space-y-8">
       {/* Header */}
       <div className="space-y-2">
-        <h2 className="text-3xl font-semibold tracking-tight text-gray-900">
+        <h2 className="text-3xl font-bold tracking-tight text-slate-900">
           {t("title")}
         </h2>
-        <p className="text-base text-gray-500">
+        <p className="text-base text-slate-600">
           {t("subtitle")}
         </p>
       </div>
@@ -111,10 +114,9 @@ export default function SignupPage() {
       <div className="space-y-6">
         {/* Error Alert */}
         {error && (
-          <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-100 rounded-xl text-sm text-red-600">
-            <AlertCircle className="w-4 h-4 shrink-0" />
-            <span>{error}</span>
-          </div>
+          <Alert variant="error" onClose={() => setError(null)}>
+            {error}
+          </Alert>
         )}
 
         {/* OAuth Buttons */}
@@ -124,9 +126,9 @@ export default function SignupPage() {
             variant="outline" 
             onClick={handleGitHubSignIn}
             disabled={isLoading}
-            className="w-full bg-white hover:bg-gray-50 text-gray-700 border border-gray-200 rounded-lg transition-all"
+            className="w-full"
+            icon={Github}
           >
-            <Github className="me-2 h-4 w-4" />
             {tLogin("github")}
           </Button>
           <Button 
@@ -134,7 +136,7 @@ export default function SignupPage() {
             variant="outline" 
             onClick={handleGoogleSignIn}
             disabled={isLoading}
-            className="w-full bg-white hover:bg-gray-50 text-gray-700 border border-gray-200 rounded-lg transition-all"
+            className="w-full"
           >
             <svg className="me-2 h-4 w-4" viewBox="0 0 24 24">
               <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
@@ -149,10 +151,10 @@ export default function SignupPage() {
         {/* Divider */}
         <div className="relative">
           <div className="absolute inset-0 flex items-center">
-            <span className="w-full border-t border-gray-200" />
+            <span className="w-full border-t-2 border-slate-200" />
           </div>
           <div className="relative flex justify-center text-xs uppercase">
-            <span className="bg-white px-2 text-gray-500">{tLogin("or")}</span>
+            <span className="bg-white px-2 text-slate-500">{tLogin("or")}</span>
           </div>
         </div>
 
@@ -169,7 +171,6 @@ export default function SignupPage() {
               autoCorrect="off"
               disabled={isLoading}
               required
-              className="bg-gray-50 border-transparent focus:bg-white focus:border-gray-200 rounded-xl transition-all"
             />
           </div>
           <div className="space-y-2">
@@ -183,7 +184,6 @@ export default function SignupPage() {
               autoCorrect="off"
               disabled={isLoading}
               required
-              className="bg-gray-50 border-transparent focus:bg-white focus:border-gray-200 rounded-xl transition-all"
             />
           </div>
           <div className="space-y-2">
@@ -197,23 +197,24 @@ export default function SignupPage() {
               disabled={isLoading}
               required
               minLength={8}
-              className="bg-gray-50 border-transparent focus:bg-white focus:border-gray-200 rounded-xl transition-all"
             />
-            <p className="text-xs text-gray-500">Password must be at least 8 characters</p>
+            <p className="text-xs text-slate-500">Password must be at least 8 characters</p>
           </div>
           <Button 
-            disabled={isLoading} 
-            className="w-full bg-gray-900 text-white hover:bg-gray-800 rounded-lg transition-all"
+            type="submit"
+            variant="primary"
+            disabled={isLoading}
+            loading={isLoading}
+            className="w-full"
           >
-            {isLoading && <Loader2 className="me-2 h-4 w-4 animate-spin" />}
             {t("submit")}
           </Button>
         </form>
 
         {/* Footer Links */}
-        <div className="text-center text-sm text-gray-600 pt-4">
+        <div className="text-center text-sm text-slate-600 pt-4">
           {t("hasAccount")}{" "}
-          <Link href="/login" className="font-medium hover:text-gray-900 transition-colors" style={{ color: '#2A4D9A' }}>
+          <Link href="/login" className="font-medium text-[#005bbc] hover:text-[#004a9f] transition-colors">
             {t("signInLink")}
           </Link>
         </div>

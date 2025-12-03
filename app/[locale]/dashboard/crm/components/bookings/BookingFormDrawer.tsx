@@ -119,7 +119,7 @@ export const BookingFormDrawer: React.FC<BookingFormDrawerProps> = ({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100]"
+            className="fixed inset-0 bg-black/20 backdrop-blur-sm z-[100]"
             onClick={onClose}
           />
           
@@ -129,16 +129,16 @@ export const BookingFormDrawer: React.FC<BookingFormDrawerProps> = ({
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-            className="fixed right-0 top-0 h-full w-full max-w-2xl bg-white shadow-xl z-[101] overflow-y-auto rtl:right-auto rtl:left-0 rtl:transform rtl:-scale-x-100"
+            className="fixed right-0 top-0 h-full w-full max-w-2xl bg-white z-[101] overflow-y-auto rtl:right-auto rtl:left-0 rtl:transform rtl:-scale-x-100 border-l-2 border-slate-200"
           >
             <div className="flex flex-col h-full rtl:transform rtl:-scale-x-100">
-              <div className="flex items-center justify-between p-6 border-b border-gray-200">
-                <h2 className="text-xl font-semibold text-gray-900">
+              <div className="flex items-center justify-between p-6 border-b-2 border-slate-200">
+                <h2 className="text-xl font-semibold text-slate-900">
                   {booking ? t("editTitle") : t("newTitle")}
                 </h2>
                 <button
                   onClick={onClose}
-                  className="p-2 hover:bg-gray-100 rounded-lg transition-colors duration-200"
+                  className="p-2 hover:bg-slate-100 rounded-lg transition-colors duration-200 border-2 border-transparent hover:border-slate-200"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -148,7 +148,7 @@ export const BookingFormDrawer: React.FC<BookingFormDrawerProps> = ({
                 <div className="p-6 space-y-6">
                   {/* Customer Information */}
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">{t("customerInfo")}</h3>
+                    <h3 className="text-lg font-semibold text-slate-900 mb-4">{t("customerInfo")}</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <InputField
                         label={t("fullName")}
@@ -179,7 +179,7 @@ export const BookingFormDrawer: React.FC<BookingFormDrawerProps> = ({
 
                   {/* Booking Details */}
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">{t("bookingDetails")}</h3>
+                    <h3 className="text-lg font-semibold text-slate-900 mb-4">{t("bookingDetails")}</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <InputField
                         label={t("date")}
@@ -230,7 +230,7 @@ export const BookingFormDrawer: React.FC<BookingFormDrawerProps> = ({
 
                   {/* Additional Information */}
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">{t("additionalInfo")}</h3>
+                    <h3 className="text-lg font-semibold text-slate-900 mb-4">{t("additionalInfo")}</h3>
                     <div className="grid grid-cols-1 gap-4">
                       <InputField
                         label={t("specialRequests")}
@@ -250,19 +250,19 @@ export const BookingFormDrawer: React.FC<BookingFormDrawerProps> = ({
                   </div>
                 </div>
                 
-                <div className="p-6 border-t border-gray-100">
+                <div className="p-6 border-t-2 border-slate-200">
                   <div className="flex gap-3">
                     <button
                       type="button"
                       onClick={onClose}
-                      className="flex-1 px-4 py-2.5 border border-gray-200 bg-white text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors"
+                      className="flex-1 px-4 py-2.5 border-2 border-slate-200 bg-white text-slate-700 rounded-xl font-medium hover:bg-slate-50 hover:border-slate-300 transition-colors"
                     >
                       {t("cancel")}
                     </button>
                     <button
                       type="submit"
                       disabled={isLoading}
-                      className="flex-1 px-4 py-2.5 bg-gray-900 text-white rounded-lg font-medium hover:bg-gray-800 transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="flex-1 px-4 py-2.5 bg-[#005bbc] hover:bg-[#004a9f] text-white border-2 border-[#005bbc] rounded-xl font-medium transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {isLoading ? (
                         <Loader2 className="w-4 h-4 animate-spin" />

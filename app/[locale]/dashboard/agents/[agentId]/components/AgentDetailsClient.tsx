@@ -58,11 +58,11 @@ export default function AgentDetailsClient({ agent }: AgentDetailsClientProps) {
   return (
     <div className="h-[calc(100vh-4rem)] flex flex-col bg-white animate-fade-in">
       {/* Header */}
-      <div className="px-8 py-6 border-b border-gray-100 flex-shrink-0">
+      <div className="px-8 py-6 border-b border-2 border-slate-200 flex-shrink-0">
         <div className="mb-4">
           <Link 
             href="/dashboard/agents" 
-            className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-primary transition-colors"
+            className="inline-flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-[#005bbc] transition-colors"
           >
             <ArrowLeft className="w-4 h-4 rtl:hidden" />
             <ArrowRight className="w-4 h-4 ltr:hidden" />
@@ -72,26 +72,26 @@ export default function AgentDetailsClient({ agent }: AgentDetailsClientProps) {
 
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="flex items-center gap-5">
-            <div className="w-16 h-16 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-900 font-bold text-2xl shadow-sm">
+            <div className="w-16 h-16 rounded-xl bg-slate-50 border-2 border-slate-200 flex items-center justify-center text-slate-900 font-bold text-2xl">
               {agent.name.charAt(0)}
             </div>
             <div>
               <div className="flex items-center gap-3 mb-1">
-                <h1 className="text-2xl font-bold text-gray-900">{agent.name}</h1>
-                <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium border ${
-                  agent.status === 'active' ? 'bg-green-50 text-green-700 border-green-100' : 
-                  agent.status === 'training' ? 'bg-blue-50 text-blue-700 border-blue-100' : 
-                  'bg-gray-50 text-gray-700 border-gray-100'
+                <h1 className="text-2xl font-bold text-slate-900">{agent.name}</h1>
+                <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium border-2 ${
+                  agent.status === 'active' ? 'bg-[#10B981]/10 text-[#10B981] border-[#10B981]/20' : 
+                  agent.status === 'training' ? 'bg-[#005bbc]/10 text-[#005bbc] border-[#005bbc]/20' : 
+                  'bg-slate-50 text-slate-700 border-slate-200'
                 }`}>
                   {agent.status}
                 </span>
               </div>
-              <p className="text-sm text-gray-500">{agent.role} • {t("lastActive", { time: agent.lastActive || 'Just now' })}</p>
+              <p className="text-sm text-slate-600">{agent.role} • {t("lastActive", { time: agent.lastActive || 'Just now' })}</p>
             </div>
           </div>
 
           <div className="flex items-center gap-3">
-            <button className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 font-medium transition-colors text-sm">
+            <button className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white border-2 border-slate-200 text-slate-700 hover:bg-slate-50 font-medium transition-colors text-sm">
               <Power className="w-4 h-4" />
               {t("status.pause")}
             </button>
@@ -110,8 +110,8 @@ export default function AgentDetailsClient({ agent }: AgentDetailsClientProps) {
                 disabled={isLoading}
                 className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium rounded-lg transition-all whitespace-nowrap ${
                   isActive 
-                    ? 'bg-gray-100 text-gray-900' 
-                    : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
+                    ? 'bg-slate-100 text-slate-900' 
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                 }`}
               >
                 <Icon className="w-4 h-4" />
@@ -123,17 +123,17 @@ export default function AgentDetailsClient({ agent }: AgentDetailsClientProps) {
       </div>
 
       {/* Tab Content */}
-      <div className="flex-1 overflow-y-auto bg-gray-50/50 p-8">
+      <div className="flex-1 overflow-y-auto bg-slate-50/50 p-8">
         <div className="max-w-7xl mx-auto">
           {error && (
-            <div className="mb-8 p-4 rounded-xl bg-red-50 border border-red-100 flex items-center gap-3 text-red-700 animate-fade-in">
+            <div className="mb-8 p-4 rounded-xl bg-[#EF4444]/10 border-2 border-[#EF4444]/20 flex items-center gap-3 text-[#EF4444] animate-fade-in">
               <AlertCircle className="w-5 h-5" />
               <p>{error}</p>
               <button 
                 onClick={() => handleTabChange(activeTab)}
                 className="ml-auto text-sm font-bold hover:underline"
               >
-                Retry
+                {t('retry')}
               </button>
             </div>
           )}
@@ -143,8 +143,8 @@ export default function AgentDetailsClient({ agent }: AgentDetailsClientProps) {
               {activeTab === 'overview' && <StatsSkeleton />}
               {(activeTab === 'integrations' || activeTab === 'knowledge') && <CardSkeleton />}
               {activeTab === 'settings' && <div className="space-y-4 animate-pulse">
-                <div className="h-32 bg-white rounded-xl border border-gray-100" />
-                <div className="h-64 bg-white rounded-xl border border-gray-100" />
+                <div className="h-32 bg-white rounded-xl border-2 border-slate-200" />
+                <div className="h-64 bg-white rounded-xl border-2 border-slate-200" />
               </div>}
             </div>
           ) : (

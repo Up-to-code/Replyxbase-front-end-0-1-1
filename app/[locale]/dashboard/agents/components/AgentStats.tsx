@@ -16,7 +16,7 @@ const StatCard: React.FC<StatCardProps> = ({ title, value, change, icon: Icon, c
   const isPositive = change >= 0;
   
   return (
-    <div className="bg-white p-6 rounded-2xl border border-gray-200 hover:border-gray-300 transition-colors">
+    <div className="bg-white p-6 rounded-2xl border-2 border-slate-200 hover:border-[#005bbc]/30 transition-colors">
       <div className="flex items-start justify-between mb-4">
         <div className={`p-3 rounded-xl ${color} bg-opacity-10`}>
           <Icon className={`w-6 h-6 ${color.replace('bg-', 'text-')}`} />
@@ -26,8 +26,8 @@ const StatCard: React.FC<StatCardProps> = ({ title, value, change, icon: Icon, c
           <span>{Math.abs(change)}%</span>
         </div>
       </div>
-      <h3 className="text-gray-500 text-sm font-medium mb-1">{title}</h3>
-      <p className="text-2xl font-bold text-gray-900">{value}</p>
+      <h3 className="text-slate-600 text-sm font-medium mb-1">{title}</h3>
+      <p className="text-2xl font-bold text-slate-900">{value}</p>
     </div>
   );
 };

@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import { useRTL } from '@/hooks/useRTL';
 import { useInbox } from '../hooks/useInbox';
 import { useAutoReply } from '../hooks/useAutoReply';
 import { SidebarHeader } from './Sidebar/SidebarHeader';
@@ -14,6 +15,7 @@ export const InboxClient: React.FC = () => {
   const [isMobileListVisible, setIsMobileListVisible] = useState(true);
   const [isAIMode, setIsAIMode] = useState(true);
   const t = useTranslations("Dashboard.Inbox");
+  const { isRTL } = useRTL();
 
   const {
     conversations,
@@ -54,9 +56,9 @@ export const InboxClient: React.FC = () => {
   );
 
   return (
-    <div className="flex h-full bg-white overflow-hidden">
+    <div className="flex h-full bg-white overflow-hidden" dir={isRTL ? 'rtl' : 'ltr'}>
       {/* Sidebar */}
-      <div className={`${isMobileListVisible ? 'flex' : 'hidden'} md:flex flex-col w-full md:w-96 border-r border-gray-100 bg-white`}>
+      <div className={`${isMobileListVisible ? 'flex' : 'hidden'} md:flex flex-col w-full md:w-96 border-e-2 border-slate-200 bg-white`}>
         <SidebarHeader searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         <ConversationList
           conversations={filteredConversations}

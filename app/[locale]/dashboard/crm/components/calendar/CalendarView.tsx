@@ -64,40 +64,40 @@ const CalendarSwitcher: React.FC<CalendarSwitcherProps> = ({
   };
 
   return (
-    <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 p-4 border-b border-gray-200">
+    <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 p-4 border-b-2 border-slate-200">
       <div className="flex items-center gap-4">
-        <h2 className="text-xl font-semibold text-gray-900">{formatHeaderDate()}</h2>
+        <h2 className="text-xl font-semibold text-slate-900">{formatHeaderDate()}</h2>
         <div className="flex items-center gap-2">
           <button
             onClick={() => navigateDate('prev')}
-            className="p-2 hover:bg-gray-100 rounded-xl transition-colors duration-200 rtl:rotate-180"
+            className="p-2 hover:bg-slate-100 rounded-xl transition-colors duration-200 rtl:rotate-180 border-2 border-transparent hover:border-slate-200"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
           <button
             onClick={() => onDateChange(new Date())}
-            className="px-3 py-1 text-sm bg-gray-900 text-white rounded-xl font-medium hover:bg-gray-800 transition-all duration-200"
+            className="px-3 py-1 text-sm bg-[#005bbc] hover:bg-[#004a9f] text-white border-2 border-[#005bbc] rounded-xl font-medium transition-all duration-200"
           >
             {t("today")}
           </button>
           <button
             onClick={() => navigateDate('next')}
-            className="p-2 hover:bg-gray-100 rounded-xl transition-colors duration-200 rtl:rotate-180"
+            className="p-2 hover:bg-slate-100 rounded-xl transition-colors duration-200 rtl:rotate-180 border-2 border-transparent hover:border-slate-200"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
         </div>
       </div>
       
-      <div className="flex gap-1 bg-gray-100 p-1 rounded-xl">
+      <div className="flex gap-1 bg-slate-100 p-1 rounded-xl border-2 border-slate-200">
         {(['month', 'week', 'day'] as CalendarView[]).map((viewType) => (
           <button
             key={viewType}
             onClick={() => onViewChange(viewType)}
-            className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 ${
+            className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 border-2 ${
               view === viewType
-                ? 'bg-white text-gray-900 shadow-sm'
-                : 'text-gray-600 hover:text-gray-900'
+                ? 'bg-white text-slate-900 border-slate-200'
+                : 'text-slate-600 hover:text-slate-900 border-transparent'
             }`}
           >
             {t(viewType)}
@@ -170,7 +170,7 @@ export const CalendarViewComponent: React.FC<CalendarViewProps> = ({
   }
 
   return (
-    <div className="bg-white border border-gray-200 rounded-[20px] overflow-hidden transition-all duration-200 mx-4">
+    <div className="bg-white border-2 border-slate-200 rounded-2xl overflow-hidden transition-all duration-200 mx-4">
       <CalendarSwitcher
         currentDate={currentDate}
         onDateChange={onDateChange}
@@ -184,7 +184,7 @@ export const CalendarViewComponent: React.FC<CalendarViewProps> = ({
           <div className="grid grid-cols-7 gap-1 mb-2 p-4">
             {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
               <div key={day} className="text-center">
-                <span className="text-sm font-medium text-gray-500">{day}</span>
+                <span className="text-sm font-medium text-slate-500">{day}</span>
               </div>
             ))}
           </div>
@@ -199,17 +199,17 @@ export const CalendarViewComponent: React.FC<CalendarViewProps> = ({
               return (
                 <div
                   key={index}
-                  className={`min-h-[100px] border border-gray-200 p-2 cursor-pointer transition-all duration-200 rounded-lg ${
+                  className={`min-h-[100px] border-2 p-2 cursor-pointer transition-all duration-200 rounded-xl ${
                     isCurrentMonth 
-                      ? 'bg-white hover:bg-gray-50' 
-                      : 'bg-gray-50 text-gray-400'
+                      ? 'bg-white border-slate-200 hover:bg-slate-50 hover:border-slate-300' 
+                      : 'bg-slate-50 border-slate-200 text-slate-400'
                   } ${
-                    isToday ? 'ring-2 ring-gray-900 ring-inset' : ''
+                    isToday ? 'border-[#005bbc] ring-2 ring-[#005bbc]/20' : ''
                   }`}
                   onClick={() => onDayClick(date, dayBookings)}
                 >
                   <div className={`text-sm font-medium mb-1 ${
-                    isToday ? 'text-gray-900' : 'text-gray-900'
+                    isToday ? 'text-[#005bbc]' : 'text-slate-900'
                   }`}>
                     {date.getDate()}
                   </div>
@@ -217,14 +217,14 @@ export const CalendarViewComponent: React.FC<CalendarViewProps> = ({
                     {dayBookings.slice(0, 3).map(booking => (
                       <div
                         key={booking.id}
-                        className={`text-xs p-1 rounded truncate ${
+                        className={`text-xs p-1 rounded truncate border-2 ${
                           booking.status === 'confirmed' 
-                            ? 'bg-emerald-100 text-emerald-800' 
+                            ? 'bg-[#10B981]/10 text-[#10B981] border-[#10B981]/20' 
                             : booking.status === 'pending'
-                            ? 'bg-amber-100 text-amber-800'
+                            ? 'bg-[#F59E0B]/10 text-[#F59E0B] border-[#F59E0B]/20'
                             : booking.status === 'cancelled'
-                            ? 'bg-rose-100 text-rose-800'
-                            : 'bg-gray-100 text-gray-800'
+                            ? 'bg-[#EF4444]/10 text-[#EF4444] border-[#EF4444]/20'
+                            : 'bg-slate-100 text-slate-800 border-slate-200'
                         }`}
                         onClick={(e) => {
                           e.stopPropagation();
@@ -235,7 +235,7 @@ export const CalendarViewComponent: React.FC<CalendarViewProps> = ({
                       </div>
                     ))}
                     {dayBookings.length > 3 && (
-                      <div className="text-xs text-gray-500 text-center">
+                      <div className="text-xs text-slate-500 text-center">
                         {t("more", { count: dayBookings.length - 3 })}
                       </div>
                     )}
@@ -256,8 +256,8 @@ export const CalendarViewComponent: React.FC<CalendarViewProps> = ({
               
               return (
                 <div key={index} className="min-h-[500px]">
-                  <div className={`text-center mb-2 p-2 ${
-                    isToday ? 'bg-gray-900 text-white rounded-xl' : ''
+                  <div className={`text-center mb-2 p-2 border-2 rounded-xl ${
+                    isToday ? 'bg-[#005bbc] text-white border-[#005bbc]' : 'border-transparent'
                   }`}>
                     <div className="text-sm font-medium">
                       {date.toLocaleDateString('en-US', { weekday: 'short' })}
@@ -270,24 +270,24 @@ export const CalendarViewComponent: React.FC<CalendarViewProps> = ({
                     {dayBookings.map(booking => (
                       <div
                         key={booking.id}
-                        className={`p-2 rounded-xl border cursor-pointer transition-all duration-200 ${
+                        className={`p-2 rounded-xl border-2 cursor-pointer transition-all duration-200 ${
                           booking.status === 'confirmed' 
-                            ? 'border-emerald-200 bg-emerald-50 hover:bg-emerald-100' 
+                            ? 'border-[#10B981]/20 bg-[#10B981]/10 hover:bg-[#10B981]/20' 
                             : booking.status === 'pending'
-                            ? 'border-amber-200 bg-amber-50 hover:bg-amber-100'
+                            ? 'border-[#F59E0B]/20 bg-[#F59E0B]/10 hover:bg-[#F59E0B]/20'
                             : booking.status === 'cancelled'
-                            ? 'border-rose-200 bg-rose-50 hover:bg-rose-100'
-                            : 'border-gray-200 bg-gray-50 hover:bg-gray-100'
+                            ? 'border-[#EF4444]/20 bg-[#EF4444]/10 hover:bg-[#EF4444]/20'
+                            : 'border-slate-200 bg-slate-50 hover:bg-slate-100'
                         }`}
                         onClick={() => onBookingClick(booking)}
                       >
-                        <div className="text-sm font-medium truncate">
+                        <div className="text-sm font-medium truncate text-slate-900">
                           {booking.startTime}
                         </div>
-                        <div className="text-xs text-gray-600 truncate">
+                        <div className="text-xs text-slate-600 truncate">
                           {booking.customer.fullName}
                         </div>
-                        <div className="text-xs text-gray-500">
+                        <div className="text-xs text-slate-500">
                           {booking.serviceType}
                         </div>
                       </div>
@@ -304,7 +304,7 @@ export const CalendarViewComponent: React.FC<CalendarViewProps> = ({
         <div className="p-4">
           <div className="max-w-2xl mx-auto">
             <div className="text-center mb-6">
-              <h3 className="text-lg font-semibold text-gray-900">
+              <h3 className="text-lg font-semibold text-slate-900">
                 {currentDate.toLocaleDateString('en-US', { 
                   weekday: 'long', 
                   year: 'numeric', 
@@ -324,28 +324,28 @@ export const CalendarViewComponent: React.FC<CalendarViewProps> = ({
                 
                 return (
                   <div key={time} className="flex gap-4">
-                    <div className="w-20 text-sm font-medium text-gray-500 pt-2">
+                    <div className="w-20 text-sm font-medium text-slate-500 pt-2">
                       {time}
                     </div>
                     <div className="flex-1 space-y-2">
                       {timeBookings.map(booking => (
                         <div 
                           key={booking.id}
-                          className="p-3 rounded-xl border border-gray-200 hover:border-gray-300 transition-colors cursor-pointer bg-white"
+                          className="p-3 rounded-xl border-2 border-slate-200 hover:border-slate-300 transition-colors cursor-pointer bg-white"
                           onClick={() => onBookingClick(booking)}
                         >
                           <div className="flex justify-between items-start">
                             <div>
-                              <div className="font-medium text-gray-900">{booking.customer.fullName}</div>
-                              <div className="text-xs text-gray-500">{booking.customer.phone}</div>
+                              <div className="font-medium text-slate-900">{booking.customer.fullName}</div>
+                              <div className="text-xs text-slate-500">{booking.customer.phone}</div>
                             </div>
                             <StatusBadge status={booking.status} />
                           </div>
-                          <div className="text-sm text-gray-600 mt-1">
+                          <div className="text-sm text-slate-600 mt-1">
                             {booking.serviceType} • {booking.duration}min
                           </div>
                           {booking.location && (
-                            <div className="text-xs text-gray-500 mt-1 flex items-center gap-1">
+                            <div className="text-xs text-slate-500 mt-1 flex items-center gap-1">
                               <MapPin className="w-3 h-3" />
                               {booking.location}
                             </div>

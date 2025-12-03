@@ -58,7 +58,7 @@
   --popover: #ffffff;
   --popover-foreground: #18181b;
   /* zinc-900 */
-  --primary: #2A4D9A;
+  --primary: #2563EB;
   --primary-foreground: #ffffff;
   /* zinc-50 */
   --secondary: #f4f4f5;
@@ -676,4 +676,64 @@ body {
 
 .animate-marquee {
   animation: marquee 60s linear infinite;
+}
+
+/* Hero Orbit Animations */
+@keyframes orbit-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes counter-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+@keyframes particle-flow {
+  0% { left: 0%; opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+
+@keyframes hub-pulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 0.9; transform: scale(1.05); }
+}
+
+@keyframes ring-pulse {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0; transform: scale(1.3); }
+}
+
+.animate-orbit-rotate {
+  animation: orbit-rotate 60s linear infinite;
+}
+
+.animate-counter-rotate {
+  animation: counter-rotate 60s linear infinite;
+}
+
+.animate-particle-flow {
+  animation: particle-flow 3s linear infinite;
+}
+
+.animate-hub-pulse {
+  animation: hub-pulse 4s ease-in-out infinite;
+}
+
+
+/* Text Shimmer */
+@keyframes text-shimmer {
+  from { background-position: 0 0; }
+  to { background-position: -200% 0; }
+}
+
+.animate-text-shimmer {
+  animation: text-shimmer 8s ease-in-out infinite;
+}
+
+/* Float Slow */
+.animate-float-slow {
+  animation: float 10s ease-in-out infinite;
 }

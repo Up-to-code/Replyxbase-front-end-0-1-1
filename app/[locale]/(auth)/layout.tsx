@@ -17,13 +17,13 @@ export default function AuthLayout({
       {/* Left Side - Branding/Image */}
       <div 
         className="hidden lg:flex lg:w-1/2 relative overflow-hidden"
-        style={{ backgroundColor: '#2A4D9A' }}
+        style={{ backgroundColor: '#005bbc' }}
       >
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#2A4D9A] via-[#3d5fa8] to-[#5171b6] opacity-90" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#005bbc] via-[#004a9f] to-[#003d8a] opacity-90" />
         
         {/* Content */}
-        <div className="relative z-10 flex flex-col justify-between p-12 text-white w-full">
+        <div className="relative z-10 flex flex-col justify-between px-8 py-12 lg:px-12 lg:py-16 text-white w-full">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3">
             <Image 
@@ -58,7 +58,7 @@ export default function AuthLayout({
       </div>
 
       {/* Right Side - Form */}
-      <div className="flex-1 flex flex-col justify-center px-6 py-12 lg:px-12 xl:px-24">
+      <div className="flex-1 flex flex-col justify-center px-4 py-12 sm:px-6 lg:px-8 xl:px-12">
         {/* Mobile Logo */}
         <div className="lg:hidden mb-8">
           <Link href="/" className="flex items-center gap-2">
@@ -69,7 +69,7 @@ export default function AuthLayout({
               height={40}
               className="object-contain"
             />
-            <span className="font-bold text-2xl text-gray-900 tracking-tight">Replyxbase</span>
+            <span className="font-bold text-2xl text-slate-900 tracking-tight">Replyxbase</span>
           </Link>
         </div>
 

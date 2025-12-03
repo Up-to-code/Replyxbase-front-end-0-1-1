@@ -3,12 +3,16 @@ import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import HeroSection from "@/components/landing/hero/HeroSection";
 import TrustedBy from "@/components/landing/TrustedBy";
-import Marquee from "@/components/landing/Marquee";
-import OmnichannelFlow from "@/components/landing/features/OmnichannelFlow";
 import FeatureInbox from "@/components/landing/features/FeatureInbox";
 import FeatureAgents from "@/components/landing/features/FeatureAgents";
 import FeatureCRM from "@/components/landing/features/FeatureCRM";
 import FeatureAnalytics from "@/components/landing/features/FeatureAnalytics";
+import FeatureSolutionFlow from "@/components/landing/features/FeatureSolutionFlow";
+import PlatformShowcase from "@/components/landing/PlatformShowcase";
+import IntegrationsSection from "@/components/landing/IntegrationsSection";
+import ToolsMarquee from "@/components/landing/ToolsMarquee";
+import HowItWorksSection from "@/components/landing/HowItWorksSection";
+import SecuritySection from "@/components/landing/SecuritySection";
 import TestimonialsSection from "@/components/landing/TestimonialsSection";
 import PricingSection from "@/components/landing/PricingSection";
 import CTASection from "@/components/landing/CTASection";
@@ -75,7 +79,7 @@ export default async function LandingPage({ params }: Props) {
   };
 
   return (
-    <div className="min-h-screen bg-white font-sans overflow-x-hidden text-gray-900 selection:bg-blue-100 selection:text-[#2A4D9A]">
+    <div className="min-h-screen bg-white font-sans overflow-x-hidden text-slate-900 selection:bg-[#005bbc]/20 selection:text-[#005bbc]">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -83,23 +87,23 @@ export default async function LandingPage({ params }: Props) {
       
       <Header />
       
-      <main>
+      <main className="relative">
         <HeroSection session={null} /> 
         <TrustedBy />
-        <OmnichannelFlow />
-        <div id="features">
+        <div id="features" className="scroll-mt-20">
           <FeatureInbox />
           <FeatureAgents />
           <FeatureCRM />
           <FeatureAnalytics />
         </div>
-        
-        <Suspense fallback={<SectionSkeleton height="h-[600px]" />}>
-          <TestimonialsSection />
-        </Suspense>
-        
+        <FeatureSolutionFlow />
+        <HowItWorksSection />
+        <IntegrationsSection />
+        <ToolsMarquee />
+        <PlatformShowcase />
+        <TestimonialsSection />
+        <SecuritySection />
         <PricingSection />
-        
         <Suspense fallback={<SectionSkeleton height="h-[400px]" />}>
           <CTASection />
         </Suspense>

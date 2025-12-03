@@ -1,72 +1,70 @@
-import React, { useState } from 'react';
+"use client";
+
+import React from 'react';
 import { useTranslations } from 'next-intl';
-import { Moon, Sun, Monitor, Check } from 'lucide-react';
+import { useLocale } from 'next-intl';
+import { useRouter, usePathname } from '@/navigation';
+import { Globe } from 'lucide-react';
 
 export const AppearanceSettings: React.FC = () => {
   const t = useTranslations("Dashboard.Settings.Appearance");
-  const [theme, setTheme] = useState('system');
+  const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
 
-  const themes = [
-    { id: 'light', icon: Sun, label: 'Light' },
-    { id: 'dark', icon: Moon, label: 'Dark' },
-    { id: 'system', icon: Monitor, label: 'System' },
+  const languages = [
+    { code: "ar", label: "العربية", native: "العربية" },
+    { code: "en", label: "English", native: "English (US)" },
+    { code: "fr", label: "Français", native: "Français" },
+    { code: "es", label: "Español", native: "Español" },
   ];
+
+  const handleLanguageChange = (newLocale: string) => {
+    if (newLocale !== locale) {
+      router.replace(pathname, { locale: newLocale });
+    }
+  };
 
   return (
     <div className="animate-fade-in">
       <div className="mb-10">
-        <h2 className="text-2xl font-bold text-gray-900">{t("title")}</h2>
-        <p className="text-base text-gray-500 mt-2">{t("description")}</p>
+        <h2 className="text-2xl font-bold text-slate-900">{t("title")}</h2>
+        <p className="text-base text-slate-500 mt-2">{t("description")}</p>
       </div>
 
       <div className="space-y-8">
-        {/* Theme Selection */}
-        <div className="bg-white border border-gray-100 rounded-xl p-8">
-          <h3 className="text-lg font-bold text-gray-900 mb-6">{t("theme.title")}</h3>
-          
-          <div className="grid grid-cols-3 gap-4">
-            {themes.map((item) => {
-              const Icon = item.icon;
-              const isSelected = theme === item.id;
-              return (
-                <button
-                  key={item.id}
-                  onClick={() => setTheme(item.id)}
-                  className={`relative flex flex-col items-center gap-3 p-6 rounded-xl border-2 transition-all
-                    ${isSelected 
-                      ? 'border-primary bg-primary/5' 
-                      : 'border-gray-100 hover:border-gray-200 hover:bg-gray-50'
-                    }`}
-                >
-                  {isSelected && (
-                    <div className="absolute top-3 right-3 w-5 h-5 bg-primary rounded-full flex items-center justify-center">
-                      <Check className="w-3 h-3 text-primary-foreground" />
-                    </div>
-                  )}
-                  <Icon className={`w-8 h-8 ${isSelected ? 'text-primary' : 'text-gray-400'}`} />
-                  <span className={`text-sm font-semibold ${isSelected ? 'text-primary' : 'text-gray-500'}`}>
-                    {item.label}
-                  </span>
-                </button>
-              );
-            })}
+        {/* Language Selection */}
+        <div className="bg-white border-2 border-slate-200 rounded-xl p-8">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-10 h-10 rounded-full bg-[#005bbc]/10 flex items-center justify-center border-2 border-[#005bbc]/20">
+              <Globe className="w-5 h-5 text-[#005bbc]" />
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-slate-900">{t("language.title")}</h3>
+              <p className="text-sm text-slate-500">{t("language.description")}</p>
+            </div>
           </div>
-        </div>
-
-        {/* Language Selection (Placeholder) */}
-        <div className="bg-white border border-gray-100 rounded-xl p-8">
-          <h3 className="text-lg font-bold text-gray-900 mb-6">{t("language.title")}</h3>
           <div className="relative">
             <select 
-              className="w-full bg-gray-50 border-transparent focus:bg-white focus:border-gray-200 focus:ring-0 rounded-xl px-5 py-4 text-base text-gray-900 appearance-none"
-              defaultValue="en"
+              value={locale}
+              onChange={(e) => handleLanguageChange(e.target.value)}
+              className="w-full bg-slate-50 border-2 border-transparent focus:bg-white focus:border-[#005bbc] focus:ring-0 rounded-xl px-5 py-4 text-base text-slate-900 appearance-none cursor-pointer transition-all duration-200 hover:border-slate-300"
             >
-              <option value="en">English (US)</option>
-              <option value="es">Español</option>
-              <option value="fr">Français</option>
-              <option value="de">Deutsch</option>
+              {languages.map((lang) => (
+                <option key={lang.code} value={lang.code}>
+                  {lang.native}
+                </option>
+              ))}
             </select>
+            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none rtl:right-auto rtl:left-4">
+              <svg className="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
           </div>
+          <p className="text-sm text-slate-500 mt-4">
+            {t("language.note") || "Changes will apply immediately and refresh the page."}
+          </p>
         </div>
       </div>
     </div>

@@ -26,7 +26,7 @@ export const MessageList: React.FC<MessageListProps> = ({
   }, [messages, isSending, isUploading]);
 
   return (
-    <div className="flex-1 overflow-y-auto p-8 space-y-8 bg-white">
+    <div className="flex-1 overflow-y-auto p-4 sm:p-8 space-y-6 sm:space-y-8 bg-white">
       {messages.map((message, index) => {
         const isUser = message.sender === 'user';
         const isAI = message.sender === 'ai';
@@ -45,14 +45,14 @@ export const MessageList: React.FC<MessageListProps> = ({
         );
       })}
       {isSending && (
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex justify-end items-center gap-2 text-gray-400 text-sm p-4">
-          <Loader2 className="w-4 h-4 animate-spin" />
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex justify-end items-center gap-2 text-slate-400 text-sm p-4">
+          <Loader2 className="w-4 h-4 animate-spin text-[#005bbc]" />
           Sending...
         </motion.div>
       )}
       {isUploading && (
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex justify-end items-center gap-2 text-gray-400 text-sm p-4">
-          <Loader2 className="w-4 h-4 animate-spin" />
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex justify-end items-center gap-2 text-slate-400 text-sm p-4">
+          <Loader2 className="w-4 h-4 animate-spin text-[#005bbc]" />
           Uploading file...
         </motion.div>
       )}

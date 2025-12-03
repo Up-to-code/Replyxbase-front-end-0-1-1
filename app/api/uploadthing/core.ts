@@ -1,6 +1,6 @@
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { UploadThingError } from "uploadthing/server";
-import { getToken } from "@/lib/auth-server";
+import { getSession } from "@/lib/auth-server"; // Fixed: using getSession instead of getToken
 
 const f = createUploadthing();
 
@@ -10,12 +10,12 @@ export const ourFileRouter = {
   avatarUploader: f({ image: { maxFileSize: "4MB", maxFileCount: 1 } })
     .middleware(async () => {
       // Get the authenticated user
-      const token = await getToken();
+      const session = await getSession();
       
-      if (!token) throw new UploadThingError("Unauthorized");
+      if (!session?.user) throw new UploadThingError("Unauthorized");
       
       // Whatever is returned here is accessible in onUploadComplete as `metadata`
-      return { userId: token.sub };
+      return { userId: session.user.id };
     })
     .onUploadComplete(async ({ metadata, file }) => {
       console.log("Avatar upload complete for userId:", metadata.userId);
@@ -28,11 +28,11 @@ export const ourFileRouter = {
   // Organization logo uploader
   organizationLogo: f({ image: { maxFileSize: "4MB", maxFileCount: 1 } })
     .middleware(async () => {
-      const token = await getToken();
+      const session = await getSession();
       
-      if (!token) throw new UploadThingError("Unauthorized");
+      if (!session?.user) throw new UploadThingError("Unauthorized");
       
-      return { userId: token.sub };
+      return { userId: session.user.id };
     })
     .onUploadComplete(async ({ metadata, file }) => {
       console.log("Organization logo upload complete");
@@ -43,3 +43,4 @@ export const ourFileRouter = {
 } satisfies FileRouter;
 
 export type OurFileRouter = typeof ourFileRouter;
+

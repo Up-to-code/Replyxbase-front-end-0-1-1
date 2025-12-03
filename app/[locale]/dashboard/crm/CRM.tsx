@@ -7,7 +7,6 @@ import { useTranslations } from 'next-intl';
 import { Booking, BookingFormData, CalendarView as CalendarViewType, MainView } from './types';
 import { useFilters } from './hooks/useFilters';
 import { getBookings, createBooking, updateBooking, deleteBooking } from '@/app/actions/crm';
-import { Header } from './components/shared/Header';
 import { Filters } from './components/shared/Filters';
 import { ViewToggle } from './components/shared/ViewToggle';
 import { BookingTable } from './components/bookings/BookingTable';
@@ -180,8 +179,7 @@ export default function CRM({ initialBookings, initialPagination, initialCustome
     // Optimistic update
     setBookings(prev => prev.map(b => b.id === updatedBooking.id ? updatedBooking : b));
     try {
-      const { updateBooking } = await import('@/app/actions/crm');
-      // We need to convert Booking to BookingFormData
+      // Convert Booking to BookingFormData
       const formData: BookingFormData = {
         customer: {
           fullName: updatedBooking.customer.fullName,
@@ -221,7 +219,7 @@ export default function CRM({ initialBookings, initialPagination, initialCustome
   };
 
   return (
-    <div className="min-h-screen bg-gray-50/50 relative">
+    <div className="min-h-screen bg-slate-50 relative">
       {/* Toast Notification */}
       <AnimatePresence>
         {toast && (
@@ -229,8 +227,10 @@ export default function CRM({ initialBookings, initialPagination, initialCustome
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className={`fixed top-4 right-4 z-50 px-4 py-2 rounded-lg shadow-lg text-white font-medium ${
-              toast.type === 'success' ? 'bg-emerald-600' : 'bg-rose-600'
+            className={`fixed top-4 right-4 z-50 px-4 py-2.5 rounded-lg border-2 text-white font-medium ${
+              toast.type === 'success' 
+                ? 'bg-[#10B981] border-[#10B981]' 
+                : 'bg-[#EF4444] border-[#EF4444]'
             } rtl:right-auto rtl:left-4`}
             role="alert"
           >
@@ -245,8 +245,8 @@ export default function CRM({ initialBookings, initialPagination, initialCustome
         <div className="flex flex-col gap-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
-              <h1 className="text-2xl font-bold text-primary">{t("title")}</h1>
-              <p className="text-sm text-gray-500 mt-1">{t("subtitle")}</p>
+              <h1 className="text-2xl font-bold text-slate-900">{t("title")}</h1>
+              <p className="text-sm text-slate-600 mt-1">{t("subtitle")}</p>
             </div>
             <div className="flex items-center gap-3">
               <ViewToggle mainView={view} setMainView={setView} />
@@ -255,7 +255,7 @@ export default function CRM({ initialBookings, initialPagination, initialCustome
                   setSelectedBooking(null);
                   setIsFormOpen(true);
                 }}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-xl hover:bg-primary/90 transition-colors duration-200 font-medium shadow-none"
+                className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#005bbc] hover:bg-[#004a9f] text-white border-2 border-[#005bbc] rounded-xl transition-colors duration-200 font-medium"
                 aria-label={t("Header.newBooking")}
               >
                 <Plus className="w-4 h-4" />

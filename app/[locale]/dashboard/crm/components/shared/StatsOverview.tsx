@@ -40,54 +40,54 @@ export const StatsOverview: React.FC<StatsOverviewProps> = ({
         title: t("totalBookings"),
         value: totalBookings,
         icon: Calendar,
-        color: 'text-blue-600',
-        bg: 'bg-blue-50',
-        activeBorder: 'border-blue-500',
-        activeBg: 'bg-blue-50/50'
+        color: 'text-[#005bbc]',
+        bg: 'bg-[#005bbc]/10',
+        activeBorder: 'border-[#005bbc]',
+        activeBg: 'bg-[#005bbc]/10'
       },
       {
         id: 'pending',
         title: t("pending"),
         value: pendingBookings,
         icon: Clock,
-        color: 'text-amber-600',
-        bg: 'bg-amber-50',
-        activeBorder: 'border-amber-500',
-        activeBg: 'bg-amber-50/50'
+        color: 'text-[#F59E0B]',
+        bg: 'bg-[#F59E0B]/10',
+        activeBorder: 'border-[#F59E0B]',
+        activeBg: 'bg-[#F59E0B]/10'
       },
       {
         id: 'confirmed',
         title: t("confirmed"),
         value: confirmedBookings,
         icon: CheckCircle,
-        color: 'text-emerald-600',
-        bg: 'bg-emerald-50',
-        activeBorder: 'border-emerald-500',
-        activeBg: 'bg-emerald-50/50'
+        color: 'text-[#10B981]',
+        bg: 'bg-[#10B981]/10',
+        activeBorder: 'border-[#10B981]',
+        activeBg: 'bg-[#10B981]/10'
       },
       {
         id: 'cancelled',
         title: t("cancelled"),
         value: cancelledBookings,
         icon: AlertCircle,
-        color: 'text-rose-600',
-        bg: 'bg-rose-50',
-        activeBorder: 'border-rose-500',
-        activeBg: 'bg-rose-50/50'
+        color: 'text-[#EF4444]',
+        bg: 'bg-[#EF4444]/10',
+        activeBorder: 'border-[#EF4444]',
+        activeBg: 'bg-[#EF4444]/10'
       }
     ];
   }, [bookings, t]);
 
   if (isLoading) {
     return (
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6 px-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         {[1, 2, 3, 4].map((i) => (
-          <div key={i} className="bg-white p-4 rounded-[20px] border border-gray-200 shadow-sm animate-pulse">
+          <div key={i} className="bg-white p-4 rounded-2xl border-2 border-slate-200 animate-pulse">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-gray-100 rounded-xl"></div>
+              <div className="w-12 h-12 bg-slate-100 rounded-xl"></div>
               <div className="space-y-2">
-                <div className="h-4 w-20 bg-gray-100 rounded"></div>
-                <div className="h-6 w-12 bg-gray-100 rounded"></div>
+                <div className="h-4 w-20 bg-slate-100 rounded"></div>
+                <div className="h-6 w-12 bg-slate-100 rounded"></div>
               </div>
             </div>
           </div>
@@ -97,7 +97,7 @@ export const StatsOverview: React.FC<StatsOverviewProps> = ({
   }
 
   return (
-    <div className="flex gap-4 mb-6 px-6 overflow-x-auto pb-2 scrollbar-none snap-x">
+    <div className="flex gap-4 mb-6 overflow-x-auto pb-2 scrollbar-none snap-x">
       {stats.map((stat) => {
         const isActive = currentFilter === stat.id;
         return (
@@ -105,28 +105,28 @@ export const StatsOverview: React.FC<StatsOverviewProps> = ({
             key={stat.id}
             onClick={() => onFilterChange?.(stat.id)}
             className={`
-              relative p-4 rounded-[20px] border transition-all duration-200 text-left group min-w-[200px] flex-1 snap-center
+              relative p-4 rounded-2xl border-2 transition-all duration-200 text-left group min-w-[200px] flex-1 snap-center
               ${isActive 
-                ? `bg-white ${stat.activeBorder} ring-1 ring-${stat.color.split('-')[1]}-500` 
-                : 'bg-white/50 border-transparent hover:bg-white'
+                ? `bg-white ${stat.activeBorder}` 
+                : 'bg-white border-slate-200 hover:border-slate-300'
               }
             `}
           >
             <div className="flex items-center gap-4">
-              <div className={`p-3 rounded-xl ${stat.bg} ${isActive ? 'ring-2 ring-white' : ''}`}>
+              <div className={`p-3 rounded-xl border-2 ${stat.bg} ${isActive ? stat.activeBorder : 'border-transparent'}`}>
                 <stat.icon className={`w-6 h-6 ${stat.color}`} />
               </div>
               <div>
-                <p className="text-sm font-medium text-gray-500 group-hover:text-gray-700 transition-colors">
+                <p className="text-sm font-medium text-slate-600 group-hover:text-slate-700 transition-colors">
                   {stat.title}
                 </p>
-                <p className="text-2xl font-bold text-gray-900">
+                <p className="text-2xl font-bold text-slate-900">
                   {stat.value}
                 </p>
               </div>
             </div>
             {isActive && (
-              <div className={`absolute bottom-0 left-0 right-0 h-1 rounded-b-[20px] bg-${stat.color.split('-')[1]}-500 opacity-10`} />
+              <div className={`absolute bottom-0 left-0 right-0 h-1 rounded-b-2xl ${stat.bg}`} />
             )}
           </button>
         );

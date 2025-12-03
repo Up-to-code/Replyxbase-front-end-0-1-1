@@ -29,13 +29,13 @@ export const SettingsSidebar: React.FC<SettingsSidebarProps> = ({ activeTab, set
           <button
             key={item.id}
             onClick={() => setActiveTab(item.id)}
-            className={`w-full flex items-center gap-4 px-6 py-4 text-base font-medium rounded-lg transition-all duration-200
+            className={`w-full flex items-center gap-4 px-6 py-4 text-base font-medium rounded-lg transition-all duration-200 border-2
               ${isActive 
-                ? 'bg-primary text-primary-foreground' 
-                : 'text-muted-foreground hover:text-foreground hover:bg-accent'
+                ? 'bg-[#005bbc] text-white border-[#005bbc]' 
+                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50 border-transparent hover:border-slate-200'
               }`}
           >
-            <Icon className={`w-5 h-5 ${isActive ? 'text-white' : 'text-gray-400 group-hover:text-gray-900'}`} />
+            <Icon className={`w-5 h-5 ${isActive ? 'text-white' : 'text-slate-400 group-hover:text-slate-900'}`} />
             {item.label}
           </button>
         );

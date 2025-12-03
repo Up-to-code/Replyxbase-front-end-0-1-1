@@ -1,18 +1,38 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useTranslations } from "next-intl";
-import { MessageCircle, Send, Sparkles, Bot, X, ChevronDown } from "lucide-react";
+import { MessageCircle, Send, X, MoreVertical, Clock, Plus, Smile } from "lucide-react";
 
 const ChatWidget = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const [messages, setMessages] = useState<{role: 'ai' | 'user', text: string}[]>([]);
+    const [messages, setMessages] = useState<{role: 'ai' | 'user', text: string, timestamp?: Date}[]>([]);
     const [inputValue, setInputValue] = useState("");
     const [isTyping, setIsTyping] = useState(false);
+    const [showMenu, setShowMenu] = useState(false);
+    const [showPrivacy, setShowPrivacy] = useState(true);
     const messagesEndRef = useRef<HTMLDivElement>(null);
-    const t = useTranslations("Landing.Widget");
+    const menuRef = useRef<HTMLDivElement>(null);
 
-    // Scroll to bottom
+    const suggestedQuestions = [
+        "What is Replyxbase?",
+        "How do I add data to my agent?",
+        "Is there a free plan?",
+        "What are AI actions?"
+    ];
+
+    // Close menu when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+                setShowMenu(false);
+            }
+        };
+        if (showMenu) {
+            document.addEventListener('mousedown', handleClickOutside);
+            return () => document.removeEventListener('mousedown', handleClickOutside);
+        }
+    }, [showMenu]);
+
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages, isTyping]);
@@ -21,118 +41,397 @@ const ChatWidget = () => {
         if (!inputValue.trim()) return;
         
         const userMsg = inputValue;
-        setMessages(prev => [...prev, { role: 'user', text: userMsg }]);
+        setMessages(prev => [...prev, { role: 'user', text: userMsg, timestamp: new Date() }]);
         setInputValue("");
         setIsTyping(true);
 
-        // Simulate AI response
         setTimeout(() => {
             setIsTyping(false);
-            let response = t("aiResponseDefault");
-            if (userMsg.toLowerCase().includes("pricing") || userMsg.includes("سعر")) {
-                response = t("aiResponsePricing");
-            } else if (userMsg.toLowerCase().includes("whatsapp") || userMsg.includes("واتساب")) {
-                response = t("aiResponseWhatsapp");
+            let response = "I'd be happy to help! Replyxbase is an AI-powered customer support platform that helps businesses automate their customer service across multiple channels like WhatsApp, Website, and Email.";
+            if (userMsg.toLowerCase().includes("pricing") || userMsg.toLowerCase().includes("plan")) {
+                response = "We offer flexible pricing plans starting from $0/month for the Free plan, $19/month for Starter, $29/month for Pro, and custom pricing for Enterprise. All plans include a 14-day free trial with no credit card required!";
+            } else if (userMsg.toLowerCase().includes("data") || userMsg.toLowerCase().includes("add")) {
+                response = "You can add data to your agent by connecting your knowledge base, uploading documents, or integrating with your existing tools. Our AI will automatically learn from your content to provide accurate responses.";
+            } else if (userMsg.toLowerCase().includes("action") || userMsg.toLowerCase().includes("ai action")) {
+                response = "AI Actions allow your agent to perform tasks automatically, like booking appointments, processing orders, or fetching information from your CRM. You can configure custom actions to match your business needs.";
             }
-            setMessages(prev => [...prev, { role: 'ai', text: response }]);
+            setMessages(prev => [...prev, { role: 'ai', text: response, timestamp: new Date() }]);
         }, 1500);
     };
 
+    const formatTime = (date: Date) => {
+        return new Intl.DateTimeFormat('en-US', { 
+            hour: 'numeric', 
+            minute: '2-digit',
+            hour12: true 
+        }).format(date);
+    };
+
     return (
-        <div className="fixed bottom-8 right-8 z-50 flex flex-col items-end gap-4 rtl:right-auto rtl:left-8 rtl:items-start">
+        <div className="fixed bottom-4 right-4 z-[2147483645] flex flex-col items-end gap-4 font-sans">
             <AnimatePresence>
                 {isOpen && (
                     <motion.div 
                         initial={{ opacity: 0, y: 20, scale: 0.95 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 20, scale: 0.95 }}
-                        className="bg-white rounded-[2rem] shadow-2xl border border-gray-100 w-[380px] md:w-[420px] overflow-hidden flex flex-col max-h-[650px]"
+                        transition={{ duration: 0.2 }}
+                        className="bg-white rounded-2xl border-2 border-slate-200 w-[406px] h-[85vh] max-h-[824px] overflow-hidden flex flex-col shadow-2xl"
+                        style={{ zIndex: 2147483646 }}
                     >
-                        {/* Header */}
-                        <div className="bg-white p-6 flex items-center justify-between border-b border-gray-100">
-                            <div className="flex items-center gap-4">
-                                <div className="w-12 h-12 bg-[#2A4D9A] rounded-full flex items-center justify-center shadow-lg shadow-[#2A4D9A]/20">
-                                    <Bot className="w-6 h-6 text-white" />
-                                </div>
+                        {/* Modern Dark Header */}
+                        <div className="bg-gradient-to-r from-zinc-900 to-zinc-800 p-4 flex items-center justify-between border-b-2 border-zinc-700 relative">
+                            <div className="flex items-center gap-3">
+                                <motion.div 
+                                    whileHover={{ scale: 1.1, rotate: 5 }}
+                                    className="w-9 h-9 bg-white rounded-xl flex items-center justify-center border-2 border-white shadow-lg"
+                                >
+                                    <span className="text-[#005bbc] font-bold text-base">R</span>
+                                </motion.div>
                                 <div>
-                                    <div className="font-bold text-lg text-gray-900">{t("title")}</div>
-                                    <div className="text-xs text-green-600 font-medium flex items-center gap-1.5 bg-green-50 px-2 py-0.5 rounded-full w-fit mt-1">
-                                        <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
-                                        {t("online")}
-                                    </div>
+                                    <h3 className="font-bold text-sm text-white flex items-center gap-2">
+                                        Replyxbase AI Agent
+                                        <motion.span
+                                            animate={{ scale: [1, 1.2, 1] }}
+                                            transition={{ duration: 2, repeat: Infinity }}
+                                            className="w-1.5 h-1.5 bg-[#ffd600] rounded-full"
+                                        />
+                                    </h3>
+                                    <p className="text-[10px] text-white/70 font-medium">Always here to help</p>
                                 </div>
                             </div>
-                            <button onClick={() => setIsOpen(false)} className="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-400 hover:text-gray-900">
-                                <X className="w-5 h-5" />
-                            </button>
+                            
+                            {/* Enhanced Menu Button */}
+                            <div className="relative" ref={menuRef}>
+                                <motion.button 
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.9 }}
+                                    onClick={() => setShowMenu(!showMenu)}
+                                    className="p-2 hover:bg-white/10 rounded-lg text-white/80 hover:text-white transition-colors"
+                                    aria-label="Menu"
+                                >
+                                    <MoreVertical className="w-5 h-5" />
+                                </motion.button>
+                                
+                                {/* Enhanced Dropdown Menu */}
+                                <AnimatePresence>
+                                    {showMenu && (
+                                        <motion.div
+                                            initial={{ opacity: 0, y: -10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: -10 }}
+                                            className="absolute top-full right-0 mt-2 w-52 bg-white rounded-xl border-2 border-slate-200 overflow-hidden shadow-xl z-50"
+                                        >
+                                            <button
+                                                onClick={() => {
+                                                    setMessages([]);
+                                                    setShowMenu(false);
+                                                }}
+                                                className="w-full flex items-center gap-3 px-4 py-3 text-sm hover:bg-[#005bbc]/5 transition-colors text-slate-700 border-b-2 border-slate-100"
+                                            >
+                                                <div className="w-8 h-8 rounded-lg bg-[#005bbc]/10 flex items-center justify-center border-2 border-[#005bbc]/20">
+                                                    <Plus className="w-4 h-4 text-[#005bbc]" />
+                                                </div>
+                                                <span className="font-medium">Start a new chat</span>
+                                            </button>
+                                            <button
+                                                onClick={() => {
+                                                    setIsOpen(false);
+                                                    setShowMenu(false);
+                                                }}
+                                                className="w-full flex items-center gap-3 px-4 py-3 text-sm hover:bg-red-50 transition-colors text-slate-700 border-b-2 border-slate-100"
+                                            >
+                                                <div className="w-8 h-8 rounded-lg bg-red-100 flex items-center justify-center border-2 border-red-200">
+                                                    <X className="w-4 h-4 text-red-600" />
+                                                </div>
+                                                <span className="font-medium">End chat</span>
+                                            </button>
+                                            <button
+                                                onClick={() => setShowMenu(false)}
+                                                className="w-full flex items-center gap-3 px-4 py-3 text-sm hover:bg-[#005bbc]/5 transition-colors text-slate-700"
+                                            >
+                                                <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center border-2 border-slate-200">
+                                                    <Clock className="w-4 h-4 text-slate-600" />
+                                                </div>
+                                                <span className="font-medium">View recent chats</span>
+                                            </button>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </div>
                         </div>
 
-                        {/* Messages */}
-                        <div className="flex-1 p-6 overflow-y-auto bg-gray-50/50 space-y-6 min-h-[350px]">
+                        {/* Enhanced Chat Area */}
+                        <div className="flex-1 p-5 overflow-y-auto bg-gradient-to-b from-white to-slate-50/30 space-y-4 relative">
                             {messages.length === 0 && (
-                                <div className="text-center py-10">
-                                    <div className="w-16 h-16 bg-[#2A4D9A]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                                        <Sparkles className="w-8 h-8 text-[#2A4D9A]" />
-                                    </div>
-                                    <p className="text-gray-500 text-sm max-w-[200px] mx-auto">{t("welcome")}</p>
-                                </div>
+                                <motion.div 
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    className="space-y-4"
+                                >
+                                    {/* Welcome Messages */}
+                                    <motion.div 
+                                        initial={{ opacity: 0, x: -20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: 0.1 }}
+                                        className="flex gap-3"
+                                    >
+                                        <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#005bbc] to-[#004a9f] flex items-center justify-center text-white text-sm font-bold shrink-0 shadow-lg border-2 border-white">
+                                            R
+                                        </div>
+                                        <div className="flex-1">
+                                            <div className="flex items-center gap-2 mb-1.5">
+                                                <span className="text-xs font-semibold text-slate-900">Replyxbase AI Agent</span>
+                                                <span className="text-[10px] text-slate-400">{formatTime(new Date())}</span>
+                                            </div>
+                                            <div className="bg-white p-4 rounded-2xl rounded-tl-none border-2 border-slate-200 shadow-sm">
+                                                <p className="text-sm text-slate-700 leading-relaxed">👋 Hi! I am Replyxbase AI, ask me anything about Replyxbase!</p>
+                                            </div>
+                                        </div>
+                                    </motion.div>
+                                    
+                                    <motion.div 
+                                        initial={{ opacity: 0, x: -20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: 0.3 }}
+                                        className="flex gap-3"
+                                    >
+                                        <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#005bbc] to-[#004a9f] flex items-center justify-center text-white text-sm font-bold shrink-0 shadow-lg border-2 border-white">
+                                            R
+                                        </div>
+                                        <div className="flex-1">
+                                            <div className="bg-white p-4 rounded-2xl rounded-tl-none border-2 border-slate-200 shadow-sm">
+                                                <p className="text-sm text-slate-700 leading-relaxed">By the way, you can create an agent like me for your website! 😉</p>
+                                            </div>
+                                        </div>
+                                    </motion.div>
+
+                                    {/* Enhanced Suggested Questions */}
+                                    <motion.div 
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.5 }}
+                                        className="grid grid-cols-1 gap-2.5 pt-2"
+                                    >
+                                        {suggestedQuestions.map((question, idx) => (
+                                            <motion.button
+                                                key={idx}
+                                                whileHover={{ scale: 1.02, x: 4 }}
+                                                whileTap={{ scale: 0.98 }}
+                                                onClick={() => {
+                                                    setInputValue(question);
+                                                    setTimeout(() => handleSend(), 100);
+                                                }}
+                                                className="text-left px-4 py-3 bg-white hover:bg-[#005bbc]/5 rounded-xl border-2 border-slate-200 hover:border-[#005bbc]/30 transition-all text-sm text-slate-700 font-medium shadow-sm hover:shadow-md"
+                                            >
+                                                {question}
+                                            </motion.button>
+                                        ))}
+                                    </motion.div>
+                                </motion.div>
                             )}
+                            
                             {messages.map((msg, i) => (
-                                <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                                    <div className={`max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed shadow-sm ${msg.role === 'user' ? 'bg-[#2A4D9A] text-white rounded-br-none rtl:rounded-br-2xl rtl:rounded-bl-none' : 'bg-white border border-gray-100 text-gray-800 rounded-bl-none rtl:rounded-bl-2xl rtl:rounded-br-none'}`}>
-                                        {msg.text}
+                                <motion.div 
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: i * 0.1 }}
+                                    key={i} 
+                                    className={`flex gap-3 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                                >
+                                    {msg.role === 'ai' && (
+                                        <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#005bbc] to-[#004a9f] flex items-center justify-center text-white text-sm font-bold shrink-0 shadow-lg border-2 border-white">
+                                            R
+                                        </div>
+                                    )}
+                                    <div className="flex flex-col max-w-[75%]">
+                                        <div 
+                                            className={`p-3.5 text-sm leading-relaxed rounded-2xl border-2 shadow-sm ${
+                                                msg.role === 'user' 
+                                                    ? 'bg-gradient-to-br from-[#005bbc] to-[#004a9f] text-white rounded-br-none border-[#005bbc]' 
+                                                    : 'bg-white text-slate-800 rounded-bl-none border-slate-200'
+                                            }`}
+                                        >
+                                            {msg.text}
+                                        </div>
+                                        {msg.timestamp && (
+                                            <span className={`text-[10px] text-slate-400 mt-1 ${msg.role === 'user' ? 'text-right' : 'text-left'}`}>
+                                                {formatTime(msg.timestamp)}
+                                            </span>
+                                        )}
                                     </div>
-                                </div>
+                                    {msg.role === 'user' && (
+                                        <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#005bbc] to-[#004a9f] flex items-center justify-center text-white text-sm font-bold shrink-0 shadow-lg border-2 border-white">
+                                            U
+                                        </div>
+                                    )}
+                                </motion.div>
                             ))}
+                            
                             {isTyping && (
-                                <div className="flex justify-start">
-                                    <div className="bg-white border border-gray-100 p-4 rounded-2xl rounded-bl-none shadow-sm flex gap-1.5 rtl:rounded-bl-2xl rtl:rounded-br-none">
-                                        <span className="w-2 h-2 bg-gray-300 rounded-full animate-bounce"></span>
-                                        <span className="w-2 h-2 bg-gray-300 rounded-full animate-bounce delay-75"></span>
-                                        <span className="w-2 h-2 bg-gray-300 rounded-full animate-bounce delay-150"></span>
+                                <motion.div 
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    className="flex justify-start gap-3"
+                                >
+                                    <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#005bbc] to-[#004a9f] flex items-center justify-center text-white text-sm font-bold shrink-0 shadow-lg border-2 border-white">
+                                        R
                                     </div>
-                                </div>
+                                    <div className="bg-white p-3.5 rounded-2xl rounded-bl-none flex gap-1.5 border-2 border-slate-200 shadow-sm">
+                                        <motion.span 
+                                            animate={{ y: [0, -4, 0] }}
+                                            transition={{ duration: 0.6, repeat: Infinity, delay: 0 }}
+                                            className="w-2 h-2 bg-[#005bbc] rounded-full"
+                                        />
+                                        <motion.span 
+                                            animate={{ y: [0, -4, 0] }}
+                                            transition={{ duration: 0.6, repeat: Infinity, delay: 0.2 }}
+                                            className="w-2 h-2 bg-[#005bbc] rounded-full"
+                                        />
+                                        <motion.span 
+                                            animate={{ y: [0, -4, 0] }}
+                                            transition={{ duration: 0.6, repeat: Infinity, delay: 0.4 }}
+                                            className="w-2 h-2 bg-[#005bbc] rounded-full"
+                                        />
+                                    </div>
+                                </motion.div>
                             )}
                             <div ref={messagesEndRef} />
                         </div>
 
-                        {/* Input */}
-                        <div className="p-4 bg-white border-t border-gray-100">
+                        {/* Powered By - Enhanced */}
+                        {messages.length === 0 && (
+                            <motion.div 
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.7 }}
+                                className="px-5 pb-3 flex items-center gap-2 text-xs text-slate-400"
+                            >
+                                <span>©</span>
+                                <span>Powered by</span>
+                                <span className="font-bold text-[#005bbc]">Replyxbase</span>
+                                <motion.div 
+                                    whileHover={{ rotate: 360 }}
+                                    transition={{ duration: 0.5 }}
+                                    className="w-4 h-4 bg-gradient-to-br from-[#005bbc] to-[#004a9f] rounded flex items-center justify-center border border-[#005bbc]"
+                                >
+                                    <span className="text-white text-[8px] font-bold">R</span>
+                                </motion.div>
+                            </motion.div>
+                        )}
+
+                        {/* Enhanced Privacy Notice */}
+                        <AnimatePresence>
+                            {showPrivacy && (
+                                <motion.div
+                                    initial={{ height: 0, opacity: 0 }}
+                                    animate={{ height: 'auto', opacity: 1 }}
+                                    exit={{ height: 0, opacity: 0 }}
+                                    className="px-5 py-3 bg-gradient-to-r from-slate-50 to-slate-100 border-t-2 border-slate-200 flex items-center justify-between overflow-hidden"
+                                >
+                                    <p className="text-xs text-slate-600 leading-relaxed">
+                                        By chatting, you agree to our{" "}
+                                        <a href="#" className="underline text-[#005bbc] hover:text-[#004a9f] font-semibold">privacy policy</a>.
+                                    </p>
+                                    <motion.button
+                                        whileHover={{ scale: 1.1 }}
+                                        whileTap={{ scale: 0.9 }}
+                                        onClick={() => setShowPrivacy(false)}
+                                        className="p-1 hover:bg-slate-200 rounded-lg transition-colors shrink-0 ml-2"
+                                        aria-label="Dismiss"
+                                    >
+                                        <X className="w-3.5 h-3.5 text-slate-500" />
+                                    </motion.button>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+
+                        {/* Enhanced Input Area */}
+                        <div className="p-4 bg-white border-t-2 border-slate-200">
                             <form 
                                 onSubmit={(e) => { e.preventDefault(); handleSend(); }}
-                                className="flex gap-3"
+                                className="relative flex items-center gap-2"
                             >
+                                <motion.button
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.9 }}
+                                    type="button"
+                                    className="p-2 hover:bg-slate-100 rounded-xl transition-colors shrink-0 border-2 border-transparent hover:border-slate-200"
+                                    aria-label="Emoji"
+                                >
+                                    <Smile className="w-5 h-5 text-slate-400" />
+                                </motion.button>
                                 <input 
                                     type="text" 
                                     value={inputValue}
                                     onChange={(e) => setInputValue(e.target.value)}
-                                    placeholder={t("placeholder")}
-                                    className="flex-1 bg-gray-50 border-transparent focus:bg-white focus:border-blue-200 focus:ring-4 focus:ring-blue-50 rounded-full px-6 py-3 text-sm transition-all outline-none"
+                                    placeholder="Type your message..."
+                                    className="flex-1 bg-slate-50 border-2 border-slate-200 text-sm text-slate-900 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#005bbc]/20 focus:border-[#005bbc] transition-all placeholder:text-slate-400"
+                                    onKeyDown={(e) => {
+                                        if (e.key === 'Enter' && !e.shiftKey) {
+                                            e.preventDefault();
+                                            handleSend();
+                                        }
+                                    }}
                                 />
-                                <button 
+                                <motion.button 
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
                                     type="submit"
                                     disabled={!inputValue.trim()}
-                                    className="w-12 h-12 bg-[#2A4D9A] rounded-full flex items-center justify-center text-white hover:bg-[#1e3a75] transition-all shadow-lg shadow-[#2A4D9A]/20 disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 active:scale-95"
+                                    className="p-2.5 bg-gradient-to-br from-[#005bbc] to-[#004a9f] rounded-xl text-white hover:from-[#004a9f] hover:to-[#003d7a] transition-all disabled:opacity-50 disabled:cursor-not-allowed border-2 border-[#005bbc] shadow-lg shrink-0"
+                                    aria-label="Send"
                                 >
-                                    <Send className="w-5 h-5 rtl:rotate-180" />
-                                </button>
+                                    <Send className="w-4 h-4" />
+                                </motion.button>
                             </form>
-                            <div className="text-center mt-3">
-                                <span className="text-[10px] text-gray-400 font-medium uppercase tracking-wider">{t("poweredBy")}</span>
-                            </div>
                         </div>
                     </motion.div>
                 )}
             </AnimatePresence>
 
-            {/* Launcher */}
+            {/* Modern Launcher Button */}
             <motion.button
-                whileHover={{ scale: 1.1 }}
+                whileHover={{ scale: 1.1, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
-                onClick={() => setIsOpen(!isOpen)}
-                className="w-16 h-16 bg-[#2A4D9A] rounded-full shadow-2xl shadow-[#2A4D9A]/40 flex items-center justify-center text-white hover:bg-[#1e3a75] transition-colors z-50 ring-4 ring-white"
+                onClick={() => {
+                    setIsOpen(!isOpen);
+                    setShowMenu(false);
+                }}
+                className="w-[55px] h-[55px] bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-full flex items-center justify-center text-white hover:from-zinc-800 hover:to-zinc-700 transition-all border-2 border-zinc-900 shadow-2xl relative group"
+                style={{ 
+                    zIndex: 2147483645,
+                    borderRadius: '27.5px'
+                }}
+                aria-label="Open chat"
             >
-                {isOpen ? <ChevronDown className="w-8 h-8" /> : <MessageCircle className="w-8 h-8" />}
+                <AnimatePresence mode="wait">
+                    {isOpen ? (
+                        <motion.div
+                            key="close"
+                            initial={{ rotate: -90, opacity: 0 }}
+                            animate={{ rotate: 0, opacity: 1 }}
+                            exit={{ rotate: 90, opacity: 0 }}
+                        >
+                            <X className="w-6 h-6" />
+                        </motion.div>
+                    ) : (
+                        <motion.div
+                            key="open"
+                            initial={{ rotate: 90, opacity: 0 }}
+                            animate={{ rotate: 0, opacity: 1 }}
+                            exit={{ rotate: -90, opacity: 0 }}
+                            className="relative"
+                        >
+                            <MessageCircle className="w-6 h-6" />
+                            <motion.span 
+                                animate={{ scale: [1, 1.2, 1] }}
+                                transition={{ duration: 2, repeat: Infinity }}
+                                className="absolute -top-1 -right-1 w-4 h-4 bg-[#ffd600] rounded-full border-2 border-white shadow-lg"
+                            />
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </motion.button>
         </div>
     );

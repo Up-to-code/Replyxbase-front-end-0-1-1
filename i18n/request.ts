@@ -1,7 +1,9 @@
 import { getRequestConfig } from "next-intl/server";
-import { Locale } from "./routing";
+import type { Locale } from "./routing";
 
-const locales = ["ar", "en"] as const;
+// Define locales directly to avoid circular dependency
+// Must match the locales in routing.ts
+const locales = ["ar", "en", "fr", "es"] as const;
 const defaultLocale: Locale = "ar";
 
 export default getRequestConfig(async ({ requestLocale }) => {

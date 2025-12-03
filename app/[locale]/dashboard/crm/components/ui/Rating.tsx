@@ -22,8 +22,8 @@ export const Rating: React.FC<RatingProps> = ({ rating }) => {
           key={i}
           className={`w-4 h-4 ${
             i < rating
-              ? 'text-amber-400 fill-current'
-              : 'text-gray-200'
+              ? 'text-[#ffd600] fill-current'
+              : 'text-slate-200'
           }`}
         />
       ))}

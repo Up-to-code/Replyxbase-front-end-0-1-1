@@ -17,10 +17,54 @@ import {
 import { Agent, NavigationItem, Notification, ProfileMenuItem } from "./types";
 
 export const MOCK_AGENTS: Agent[] = [
-  { id: "1", name: "Customer Support Bot", status: "active", type: "support" },
-  { id: "2", name: "Sales Assistant", status: "active", type: "sales" },
-  { id: "3", name: "Lead Qualifier", status: "inactive", type: "lead" },
-  { id: "4", name: "FAQ Helper", status: "active", type: "faq" },
+  { 
+    id: "1", 
+    organizationId: "org_1",
+    name: "Customer Support Bot", 
+    role: "support",
+    status: "active", 
+    avatar: null,
+    isWebsiteEnabled: true,
+    isWhatsappEnabled: true,
+    isDmEnabled: false,
+    createdAt: new Date()
+  },
+  { 
+    id: "2", 
+    organizationId: "org_1",
+    name: "Sales Assistant", 
+    role: "sales",
+    status: "active", 
+    avatar: null,
+    isWebsiteEnabled: true,
+    isWhatsappEnabled: false,
+    isDmEnabled: false,
+    createdAt: new Date()
+  },
+  { 
+    id: "3", 
+    organizationId: "org_1",
+    name: "Lead Qualifier", 
+    role: "lead",
+    status: "inactive", 
+    avatar: null,
+    isWebsiteEnabled: false,
+    isWhatsappEnabled: true,
+    isDmEnabled: false,
+    createdAt: new Date()
+  },
+  { 
+    id: "4", 
+    organizationId: "org_1",
+    name: "FAQ Helper", 
+    role: "faq",
+    status: "active", 
+    avatar: null,
+    isWebsiteEnabled: true,
+    isWhatsappEnabled: true,
+    isDmEnabled: true,
+    createdAt: new Date()
+  },
 ];
 
 export const NAVIGATION: NavigationItem[] = [
