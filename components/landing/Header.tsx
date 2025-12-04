@@ -4,7 +4,6 @@ import { useTranslations } from "next-intl";
 import { Menu, X, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
-import Image from "next/image";
 import { authClient } from "@/lib/auth-client";
 import LanguageSwitcher from "./LanguageSwitcher";
 
@@ -14,23 +13,18 @@ const Header = () => {
   const { data: session } = authClient.useSession();
 
   const navItems = [
-    { label: "Pricing", href: "#pricing" },
-    { label: "Integrations", href: "#integrations" },
-    { label: "Docs", href: "#docs" }
+    { label: tCommon("pricing"), href: "#pricing" },
+    { label: tCommon("integrations"), href: "#integrations" },
+    { label: tCommon("docs"), href: "#docs" }
   ];
 
   return (
     <header className="fixed top-0 w-full bg-white/95 backdrop-blur-md z-50 border-b-2 border-slate-200">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <Link href="/" className="flex items-center gap-2.5 group">
-            <div className="relative w-9 h-9">
-              <Image 
-                src="/logo.png" 
-                alt="Replyxbase Logo" 
-                fill
-                className="object-contain group-hover:scale-110 transition-transform"
-              />
+          <Link href="/" className="flex items-center gap-2.5 group flex-shrink-0">
+            <div className="w-9 h-9 bg-[#005bbc] rounded-xl flex items-center justify-center border-2 border-[#005bbc] group-hover:scale-110 transition-transform">
+              <span className="text-white font-bold text-xl">R</span>
             </div>
             <span className="font-bold text-lg text-slate-900 tracking-tight group-hover:text-[#005bbc] transition-colors">
               Replyxbase
@@ -50,14 +44,12 @@ const Header = () => {
           </nav>
           
           <div className="hidden md:flex items-center gap-3">
-            <div className="mr-2 border-r-2 border-slate-200 pr-3">
-              <LanguageSwitcher />
-            </div>
+            <LanguageSwitcher />
             
             {session ? (
               <Link href="/dashboard">
                 <Button variant="ghost" size="sm" className="text-slate-600 hover:text-slate-900 font-medium h-9 px-4 rounded-xl hover:bg-slate-50 border-2 border-transparent hover:border-slate-200">
-                  {tCommon("logIn")}
+                  {tCommon("dashboard")}
                 </Button>
               </Link>
             ) : (
@@ -82,7 +74,7 @@ const Header = () => {
             <button 
               className="p-2 text-slate-600 hover:bg-slate-50 rounded-xl transition-colors border-2 border-transparent hover:border-slate-200" 
               onClick={() => setMobileNavOpen(true)} 
-              aria-label="Open Menu"
+              aria-label={tCommon("menu")}
             >
               <Menu className="w-5 h-5" />
             </button>
@@ -93,10 +85,11 @@ const Header = () => {
       {mobileNavOpen && (
         <div className="fixed inset-0 bg-white z-50 p-6 flex flex-col">
           <div className="flex justify-between items-center mb-8 pb-6 border-b-2 border-slate-200">
-            <span className="font-bold text-2xl text-slate-900">Menu</span>
+            <span className="font-bold text-2xl text-slate-900">{tCommon("menu")}</span>
             <button 
               onClick={() => setMobileNavOpen(false)} 
               className="p-2 hover:bg-slate-50 rounded-xl border-2 border-transparent hover:border-slate-200 transition-all"
+              aria-label={tCommon("menu")}
             >
               <X className="w-6 h-6 text-slate-900" />
             </button>

@@ -13,7 +13,11 @@
     "startFreeTrial": "Commencer l'essai gratuit",
     "copyright": "© {year} Replyxbase Inc. Tous droits réservés.",
     "allSystemsOperational": "Tous les systèmes opérationnels",
-    "dashboard": "Tableau de bord"
+    "dashboard": "Tableau de bord",
+    "pricing": "Tarification",
+    "integrations": "Intégrations",
+    "docs": "Documentation",
+    "menu": "Menu"
   },
   "Landing": {
     "Metadata": {
@@ -438,16 +442,25 @@
       "sla": "SLA 99.9%"
     },
     "CTA": {
+      "badge": "Prêt à commencer ?",
       "title": "Faites de l'expérience client votre avantage concurrentiel",
       "subtitle": "Utilisez Replyxbase pour offrir des expériences de support exceptionnelles qui vous distinguent de la concurrence.",
-      "noCreditCard": "Aucune carte de crédit requise"
+      "noCreditCard": "Aucune carte de crédit requise",
+      "freeTrial": "Essai gratuit de 14 jours",
+      "cancelAnytime": "Annuler à tout moment"
     },
     "Footer": {
-      "desc": "The future of customer communication.",
-      "product": "Product",
-      "company": "Company",
-      "resources": "Resources",
-      "legal": "Legal",
+      "desc": "L'avenir de la communication client.",
+      "product": "Produit",
+      "company": "Entreprise",
+      "resources": "Ressources",
+      "legal": "Légal",
+      "newsletter": {
+        "title": "Restez informé",
+        "description": "Recevez les dernières actualités et mises à jour dans votre boîte de réception.",
+        "placeholder": "Entrez votre email",
+        "button": "S'abonner"
+      },
       "links": {
         "features": "Features",
         "pricing": "Pricing",

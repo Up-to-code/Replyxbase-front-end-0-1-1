@@ -118,17 +118,18 @@ const Footer = async () => {
         <div className="mb-12 p-8 bg-white/5 rounded-2xl border-2 border-white/10 backdrop-blur-sm">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex-1">
-              <h3 className="text-xl font-bold text-white mb-2">Stay updated</h3>
-              <p className="text-white/70 text-sm">Get the latest news and updates delivered to your inbox.</p>
+              <h3 className="text-xl font-bold text-white mb-2">{t("newsletter.title")}</h3>
+              <p className="text-white/70 text-sm">{t("newsletter.description")}</p>
             </div>
             <div className="flex gap-3 w-full md:w-auto">
               <input 
                 type="email" 
-                placeholder="Enter your email"
+                placeholder={t("newsletter.placeholder")}
                 className="flex-1 md:w-64 px-4 py-3 bg-white/10 border-2 border-white/20 rounded-xl text-white placeholder:text-white/50 focus:outline-none focus:border-white/40 transition-all"
+                aria-label={t("newsletter.placeholder")}
               />
               <button className="px-6 py-3 bg-[#ffd600] text-zinc-900 font-semibold rounded-xl hover:bg-[#ffd600]/90 transition-all border-2 border-[#ffd600] flex items-center gap-2">
-                Subscribe
+                {t("newsletter.button")}
                 <Mail className="w-4 h-4" />
               </button>
             </div>
@@ -138,7 +139,7 @@ const Footer = async () => {
         <div className="border-t-2 border-white/20 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="text-sm text-white/60">
-              © {year} Replyxbase Inc. All rights reserved.
+              {tCommon("copyright", { year })}
             </div>
             
             <div className="flex items-center gap-3">
@@ -148,11 +149,11 @@ const Footer = async () => {
               </div>
               
               <div className="hidden md:flex items-center gap-4 text-xs text-white/50">
-                <Link href="#privacy" className="hover:text-white transition-colors">Privacy</Link>
+                <Link href="#privacy" className="hover:text-white transition-colors">{t("links.privacy")}</Link>
                 <span>•</span>
-                <Link href="#terms" className="hover:text-white transition-colors">Terms</Link>
+                <Link href="#terms" className="hover:text-white transition-colors">{t("links.terms")}</Link>
                 <span>•</span>
-                <Link href="#security" className="hover:text-white transition-colors">Security</Link>
+                <Link href="#security" className="hover:text-white transition-colors">{t("links.security")}</Link>
               </div>
             </div>
           </div>

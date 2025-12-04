@@ -22,7 +22,7 @@ const FeatureAnalytics = () => {
   const stats = [
     { 
       icon: Clock, 
-      label: "Response Time", 
+      label: t("Mock.responseTime"), 
       value: "1m 42s", 
       bg: "bg-[#005bbc]/10", 
       color: "text-[#005bbc]", 
@@ -31,7 +31,7 @@ const FeatureAnalytics = () => {
     },
     { 
       icon: CheckCircle2, 
-      label: "CSAT Score", 
+      label: t("Mock.csatScore"), 
       value: "4.9/5", 
       bg: "bg-[#ffd600]/10", 
       color: "text-[#ffd600]", 
@@ -40,7 +40,7 @@ const FeatureAnalytics = () => {
     },
     { 
       icon: TrendingUp, 
-      label: "Resolution", 
+      label: t("Mock.resolutionRate"), 
       value: "94%", 
       bg: "bg-slate-50", 
       color: "text-slate-600", 
@@ -58,8 +58,8 @@ const FeatureAnalytics = () => {
             <div className="bg-white rounded-2xl border-2 border-slate-200 p-6 hover:border-slate-300 transition-all">
               <div className="flex items-center justify-between mb-6">
                 <div>
-                  <h3 className="text-lg font-bold text-slate-900">Performance Overview</h3>
-                  <p className="text-sm text-slate-500">Last 7 days</p>
+                  <h3 className="text-lg font-bold text-slate-900">{t("Mock.performanceOverview")}</h3>
+                  <p className="text-sm text-slate-500">{t("Mock.last7Days")}</p>
                 </div>
                 <div className="flex gap-1.5">
                   <div className="w-2.5 h-2.5 rounded-full bg-slate-300" />

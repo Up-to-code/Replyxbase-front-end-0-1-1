@@ -8,15 +8,15 @@ const FeatureAgents = () => {
 
   const agents = [
     { 
-      name: "Sales Bot", 
-      role: "Lead Generation", 
+      name: t("Mock.salesBot"), 
+      role: t("Mock.leadGen"), 
       conv: "1,240", 
       status: "active",
       color: "primary"
     },
     { 
-      name: "Support Helper", 
-      role: "Customer Service", 
+      name: t("Mock.supportHelper"), 
+      role: t("Mock.customerService"), 
       conv: "2,100", 
       status: "active",
       color: "accent"
@@ -52,20 +52,20 @@ const FeatureAgents = () => {
                   </div>
                   <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-50 text-green-700 text-xs font-semibold border-2 border-green-100">
                     <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
-                    Active
+                    {t("Mock.active")}
                   </div>
                 </div>
                 
                 <div className="grid grid-cols-2 gap-4 pt-5 border-t-2 border-slate-200">
                   <div className="p-3 bg-slate-50 rounded-xl border-2 border-slate-200">
-                    <p className="text-xs text-slate-400 uppercase font-medium mb-1">Conversations</p>
+                    <p className="text-xs text-slate-400 uppercase font-medium mb-1">{t("Mock.conversations")}</p>
                     <p className="text-xl font-bold text-slate-900">{agent.conv}</p>
                   </div>
                   <div className="p-3 bg-slate-50 rounded-xl border-2 border-slate-200">
-                    <p className="text-xs text-slate-400 uppercase font-medium mb-1">Status</p>
+                    <p className="text-xs text-slate-400 uppercase font-medium mb-1">{t("Card.status")}</p>
                     <div className="flex items-center gap-2">
                       <Activity className="w-4 h-4 text-green-500" />
-                      <p className="text-xl font-bold text-slate-900">Live</p>
+                      <p className="text-xl font-bold text-slate-900">{t("Card.live")}</p>
                     </div>
                   </div>
                 </div>

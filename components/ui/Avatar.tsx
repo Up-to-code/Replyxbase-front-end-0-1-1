@@ -18,7 +18,7 @@ const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
     return (
       <div
         ref={ref}
-        className={`relative flex shrink-0 overflow-hidden rounded-full ${sizeClasses[size]} ${className}`}
+        className={`relative flex shrink-0 overflow-hidden rounded-full border-2 border-slate-200 ${sizeClasses[size]} ${className}`}
         {...props}
       >
         {src ? (

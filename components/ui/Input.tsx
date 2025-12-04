@@ -1,36 +1,38 @@
-import React, { InputHTMLAttributes, forwardRef } from "react";
+"use client";
+import React from "react";
 
-export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  error?: boolean;
-  icon?: React.ElementType;
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  label?: string;
+  error?: string;
 }
 
-const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ className = "", error, icon: Icon, ...props }, ref) => {
-    return (
-      <div className="relative w-full">
-        {Icon && (
-          <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
-            <Icon className="w-4 h-4" />
-          </div>
-        )}
-        <input
-          ref={ref}
-          className={`
-            flex h-10 w-full rounded-xl border-2 bg-slate-50 px-4 py-2 text-sm text-slate-900 placeholder:text-slate-400 
-            focus:outline-none focus:ring-2 focus:ring-[#005bbc]/20 focus:bg-white 
-            disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200
-            ${error ? "border-red-500 focus:border-red-500 focus:ring-red-200" : "border-slate-200 focus:border-[#005bbc]"}
-            ${Icon ? "pl-10" : ""}
-            ${className}
-          `}
-          {...props}
-        />
-      </div>
-    );
-  }
-);
+const Input: React.FC<InputProps> = ({
+  label,
+  error,
+  className = "",
+  ...props
+}) => {
+  const baseClasses = "w-full px-4 py-3 rounded-xl border-2 transition-all duration-300 focus:outline-none focus:ring-4";
+  const stateClasses = error
+    ? "border-[#EF4444] focus:border-[#EF4444] focus:ring-[#EF4444]/20"
+    : "border-slate-200 focus:border-[#005bbc] focus:ring-[#005bbc]/20 hover:border-[#005bbc]/20";
+  
+  return (
+    <div className="w-full">
+      {label && (
+        <label className="block text-sm font-semibold text-slate-700 mb-2">
+          {label}
+        </label>
+      )}
+      <input
+        className={`${baseClasses} ${stateClasses} ${className}`}
+        {...props}
+      />
+      {error && (
+        <p className="mt-2 text-sm text-[#EF4444]">{error}</p>
+      )}
+    </div>
+  );
+};
 
-Input.displayName = "Input";
-
-export { Input };
+export default Input;

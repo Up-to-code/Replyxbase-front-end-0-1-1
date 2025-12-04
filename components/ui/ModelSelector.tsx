@@ -59,7 +59,7 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between bg-slate-50 border border-transparent hover:bg-white hover:border-slate-200 rounded-xl px-5 py-4 text-base transition-all"
+        className="w-full flex items-center justify-between bg-slate-50 border-2 border-transparent hover:bg-white hover:border-slate-200 rounded-xl px-5 py-4 text-base transition-all"
       >
         <div className="flex items-center gap-3">
           {selectedModel && <SelectedIcon className="w-5 h-5 text-slate-900" />}
@@ -76,7 +76,7 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({
       </button>
 
       {isOpen && (
-        <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-slate-200 rounded-xl z-10 overflow-hidden shadow-lg">
+        <div className="absolute top-full left-0 right-0 mt-2 bg-white border-2 border-slate-200 rounded-xl z-10 overflow-hidden">
           {models.map((model) => {
             const ModelIcon = model.icon;
             const isSelected = value === model.id;

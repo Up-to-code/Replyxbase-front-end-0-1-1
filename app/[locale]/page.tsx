@@ -2,15 +2,11 @@ import React, { Suspense } from "react";
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import HeroSection from "@/components/landing/hero/HeroSection";
-import TrustedBy from "@/components/landing/TrustedBy";
 import FeatureInbox from "@/components/landing/features/FeatureInbox";
 import FeatureAgents from "@/components/landing/features/FeatureAgents";
 import FeatureCRM from "@/components/landing/features/FeatureCRM";
 import FeatureAnalytics from "@/components/landing/features/FeatureAnalytics";
-import FeatureSolutionFlow from "@/components/landing/features/FeatureSolutionFlow";
-import PlatformShowcase from "@/components/landing/PlatformShowcase";
 import IntegrationsSection from "@/components/landing/IntegrationsSection";
-import ToolsMarquee from "@/components/landing/ToolsMarquee";
 import HowItWorksSection from "@/components/landing/HowItWorksSection";
 import SecuritySection from "@/components/landing/SecuritySection";
 import TestimonialsSection from "@/components/landing/TestimonialsSection";
@@ -88,31 +84,46 @@ export default async function LandingPage({ params }: Props) {
       <Header />
       
       <main className="relative">
+        {/* Hero Section */}
         <HeroSection session={null} /> 
-        <TrustedBy />
+        
+        {/* Features Section */}
         <div id="features" className="scroll-mt-20">
           <FeatureInbox />
           <FeatureAgents />
           <FeatureCRM />
           <FeatureAnalytics />
         </div>
-        <FeatureSolutionFlow />
+        
+        {/* How It Works */}
         <HowItWorksSection />
+        
+        {/* Integrations */}
         <IntegrationsSection />
-        <ToolsMarquee />
-        <PlatformShowcase />
+        
+        {/* Social Proof */}
         <TestimonialsSection />
+        
+        {/* Security */}
         <SecuritySection />
-        <PricingSection />
+        
+        {/* Pricing */}
+        <div id="pricing" className="scroll-mt-20">
+          <PricingSection />
+        </div>
+        
+        {/* CTA Section */}
         <Suspense fallback={<SectionSkeleton height="h-[400px]" />}>
           <CTASection />
         </Suspense>
       </main>
       
+      {/* Footer */}
       <Suspense fallback={<SectionSkeleton height="h-[400px]" />}>
         <Footer />
       </Suspense>
       
+      {/* Chat Widget */}
       <ChatWidget />
     </div>
   );

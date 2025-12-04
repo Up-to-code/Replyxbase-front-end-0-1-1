@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { Github } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/Button';
-import { Input } from '@/components/ui/Input';
+import Input from '@/components/ui/Input';
 import { Alert } from '@/components/ui/Alert';
 import { authClient } from '@/lib/auth-client';
 import { toast } from 'sonner';

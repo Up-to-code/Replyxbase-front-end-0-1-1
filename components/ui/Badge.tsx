@@ -7,12 +7,12 @@ export interface BadgeProps extends HTMLAttributes<HTMLDivElement> {
 const Badge = forwardRef<HTMLDivElement, BadgeProps>(
   ({ className = "", variant = "default", ...props }, ref) => {
     const variants = {
-      default: "bg-[#005bbc]/10 text-[#005bbc] border border-[#005bbc]/20 hover:bg-[#005bbc]/20",
-      secondary: "bg-slate-50 text-slate-700 border border-slate-200 hover:bg-slate-100",
+      default: "bg-[#005bbc]/10 text-[#005bbc] border-2 border-[#005bbc]/20 hover:bg-[#005bbc]/20",
+      secondary: "bg-slate-50 text-slate-700 border-2 border-slate-200 hover:bg-slate-100",
       outline: "text-slate-900 border-2 border-slate-200",
-      destructive: "bg-red-50 text-red-600 border border-red-200 hover:bg-red-100",
-      success: "bg-green-50 text-green-600 border border-green-200 hover:bg-green-100",
-      warning: "bg-[#ffd600]/10 text-[#ffd600] border border-[#ffd600]/20 hover:bg-[#ffd600]/20",
+      destructive: "bg-red-50 text-red-600 border-2 border-red-200 hover:bg-red-100",
+      success: "bg-green-50 text-green-600 border-2 border-green-200 hover:bg-green-100",
+      warning: "bg-[#ffd600]/10 text-[#ffd600] border-2 border-[#ffd600]/20 hover:bg-[#ffd600]/20",
     };
 
     return (

@@ -2,8 +2,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, Send, X, MoreVertical, Clock, Plus, Smile } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 const ChatWidget = () => {
+    const t = useTranslations("Landing.Widget");
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState<{role: 'ai' | 'user', text: string, timestamp?: Date}[]>([]);
     const [inputValue, setInputValue] = useState("");
@@ -14,10 +16,10 @@ const ChatWidget = () => {
     const menuRef = useRef<HTMLDivElement>(null);
 
     const suggestedQuestions = [
-        "What is Replyxbase?",
-        "How do I add data to my agent?",
-        "Is there a free plan?",
-        "What are AI actions?"
+        t("question1"),
+        t("question2"),
+        t("question3"),
+        t("question4")
     ];
 
     // Close menu when clicking outside
@@ -47,13 +49,15 @@ const ChatWidget = () => {
 
         setTimeout(() => {
             setIsTyping(false);
-            let response = "I'd be happy to help! Replyxbase is an AI-powered customer support platform that helps businesses automate their customer service across multiple channels like WhatsApp, Website, and Email.";
+            let response = t("aiResponseDefault");
             if (userMsg.toLowerCase().includes("pricing") || userMsg.toLowerCase().includes("plan")) {
-                response = "We offer flexible pricing plans starting from $0/month for the Free plan, $19/month for Starter, $29/month for Pro, and custom pricing for Enterprise. All plans include a 14-day free trial with no credit card required!";
+                response = t("aiResponsePricing");
             } else if (userMsg.toLowerCase().includes("data") || userMsg.toLowerCase().includes("add")) {
-                response = "You can add data to your agent by connecting your knowledge base, uploading documents, or integrating with your existing tools. Our AI will automatically learn from your content to provide accurate responses.";
+                response = t("aiResponseData");
             } else if (userMsg.toLowerCase().includes("action") || userMsg.toLowerCase().includes("ai action")) {
-                response = "AI Actions allow your agent to perform tasks automatically, like booking appointments, processing orders, or fetching information from your CRM. You can configure custom actions to match your business needs.";
+                response = t("aiResponseActions");
+            } else if (userMsg.toLowerCase().includes("whatsapp")) {
+                response = t("aiResponseWhatsapp");
             }
             setMessages(prev => [...prev, { role: 'ai', text: response, timestamp: new Date() }]);
         }, 1500);
@@ -76,7 +80,7 @@ const ChatWidget = () => {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 20, scale: 0.95 }}
                         transition={{ duration: 0.2 }}
-                        className="bg-white rounded-2xl border-2 border-slate-200 w-[406px] h-[85vh] max-h-[824px] overflow-hidden flex flex-col shadow-2xl"
+                        className="bg-white rounded-2xl border-2 border-slate-200 w-[406px] h-[85vh] max-h-[824px] overflow-hidden flex flex-col"
                         style={{ zIndex: 2147483646 }}
                     >
                         {/* Modern Dark Header */}
@@ -84,20 +88,20 @@ const ChatWidget = () => {
                             <div className="flex items-center gap-3">
                                 <motion.div 
                                     whileHover={{ scale: 1.1, rotate: 5 }}
-                                    className="w-9 h-9 bg-white rounded-xl flex items-center justify-center border-2 border-white shadow-lg"
+                                    className="w-9 h-9 bg-white rounded-xl flex items-center justify-center border-2 border-white"
                                 >
                                     <span className="text-[#005bbc] font-bold text-base">R</span>
                                 </motion.div>
                                 <div>
                                     <h3 className="font-bold text-sm text-white flex items-center gap-2">
-                                        Replyxbase AI Agent
+                                        {t("title")}
                                         <motion.span
                                             animate={{ scale: [1, 1.2, 1] }}
                                             transition={{ duration: 2, repeat: Infinity }}
                                             className="w-1.5 h-1.5 bg-[#ffd600] rounded-full"
                                         />
                                     </h3>
-                                    <p className="text-[10px] text-white/70 font-medium">Always here to help</p>
+                                    <p className="text-[10px] text-white/70 font-medium">{t("subtitle")}</p>
                                 </div>
                             </div>
                             
@@ -120,7 +124,7 @@ const ChatWidget = () => {
                                             initial={{ opacity: 0, y: -10 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             exit={{ opacity: 0, y: -10 }}
-                                            className="absolute top-full right-0 mt-2 w-52 bg-white rounded-xl border-2 border-slate-200 overflow-hidden shadow-xl z-50"
+                                            className="absolute top-full right-0 mt-2 w-52 bg-white rounded-xl border-2 border-slate-200 overflow-hidden z-50"
                                         >
                                             <button
                                                 onClick={() => {
@@ -132,7 +136,7 @@ const ChatWidget = () => {
                                                 <div className="w-8 h-8 rounded-lg bg-[#005bbc]/10 flex items-center justify-center border-2 border-[#005bbc]/20">
                                                     <Plus className="w-4 h-4 text-[#005bbc]" />
                                                 </div>
-                                                <span className="font-medium">Start a new chat</span>
+                                                <span className="font-medium">{t("menu.newChat")}</span>
                                             </button>
                                             <button
                                                 onClick={() => {
@@ -144,7 +148,7 @@ const ChatWidget = () => {
                                                 <div className="w-8 h-8 rounded-lg bg-red-100 flex items-center justify-center border-2 border-red-200">
                                                     <X className="w-4 h-4 text-red-600" />
                                                 </div>
-                                                <span className="font-medium">End chat</span>
+                                                <span className="font-medium">{t("menu.endChat")}</span>
                                             </button>
                                             <button
                                                 onClick={() => setShowMenu(false)}
@@ -153,7 +157,7 @@ const ChatWidget = () => {
                                                 <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center border-2 border-slate-200">
                                                     <Clock className="w-4 h-4 text-slate-600" />
                                                 </div>
-                                                <span className="font-medium">View recent chats</span>
+                                                <span className="font-medium">{t("menu.recentChats")}</span>
                                             </button>
                                         </motion.div>
                                     )}
@@ -176,16 +180,16 @@ const ChatWidget = () => {
                                         transition={{ delay: 0.1 }}
                                         className="flex gap-3"
                                     >
-                                        <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#005bbc] to-[#004a9f] flex items-center justify-center text-white text-sm font-bold shrink-0 shadow-lg border-2 border-white">
+                                        <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#005bbc] to-[#004a9f] flex items-center justify-center text-white text-sm font-bold shrink-0 border-2 border-white">
                                             R
                                         </div>
                                         <div className="flex-1">
                                             <div className="flex items-center gap-2 mb-1.5">
-                                                <span className="text-xs font-semibold text-slate-900">Replyxbase AI Agent</span>
+                                                <span className="text-xs font-semibold text-slate-900">{t("title")}</span>
                                                 <span className="text-[10px] text-slate-400">{formatTime(new Date())}</span>
                                             </div>
-                                            <div className="bg-white p-4 rounded-2xl rounded-tl-none border-2 border-slate-200 shadow-sm">
-                                                <p className="text-sm text-slate-700 leading-relaxed">👋 Hi! I am Replyxbase AI, ask me anything about Replyxbase!</p>
+                                            <div className="bg-white p-4 rounded-2xl rounded-tl-none border-2 border-slate-200">
+                                                <p className="text-sm text-slate-700 leading-relaxed">{t("welcome")}</p>
                                             </div>
                                         </div>
                                     </motion.div>
@@ -196,12 +200,12 @@ const ChatWidget = () => {
                                         transition={{ delay: 0.3 }}
                                         className="flex gap-3"
                                     >
-                                        <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#005bbc] to-[#004a9f] flex items-center justify-center text-white text-sm font-bold shrink-0 shadow-lg border-2 border-white">
+                                        <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#005bbc] to-[#004a9f] flex items-center justify-center text-white text-sm font-bold shrink-0 border-2 border-white">
                                             R
                                         </div>
                                         <div className="flex-1">
-                                            <div className="bg-white p-4 rounded-2xl rounded-tl-none border-2 border-slate-200 shadow-sm">
-                                                <p className="text-sm text-slate-700 leading-relaxed">By the way, you can create an agent like me for your website! 😉</p>
+                                            <div className="bg-white p-4 rounded-2xl rounded-tl-none border-2 border-slate-200">
+                                                <p className="text-sm text-slate-700 leading-relaxed">{t("welcome2")}</p>
                                             </div>
                                         </div>
                                     </motion.div>
@@ -222,7 +226,7 @@ const ChatWidget = () => {
                                                     setInputValue(question);
                                                     setTimeout(() => handleSend(), 100);
                                                 }}
-                                                className="text-left px-4 py-3 bg-white hover:bg-[#005bbc]/5 rounded-xl border-2 border-slate-200 hover:border-[#005bbc]/30 transition-all text-sm text-slate-700 font-medium shadow-sm hover:shadow-md"
+                                                className="text-left px-4 py-3 bg-white hover:bg-[#005bbc]/5 rounded-xl border-2 border-slate-200 hover:border-[#005bbc]/30 transition-all text-sm text-slate-700 font-medium hover:border-[#005bbc]"
                                             >
                                                 {question}
                                             </motion.button>
@@ -240,13 +244,13 @@ const ChatWidget = () => {
                                     className={`flex gap-3 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                                 >
                                     {msg.role === 'ai' && (
-                                        <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#005bbc] to-[#004a9f] flex items-center justify-center text-white text-sm font-bold shrink-0 shadow-lg border-2 border-white">
+                                        <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#005bbc] to-[#004a9f] flex items-center justify-center text-white text-sm font-bold shrink-0 border-2 border-white">
                                             R
                                         </div>
                                     )}
                                     <div className="flex flex-col max-w-[75%]">
                                         <div 
-                                            className={`p-3.5 text-sm leading-relaxed rounded-2xl border-2 shadow-sm ${
+                                            className={`p-3.5 text-sm leading-relaxed rounded-2xl border-2 ${
                                                 msg.role === 'user' 
                                                     ? 'bg-gradient-to-br from-[#005bbc] to-[#004a9f] text-white rounded-br-none border-[#005bbc]' 
                                                     : 'bg-white text-slate-800 rounded-bl-none border-slate-200'
@@ -261,7 +265,7 @@ const ChatWidget = () => {
                                         )}
                                     </div>
                                     {msg.role === 'user' && (
-                                        <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#005bbc] to-[#004a9f] flex items-center justify-center text-white text-sm font-bold shrink-0 shadow-lg border-2 border-white">
+                                        <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#005bbc] to-[#004a9f] flex items-center justify-center text-white text-sm font-bold shrink-0 border-2 border-white">
                                             U
                                         </div>
                                     )}
@@ -274,10 +278,10 @@ const ChatWidget = () => {
                                     animate={{ opacity: 1 }}
                                     className="flex justify-start gap-3"
                                 >
-                                    <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#005bbc] to-[#004a9f] flex items-center justify-center text-white text-sm font-bold shrink-0 shadow-lg border-2 border-white">
+                                    <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#005bbc] to-[#004a9f] flex items-center justify-center text-white text-sm font-bold shrink-0 border-2 border-white">
                                         R
                                     </div>
-                                    <div className="bg-white p-3.5 rounded-2xl rounded-bl-none flex gap-1.5 border-2 border-slate-200 shadow-sm">
+                                    <div className="bg-white p-3.5 rounded-2xl rounded-bl-none flex gap-1.5 border-2 border-slate-200">
                                         <motion.span 
                                             animate={{ y: [0, -4, 0] }}
                                             transition={{ duration: 0.6, repeat: Infinity, delay: 0 }}
@@ -308,7 +312,7 @@ const ChatWidget = () => {
                                 className="px-5 pb-3 flex items-center gap-2 text-xs text-slate-400"
                             >
                                 <span>©</span>
-                                <span>Powered by</span>
+                                <span>{t("poweredBy")}</span>
                                 <span className="font-bold text-[#005bbc]">Replyxbase</span>
                                 <motion.div 
                                     whileHover={{ rotate: 360 }}
@@ -330,8 +334,8 @@ const ChatWidget = () => {
                                     className="px-5 py-3 bg-gradient-to-r from-slate-50 to-slate-100 border-t-2 border-slate-200 flex items-center justify-between overflow-hidden"
                                 >
                                     <p className="text-xs text-slate-600 leading-relaxed">
-                                        By chatting, you agree to our{" "}
-                                        <a href="#" className="underline text-[#005bbc] hover:text-[#004a9f] font-semibold">privacy policy</a>.
+                                        {t("privacy.text")}{" "}
+                                        <a href="#" className="underline text-[#005bbc] hover:text-[#004a9f] font-semibold">{t("privacy.link")}</a>.
                                     </p>
                                     <motion.button
                                         whileHover={{ scale: 1.1 }}
@@ -365,7 +369,7 @@ const ChatWidget = () => {
                                     type="text" 
                                     value={inputValue}
                                     onChange={(e) => setInputValue(e.target.value)}
-                                    placeholder="Type your message..."
+                                    placeholder={t("placeholder")}
                                     className="flex-1 bg-slate-50 border-2 border-slate-200 text-sm text-slate-900 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#005bbc]/20 focus:border-[#005bbc] transition-all placeholder:text-slate-400"
                                     onKeyDown={(e) => {
                                         if (e.key === 'Enter' && !e.shiftKey) {
@@ -379,7 +383,7 @@ const ChatWidget = () => {
                                     whileTap={{ scale: 0.95 }}
                                     type="submit"
                                     disabled={!inputValue.trim()}
-                                    className="p-2.5 bg-gradient-to-br from-[#005bbc] to-[#004a9f] rounded-xl text-white hover:from-[#004a9f] hover:to-[#003d7a] transition-all disabled:opacity-50 disabled:cursor-not-allowed border-2 border-[#005bbc] shadow-lg shrink-0"
+                                    className="p-2.5 bg-gradient-to-br from-[#005bbc] to-[#004a9f] rounded-xl text-white hover:from-[#004a9f] hover:to-[#003d7a] transition-all disabled:opacity-50 disabled:cursor-not-allowed border-2 border-[#005bbc] shrink-0"
                                     aria-label="Send"
                                 >
                                     <Send className="w-4 h-4" />
@@ -398,7 +402,7 @@ const ChatWidget = () => {
                     setIsOpen(!isOpen);
                     setShowMenu(false);
                 }}
-                className="w-[55px] h-[55px] bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-full flex items-center justify-center text-white hover:from-zinc-800 hover:to-zinc-700 transition-all border-2 border-zinc-900 shadow-2xl relative group"
+                className="w-[55px] h-[55px] bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-full flex items-center justify-center text-white hover:from-zinc-800 hover:to-zinc-700 transition-all border-2 border-zinc-900 relative group"
                 style={{ 
                     zIndex: 2147483645,
                     borderRadius: '27.5px'
@@ -427,7 +431,7 @@ const ChatWidget = () => {
                             <motion.span 
                                 animate={{ scale: [1, 1.2, 1] }}
                                 transition={{ duration: 2, repeat: Infinity }}
-                                className="absolute -top-1 -right-1 w-4 h-4 bg-[#ffd600] rounded-full border-2 border-white shadow-lg"
+                                className="absolute -top-1 -right-1 w-4 h-4 bg-[#ffd600] rounded-full border-2 border-white"
                             />
                         </motion.div>
                     )}

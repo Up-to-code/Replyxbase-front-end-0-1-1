@@ -7,9 +7,9 @@ const FeatureInbox = () => {
   const t = useTranslations("Landing.Features.Inbox");
 
   const messages = [
-    { channel: "WhatsApp", time: "10:42 AM", preview: "Quick question about...", unread: true },
-    { channel: "Email", time: "10:38 AM", preview: "Thanks for the help!", unread: false },
-    { channel: "Website", time: "10:35 AM", preview: "Can we schedule a call?", unread: true }
+    { channel: t("messages.msg1.sender"), time: "10:42 AM", preview: t("messages.msg1.text"), unread: true },
+    { channel: t("messages.msg2.sender"), time: "10:38 AM", preview: t("messages.msg2.text"), unread: false },
+    { channel: t("messages.msg3.sender"), time: "10:35 AM", preview: t("messages.msg3.text"), unread: true }
   ];
 
   return (
@@ -51,7 +51,7 @@ const FeatureInbox = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <Bell className="w-4 h-4 text-slate-400" />
-                  <span className="text-xs font-semibold text-slate-600">Unified Inbox</span>
+                  <span className="text-xs font-semibold text-slate-600">{t("Mock.headerTitle")}</span>
                 </div>
               </div>
               
@@ -61,8 +61,8 @@ const FeatureInbox = () => {
                     R
                   </div>
                   <div>
-                    <div className="font-bold text-slate-900">All Channels</div>
-                    <div className="text-xs text-slate-500">3 unread messages</div>
+                    <div className="font-bold text-slate-900">{t("Mock.statusTitle")}</div>
+                    <div className="text-xs text-slate-500">{t("Mock.statusOnline")}</div>
                   </div>
                 </div>
                 

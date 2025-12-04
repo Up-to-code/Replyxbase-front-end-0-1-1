@@ -30,7 +30,7 @@ const CTASection = async () => {
                         <div className="relative z-10 text-center">
                             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#005bbc]/10 text-[#005bbc] text-sm font-semibold mb-6 border-2 border-[#005bbc]/20">
                                 <Sparkles className="w-4 h-4" />
-                                <span>Ready to get started?</span>
+                                <span>{t("badge")}</span>
                             </div>
                             
                             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 tracking-tight leading-tight">
@@ -57,19 +57,26 @@ const CTASection = async () => {
                                         variant="outline" 
                                         size="lg"
                                         className="w-full sm:w-auto h-14 px-10 rounded-2xl text-base font-semibold border-2 border-slate-200 hover:border-[#005bbc] text-slate-700 hover:text-[#005bbc] transition-all"
+                                        aria-label={tCommon("watchDemo")}
                                     >
-                                        Watch Demo
+                                        {tCommon("watchDemo")}
                                     </Button>
                                 </Link>
                             </div>
                             
                             <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-slate-500">
-                                {benefits.map((benefit, idx) => (
-                                    <div key={idx} className="flex items-center gap-2">
-                                        <CheckCircle2 className="w-4 h-4 text-[#005bbc]" />
-                                        <span>{benefit}</span>
-                                    </div>
-                                ))}
+                                <div className="flex items-center gap-2">
+                                    <CheckCircle2 className="w-4 h-4 text-[#005bbc]" />
+                                    <span>{t("noCreditCard")}</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <CheckCircle2 className="w-4 h-4 text-[#005bbc]" />
+                                    <span>{t("freeTrial")}</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <CheckCircle2 className="w-4 h-4 text-[#005bbc]" />
+                                    <span>{t("cancelAnytime")}</span>
+                                </div>
                             </div>
                         </div>
                     </div>

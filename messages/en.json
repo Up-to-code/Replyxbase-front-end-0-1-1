@@ -13,7 +13,11 @@
     "startFreeTrial": "Start Free Trial",
     "copyright": "© {year} Replyxbase Inc. All rights reserved.",
     "allSystemsOperational": "All systems operational",
-    "dashboard": "Dashboard"
+    "dashboard": "Dashboard",
+    "pricing": "Pricing",
+    "integrations": "Integrations",
+    "docs": "Docs",
+    "menu": "Menu"
   },
   "Landing": {
     "Metadata": {
@@ -30,80 +34,26 @@
         "line1": "AI agents for magical customer experiences"
       },
       "description": "Replyxbase is the complete platform for building & deploying AI support agents for your business.",
-      "highlights": {
-        "ariaLabel": "Key highlights",
-        "llm": "Purpose-built for LLMs",
-        "llmDesc": "Language models with reasoning capabilities for effective responses",
-        "simple": "Designed for simplicity",
-        "simpleDesc": "Create, manage, and deploy AI agents easily, even without technical skills",
-        "secure": "Engineered for security",
-        "secureDesc": "Robust encryption and strict compliance standards for peace of mind",
-        "complete": "Complete platform",
-        "completeDesc": "Everything you need to build and deploy AI support agents"
+
+
+      "Mock": {
+        "title": "AI Customer Support",
+        "subtitle": "Answering questions automatically",
+        "live": "Live",
+        "customer": "Customer",
+        "time2min": "2 min ago",
+        "time5min": "5 min ago",
+        "message1": "I want to book a demo. Can you help?",
+        "message2": "What are your pricing plans?",
+        "response1": "Great! I can help you book a demo. Available times:",
+        "response2": "Our plans start from $0/month. Here's what's included:",
+        "times": "Today 2:00 PM • Tomorrow 10:00 AM • Friday 3:00 PM",
+        "pricing": "Free: 1 agent, 1K messages • Starter: $19/month • Pro: $29/month",
+        "delivered": "Delivered",
+        "placeholder": "Type your question...",
+        "responseTime": "AI responds in 0.8 seconds"
       },
-      "HowItWorks": {
-        "title": "An end-to-end solution for conversational AI",
-        "description": "With Replyxbase, your customers can effortlessly find answers, resolve issues, and take meaningful actions through seamless AI-driven conversations.",
-        "step1": {
-          "title": "Build & Deploy",
-          "desc": "Train an agent on your business data, configure actions, then deploy for your customers"
-        },
-        "step2": {
-          "title": "Agent Solves Problems",
-          "desc": "Your AI agent handles customer queries and resolves issues automatically"
-        },
-        "step3": {
-          "title": "Refine & Optimize",
-          "desc": "Continuously improve your agent's performance based on real interactions"
-        },
-        "step4": {
-          "title": "Route to Humans",
-          "desc": "Smart escalation routes complex issues to human agents when needed"
-        },
-        "step5": {
-          "title": "Review Analytics",
-          "desc": "Gain insights and optimize agent performance with detailed analytics"
-        }
-      },
-      "Integrations": {
-        "title": "Works with your tools",
-        "description": "Integrate diverse data sources to enrich your agent's knowledge and capabilities.",
-        "website": {
-          "desc": "Connect your website chat widget"
-        },
-        "whatsapp": {
-          "desc": "Integrate WhatsApp Business API"
-        },
-        "messenger": {
-          "desc": "Connect Facebook Messenger"
-        },
-        "email": {
-          "desc": "Sync with your email system"
-        },
-        "slack": {
-          "desc": "Add agent to your Slack workspace"
-        },
-        "crm": {
-          "desc": "Connect to your CRM system"
-        },
-        "learnMore": "Learn more",
-        "features": {
-          "title": "Build the perfect customer-facing AI agent",
-          "description": "Replyxbase gives you all the tools you need to train your perfect AI agent and connect it to your systems.",
-          "api": {
-            "title": "Compare AI models",
-            "desc": "Experiment with various models and configurations to make sure you have the best setup for your use case."
-          },
-          "actions": {
-            "title": "Smart escalation",
-            "desc": "Give your agent instructions in natural language on when to escalate queries to human agents."
-          },
-          "analytics": {
-            "title": "Advanced reporting",
-            "desc": "Gain insights and optimize agent performance with detailed analytics."
-          }
-        }
-      },
+
       "advantages": {
         "title": "Works like the best customer service agents",
         "description": "Replyxbase is designed to work with your existing tools and workflows.",
@@ -192,6 +142,30 @@
         }
       }
     },
+    "HowItWorks": {
+      "title": "An end-to-end solution for conversational AI",
+      "description": "With Replyxbase, your customers can effortlessly find answers, resolve issues, and take meaningful actions through seamless AI-driven conversations.",
+      "step1": {
+        "title": "Build & Deploy",
+        "desc": "Train an agent on your business data, configure actions, then deploy for your customers"
+      },
+      "step2": {
+        "title": "Agent Solves Problems",
+        "desc": "Your AI agent handles customer queries and resolves issues automatically"
+      },
+      "step3": {
+        "title": "Refine & Optimize",
+        "desc": "Continuously improve your agent's performance based on real interactions"
+      },
+      "step4": {
+        "title": "Route to Humans",
+        "desc": "Smart escalation routes complex issues to human agents when needed"
+      },
+      "step5": {
+        "title": "Review Analytics",
+        "desc": "Gain insights and optimize agent performance with detailed analytics"
+      }
+    },
     "Marquee": {
       "realEstate": "Real Estate Empire",
       "ecommerce": "E-commerce Giants",
@@ -229,11 +203,12 @@
           "msg3": { "sender": "Site Visitor", "text": "What are your pricing plans?" }
         },
         "Mock": {
-          "headerTitle": "Replyxbase Inbox",
-          "statusTitle": "Status",
-          "statusOnline": "All Systems Operational",
+          "headerTitle": "Unified Inbox",
+          "statusTitle": "All Channels",
+          "statusOnline": "3 unread messages",
           "aiFormPlaceholder": "Type your reply..."
         }
+
       },
       "Agents": {
         "badge": "AI Agents",
@@ -247,13 +222,19 @@
         "feature3Desc": "Works with your existing tools.",
         "cta": "See Agents in Action",
         "Mock": {
-          "salesBot": "Sales Bot Alpha",
-          "leadGen": "Lead Gen",
+          "salesBot": "Sales Bot",
+          "leadGen": "Lead Generation",
           "supportHelper": "Support Helper",
           "customerService": "Customer Service",
           "active": "Active",
           "conversations": "Conversations",
-          "conversion": "Conversion"
+          "conversion": "Conversion",
+          "status": "Status",
+          "live": "Live"
+        },
+        "Card": {
+          "status": "Status",
+          "live": "Live"
         }
       },
       "CRM": {
@@ -265,15 +246,15 @@
         "feature2Title": "Interaction History",
         "feature2Desc": "View every past conversation.",
         "Mock": {
-          "name": "Sarah Jenkins",
+          "name": "Customer Profile",
           "company": "TechFlow",
           "vip": "VIP",
-          "activeDeal": "Active Deal",
+          "activeDeal": "Active Account",
           "enterprise": "Enterprise",
           "recentActivity": "Recent Activity",
           "demoCall": "Demo Call Scheduled",
           "invoiceSent": "Invoice Sent",
-          "tomorrow2pm": "Tomorrow 2:00 PM",
+          "tomorrow2pm": "Tomorrow at 2:00 PM",
           "twoHoursAgo": "2 hours ago",
           "bookingTitle": "Book a Call",
           "bookingDate": "Select Date",
@@ -320,8 +301,10 @@
       "learnMore": "Learn more"
     },
     "Integrations": {
-      "title": "Works with your tools",
-      "description": "Integrate diverse data sources to enrich your agent's knowledge and capabilities.",
+      "title": "200+ Tools & Integrations",
+      "description": "All your favorite tools in one place",
+      "all": "All",
+      "inOne": "In One",
       "website": {
         "desc": "Connect your website chat widget"
       },
@@ -332,7 +315,14 @@
         "desc": "Connect to your CRM system"
       },
       "learnMore": "Learn more",
+      "stats": {
+        "website": "2.4K active",
+        "whatsapp": "1.8K active",
+        "crm": "950 active"
+      },
       "features": {
+        "title": "200+ Tools & Integrations",
+        "description": "All your favorite tools in one place",
         "seamless": {
           "title": "Seamless Integrations",
           "desc": "Connect with popular tools and platforms your team already uses."
@@ -445,9 +435,12 @@
       "sla": "99.9% SLA"
     },
     "CTA": {
+      "badge": "Ready to get started?",
       "title": "Make customer experience your competitive edge",
       "subtitle": "Use Replyxbase to deliver exceptional support experiences that set you apart from the competition.",
-      "noCreditCard": "No credit card required"
+      "noCreditCard": "No credit card required",
+      "freeTrial": "14-day free trial",
+      "cancelAnytime": "Cancel anytime"
     },
     "Footer": {
       "desc": "The future of customer communication.",
@@ -455,6 +448,12 @@
       "company": "Company",
       "resources": "Resources",
       "legal": "Legal",
+      "newsletter": {
+        "title": "Stay updated",
+        "description": "Get the latest news and updates delivered to your inbox.",
+        "placeholder": "Enter your email",
+        "button": "Subscribe"
+      },
       "links": {
         "features": "Features",
         "pricing": "Pricing",
@@ -478,13 +477,30 @@
     },
     "Widget": {
       "callout": "Chat with AI",
-      "title": "Replyxbase AI",
+      "title": "Replyxbase AI Agent",
+      "subtitle": "Always here to help",
       "online": "Online",
-      "welcome": "Hello! 👋 I'm Replyxbase's AI assistant. How can I help you today?",
+      "welcome": "👋 Hi! I am Replyxbase AI, ask me anything about Replyxbase!",
+      "welcome2": "By the way, you can create an agent like me for your website! 😉",
       "placeholder": "Type your message...",
-      "poweredBy": "Powered by Replyxbase",
-      "aiResponseDefault": "I can help you with that! Replyxbase is designed to streamline your customer support. Would you like a demo?",
-      "aiResponsePricing": "Our plans start at $0/mo. Pro plan is $39/mo. Visit our pricing page for details!",
+      "poweredBy": "Powered by",
+      "privacy": {
+        "text": "By chatting, you agree to our",
+        "link": "privacy policy"
+      },
+      "menu": {
+        "newChat": "Start a new chat",
+        "endChat": "End chat",
+        "recentChats": "View recent chats"
+      },
+      "question1": "What is Replyxbase?",
+      "question2": "How do I add data to my agent?",
+      "question3": "Is there a free plan?",
+      "question4": "What are AI actions?",
+      "aiResponseDefault": "I'd be happy to help! Replyxbase is an AI-powered customer support platform that helps businesses automate their customer service across multiple channels like WhatsApp, Website, and Email.",
+      "aiResponsePricing": "We offer flexible pricing plans starting from $0/month for the Free plan, $19/month for Starter, $29/month for Pro, and custom pricing for Enterprise. All plans include a 14-day free trial with no credit card required!",
+      "aiResponseData": "You can add data to your agent by connecting your knowledge base, uploading documents, or integrating with your existing tools. Our AI will automatically learn from your content to provide accurate responses.",
+      "aiResponseActions": "AI Actions allow your agent to perform tasks automatically, like booking appointments, processing orders, or fetching information from your CRM. You can configure custom actions to match your business needs.",
       "aiResponseWhatsapp": "Yes, we fully support WhatsApp Business API! You can manage everything from here."
     }
   },
@@ -1287,6 +1303,21 @@
         "title": "Select a conversation",
         "subtitle": "Choose a conversation from the sidebar to start chatting"
       }
+    }
+  },
+  "AIChat": {
+    "title": "How Can I Help You",
+    "placeholder": "Message...",
+    "tools": "Tools",
+    "attachImage": "Attach image",
+    "recordVoice": "Record voice",
+    "send": "Send message",
+    "toolsList": {
+      "createImage": "Create an image",
+      "searchWeb": "Search the web",
+      "writeCode": "Write or code",
+      "deepResearch": "Run deep research",
+      "thinkLonger": "Think for longer"
     }
   }
 }

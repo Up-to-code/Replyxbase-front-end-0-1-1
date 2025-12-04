@@ -5,6 +5,7 @@ import { Globe, MessageCircle, Database, ArrowRight, Zap, Plug } from "lucide-re
 
 const IntegrationsSection = () => {
   const t = useTranslations("Landing.Integrations");
+  const tCommon = useTranslations("Common");
 
   const integrations = [
     {
@@ -14,7 +15,7 @@ const IntegrationsSection = () => {
       color: "bg-[#005bbc]/10",
       borderColor: "border-[#005bbc]/20",
       iconColor: "text-[#005bbc]",
-      stats: "2.4K active"
+      stats: t("stats.website")
     },
     {
       icon: MessageCircle,
@@ -23,7 +24,7 @@ const IntegrationsSection = () => {
       color: "bg-[#ffd600]/10",
       borderColor: "border-[#ffd600]/20",
       iconColor: "text-[#ffd600]",
-      stats: "1.8K active"
+      stats: t("stats.whatsapp")
     },
     {
       icon: Database,
@@ -32,7 +33,7 @@ const IntegrationsSection = () => {
       color: "bg-[#005bbc]/10",
       borderColor: "border-[#005bbc]/20",
       iconColor: "text-[#005bbc]",
-      stats: "950 active"
+      stats: t("stats.crm")
     },
   ];
 
@@ -48,7 +49,7 @@ const IntegrationsSection = () => {
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#005bbc]/10 text-[#005bbc] text-sm font-semibold mb-6 border-2 border-[#005bbc]/20">
               <Zap className="w-4 h-4" />
-              <span>Integrations</span>
+              <span>{tCommon("integrations")}</span>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
               {t("title")}
@@ -66,18 +67,18 @@ const IntegrationsSection = () => {
                   <Plug className="w-8 h-8 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold mb-1">200+ Tools & Integrations</h3>
-                  <p className="text-white/80">All your favorite tools in one place</p>
+                  <h3 className="text-2xl font-bold mb-1">{t("features.title")}</h3>
+                  <p className="text-white/80">{t("features.description")}</p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
                 <div className="px-6 py-3 bg-white/10 rounded-xl border-2 border-white/20 backdrop-blur-sm">
                   <div className="text-3xl font-bold">200+</div>
-                  <div className="text-xs text-white/80">Integrations</div>
+                  <div className="text-xs text-white/80">{tCommon("integrations")}</div>
                 </div>
                 <div className="px-6 py-3 bg-white/10 rounded-xl border-2 border-white/20 backdrop-blur-sm">
-                  <div className="text-3xl font-bold">All</div>
-                  <div className="text-xs text-white/80">In One</div>
+                  <div className="text-3xl font-bold">{t("all")}</div>
+                  <div className="text-xs text-white/80">{t("inOne")}</div>
                 </div>
               </div>
             </div>

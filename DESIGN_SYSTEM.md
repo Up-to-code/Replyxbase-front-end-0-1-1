@@ -91,6 +91,59 @@ className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#005bbc]/10
 className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#ffd600]/10 text-[#ffd600] text-sm font-medium border border-[#ffd600]/20"
 ```
 
+### Dropdown Menus
+```tsx
+// Simple Select Dropdown (Language Switcher)
+<select
+  value={locale}
+  onChange={(e) => handleSwitch(e.target.value)}
+  className="px-3 py-2 rounded border-2 border-slate-200 text-sm bg-white hover:bg-slate-50 focus:border-[#005bbc] focus:outline-none transition-colors"
+>
+  {languages.map((lang) => (
+    <option key={lang.code} value={lang.code}>
+      {lang.label}
+    </option>
+  ))}
+</select>
+
+// Custom Dropdown Menu (with click outside handler)
+<div className="relative" ref={dropdownRef}>
+  <button
+    onClick={() => setIsOpen(!isOpen)}
+    className="px-3 py-2 rounded-xl border-2 border-slate-200 text-sm font-medium text-slate-600 hover:bg-slate-50 hover:border-slate-300 transition-colors"
+    aria-label="Open menu"
+    aria-expanded={isOpen}
+  >
+    {triggerText}
+  </button>
+  
+  {isOpen && (
+    <div className="absolute top-full right-0 mt-2 w-48 bg-white rounded-xl border-2 border-slate-200 z-50 overflow-hidden">
+      {menuItems.map((item) => (
+        <button
+          key={item.id}
+          onClick={() => handleItemClick(item)}
+          className="w-full flex items-center justify-between px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 transition-colors border-2 border-transparent hover:border-[#005bbc]/20"
+        >
+          <span>{item.label}</span>
+          {item.active && <Check className="w-4 h-4 text-[#005bbc]" />}
+        </button>
+      ))}
+    </div>
+  )}
+</div>
+```
+
+**Dropdown Menu Guidelines:**
+- Use `border-2 border-slate-200` for dropdown container
+- Position: `absolute top-full` with `mt-2` spacing
+- Background: `bg-white` with `rounded-xl` corners
+- Hover states: `hover:bg-slate-50` and `hover:border-[#005bbc]/20`
+- Active state: `bg-[#005bbc]/10 text-[#005bbc]` with check icon
+- Z-index: `z-50` for proper layering
+- Always implement click-outside handler for better UX
+- Include ARIA attributes: `aria-label`, `aria-expanded`
+
 ### Sections
 - **Spacing**: `py-20` (vertical padding)
 - **Container**: `max-w-7xl mx-auto px-4 sm:px-6 lg:px-8`
@@ -220,6 +273,91 @@ className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#ffd600]/10
 - Use logical properties (`start`, `end`)
 - Test with `dir="rtl"`
 - Icons: `rtl:rotate-180` when needed
+
+## Language Support (i18n)
+
+### Supported Languages
+- **English (en)**: Default language
+- **Arabic (ar)**: RTL support enabled
+- **French (fr)**: LTR support
+- **Spanish (es)**: LTR support
+
+### Implementation
+- Use `next-intl` for internationalization
+- Translation keys in `messages/{locale}.json`
+- Locale routing: `/[locale]/...`
+- Language switcher component in header
+
+### Language Switcher Component
+```tsx
+// Simple select-based language switcher
+import { useLocale, useTranslations } from "next-intl";
+import { usePathname, useRouter } from "@/navigation";
+
+const LanguageSwitcher = () => {
+  const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
+  const t = useTranslations("Common");
+
+  const languages = [
+    { code: "en", label: t("localeEnglish") },
+    { code: "ar", label: t("localeArabic") },
+    { code: "fr", label: t("localeFrench") },
+    { code: "es", label: t("localeSpanish") }
+  ];
+
+  const handleSwitch = (newLocale: string) => {
+    router.replace(pathname, { locale: newLocale });
+  };
+
+  return (
+    <select
+      value={locale}
+      onChange={(e) => handleSwitch(e.target.value)}
+      className="px-3 py-2 rounded border-2 border-slate-200 text-sm bg-white hover:bg-slate-50 focus:border-[#005bbc] focus:outline-none transition-colors"
+    >
+      {languages.map((lang) => (
+        <option key={lang.code} value={lang.code}>
+          {lang.label}
+        </option>
+      ))}
+    </select>
+  );
+};
+```
+
+### Translation Keys Structure
+```json
+{
+  "Common": {
+    "localeEnglish": "English",
+    "localeArabic": "العربية",
+    "localeFrench": "Français",
+    "localeSpanish": "Español",
+    "logIn": "Log In",
+    "getStarted": "Get Started"
+  },
+  "Landing": {
+    "heroTitle": "AI-Powered Customer Support",
+    "heroDescription": "Transform your customer service..."
+  }
+}
+```
+
+### RTL Layout Considerations
+- Text direction: `dir="rtl"` for Arabic
+- Layout mirroring: Use `start`/`end` instead of `left`/`right`
+- Icon rotation: `rtl:rotate-180` for directional icons
+- Spacing: Adjust padding/margin for RTL layouts
+- Font: Use appropriate font family (e.g., Cairo for Arabic)
+
+### Best Practices
+1. **Always use translation keys**: Never hardcode text strings
+2. **Test all languages**: Ensure UI doesn't break with longer translations
+3. **RTL testing**: Verify Arabic layout works correctly
+4. **Locale persistence**: Save user's language preference
+5. **Fallback handling**: Default to English if translation missing
 
 ## Implementation Notes
 

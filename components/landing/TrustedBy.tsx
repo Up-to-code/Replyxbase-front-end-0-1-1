@@ -1,14 +1,16 @@
 "use client";
 import React from "react";
+import { useTranslations } from "next-intl";
 
 const TrustedBy = () => {
+    const t = useTranslations("Landing.TrustedBy");
     const companies = [
         "Siemens", "Notion", "Salesforce", "Google", "Atlassian", 
         "Microsoft", "Amazon", "Meta", "Apple", "Netflix"
     ];
 
     return (
-        <section className="py-12 bg-white border-b-2 border-slate-200">
+        <section className="py-12 bg-white" aria-label={t("title")}>
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="relative w-full overflow-hidden" dir="ltr">
                     <div className="absolute left-0 top-0 bottom-0 w-40 bg-gradient-to-r from-white via-white to-transparent z-10 pointer-events-none" />

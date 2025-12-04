@@ -1,177 +1,133 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { Sparkles, CheckCircle2, Clock } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { MessageSquare, Users, BarChart3, Settings, Sparkles } from "lucide-react";
 
 const HeroVisual = () => {
+  const t = useTranslations("Landing.Hero.Mock");
+
   return (
-    <div className="relative w-full">
-      <div className="relative bg-white rounded-2xl border-2 border-slate-200 overflow-hidden">
-        
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="h-14 bg-gradient-to-r from-[#005bbc] to-[#005bbc] flex items-center justify-between px-5"
-        >
-          <div className="flex items-center gap-3">
-            <motion.div
-              animate={{ rotate: [0, 10, -10, 0] }}
-              transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
-              className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center"
-            >
-              <Sparkles className="w-5 h-5 text-white" />
-            </motion.div>
-            <div>
-              <div className="text-sm font-bold text-white flex items-center gap-2">
-                AI Customer Support
-                <motion.span
-                  animate={{ scale: [1, 1.2, 1] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                  className="w-1.5 h-1.5 bg-[#ffd600] rounded-full"
-                />
-              </div>
-              <div className="text-xs text-white/80">Answering questions automatically</div>
-            </div>
+
+    <div className="relative w-full aspect-[16/9] select-none">
+      {/* Main Dashboard Frame */}
+      <div className="absolute inset-0 bg-white rounded-3xl border-2 border-slate-200 overflow-hidden shadow-none z-10">
+        {/* Mock Sidebar */}
+        <div className="absolute left-0 top-0 bottom-0 w-64 bg-slate-50 border-r-2 border-slate-200 p-6 hidden md:flex flex-col gap-6">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-8 h-8 rounded-lg bg-[#005bbc]" />
+            <div className="h-4 w-24 bg-slate-200 rounded-md" />
           </div>
-          <motion.div
-            animate={{ opacity: [0.7, 1, 0.7] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="flex items-center gap-1.5"
-          >
-            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-            <span className="text-xs text-white/90 font-medium">Live</span>
-          </motion.div>
-        </motion.div>
-
-        <div className="p-5 bg-slate-50 space-y-4 max-h-[500px] overflow-y-auto">
-          
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2 }}
-            className="flex gap-2"
-          >
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#005bbc] to-[#004a9f] flex items-center justify-center text-white text-xs font-bold shrink-0 shadow-lg">
-              C
-            </div>
-            <div className="flex-1">
-              <div className="flex items-center gap-2 mb-1">
-                <span className="text-xs font-semibold text-slate-900">Customer</span>
-                <span className="text-[10px] text-slate-400">2 min ago</span>
+          <div className="space-y-2">
+            {[MessageSquare, Users, BarChart3, Settings].map((Icon, i) => (
+              <div key={i} className={`flex items-center gap-3 p-3 rounded-xl ${i === 0 ? 'bg-white border-2 border-slate-200 text-[#005bbc]' : 'text-slate-500'}`}>
+                <Icon className="w-5 h-5" />
+                <div className={`h-3 rounded-md ${i === 0 ? 'w-20 bg-slate-200' : 'w-16 bg-slate-200/50'}`} />
               </div>
-              <div className="bg-white p-3 rounded-2xl rounded-tl-none border-2 border-slate-200">
-                <p className="text-sm text-slate-700">I want to book a demo. Can you help?</p>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.5 }}
-            className="flex justify-end"
-          >
-            <div className="max-w-[80%]">
-              <div className="bg-[#005bbc] p-3 rounded-2xl rounded-tr-none flex items-start gap-2 border-2 border-[#005bbc]">
-                <Sparkles className="w-4 h-4 text-white shrink-0 mt-0.5" />
-                <div>
-                  <p className="text-sm text-white mb-2">Great! I can help you book a demo. Available times:</p>
-                  <div className="bg-white/10 rounded-lg p-2 border-2 border-white/20">
-                    <div className="flex items-center gap-2 text-xs text-white/90">
-                      <div className="w-3.5 h-3.5 bg-[#ffd600] rounded" />
-                      <div>Today 2:00 PM • Tomorrow 10:00 AM • Friday 3:00 PM</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="flex items-center gap-1 mt-1.5 justify-end">
-                <CheckCircle2 className="w-3 h-3 text-green-500" />
-                <span className="text-[10px] text-slate-500">Delivered</span>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.9 }}
-            className="flex gap-2"
-          >
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#ffd600] to-[#e6c200] flex items-center justify-center text-[#005bbc] text-xs font-bold shrink-0 shadow-lg">
-              C
-            </div>
-            <div className="flex-1">
-              <div className="flex items-center gap-2 mb-1">
-                <span className="text-xs font-semibold text-slate-900">Customer</span>
-                <span className="text-[10px] text-slate-400">5 min ago</span>
-              </div>
-              <div className="bg-white p-3 rounded-2xl rounded-tl-none border-2 border-slate-200">
-                <p className="text-sm text-slate-700">What are your pricing plans?</p>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 1.2 }}
-            className="flex justify-end"
-          >
-            <div className="max-w-[80%]">
-              <div className="bg-[#005bbc] p-3 rounded-2xl rounded-tr-none flex items-start gap-2 border-2 border-[#005bbc]">
-                <Sparkles className="w-4 h-4 text-white shrink-0 mt-0.5" />
-                <div>
-                  <p className="text-sm text-white mb-2">Our plans start from $0/month. Here's what's included:</p>
-                  <div className="bg-white/10 rounded-lg p-2 border-2 border-white/20 space-y-1">
-                    <div className="flex items-center gap-2 text-xs text-white/90">
-                      <div className="w-3.5 h-3.5 bg-[#ffd600] rounded" />
-                      <div>Free: 1 agent, 1K messages • Starter: $19/month • Pro: $29/month</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="flex items-center gap-1 mt-1.5 justify-end">
-                <CheckCircle2 className="w-3 h-3 text-green-500" />
-                <span className="text-[10px] text-slate-500">Delivered</span>
-              </div>
-            </div>
-          </motion.div>
+            ))}
+          </div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2.5 }}
-          className="p-4 bg-white border-t-2 border-slate-200"
-        >
-          <div className="flex items-center gap-2">
-            <div className="flex-1 h-10 bg-slate-50 rounded-xl border-2 border-slate-200 flex items-center px-4">
-              <input
-                type="text"
-                placeholder="Type your question..."
-                className="flex-1 bg-transparent border-none text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none"
-                readOnly
-              />
-            </div>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="w-10 h-10 bg-[#005bbc] rounded-xl flex items-center justify-center hover:bg-[#004a9f] transition-colors border-2 border-[#005bbc]"
-            >
-              <motion.div
-                animate={{ rotate: [0, 15, -15, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
+        {/* Mock Header */}
+        <div className="absolute top-0 left-0 md:left-64 right-0 h-20 bg-white border-b-2 border-slate-200 flex items-center justify-between px-8">
+          <div className="flex items-center gap-4">
+              <div className="h-4 w-32 bg-slate-100 rounded-md" />
+          </div>
+          <div className="flex items-center gap-4">
+              <div className="relative">
+                  <div className="w-10 h-10 rounded-full border-2 border-slate-100" />
+                  <div className="absolute top-0 right-0 w-3 h-3 bg-[#ffd600] rounded-full border-2 border-white" />
+              </div>
+              <div className="w-10 h-10 rounded-full bg-[#005bbc] text-white flex items-center justify-center font-bold">A</div>
+          </div>
+        </div>
+
+        {/* Mock Content - Chat Interface */}
+        <div className="absolute top-20 left-0 md:left-64 right-0 bottom-0 bg-slate-50/50 p-8 flex gap-6">
+          {/* Chat List */}
+          <div className="w-80 bg-white rounded-2xl border-2 border-slate-200 hidden lg:block overflow-hidden">
+              <div className="p-4 border-b-2 border-slate-100">
+                  <div className="h-4 w-20 bg-slate-100 rounded-md" />
+              </div>
+              {[1, 2, 3].map((i) => (
+                  <div key={i} className="p-4 border-b-2 border-slate-50 flex gap-3">
+                      <div className="w-10 h-10 rounded-full bg-slate-100" />
+                      <div className="space-y-2">
+                          <div className="h-3 w-24 bg-slate-100 rounded-md" />
+                          <div className="h-2 w-32 bg-slate-50 rounded-md" />
+                      </div>
+                  </div>
+              ))}
+          </div>
+
+          {/* Active Chat */}
+          <div className="flex-1 bg-white rounded-2xl border-2 border-[#005bbc]/20 flex flex-col overflow-hidden relative shadow-sm">
+              {/* Floating Elements Animation */}
+              <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-10"
               >
-                <Sparkles className="w-5 h-5 text-white" />
+                  <div className="w-16 h-16 bg-[#005bbc]/10 rounded-2xl flex items-center justify-center mx-auto mb-4 border-2 border-[#005bbc]/20">
+                      <Sparkles className="w-8 h-8 text-[#005bbc]" />
+                  </div>
+                  <h3 className="text-lg font-bold text-slate-900 mb-2">{t("title")}</h3>
+                  <p className="text-slate-500 max-w-xs mx-auto">{t("subtitle")}</p>
               </motion.div>
-            </motion.button>
+
+              {/* Simulated Chat Bubbles */}
+              <div className="p-6 space-y-6 mt-auto mb-20 opacity-30 blur-[1px]">
+                   <div className="flex gap-4">
+                      <div className="w-8 h-8 rounded-full bg-slate-100" />
+                      <div className="bg-slate-100 rounded-2xl rounded-tl-none p-4 w-64 h-16" />
+                   </div>
+                   <div className="flex gap-4 flex-row-reverse">
+                      <div className="w-8 h-8 rounded-full bg-[#005bbc]" />
+                      <div className="bg-[#005bbc]/10 border-2 border-[#005bbc]/20 rounded-2xl rounded-tr-none p-4 w-64 h-24" />
+                   </div>
+              </div>
           </div>
-          <div className="flex items-center justify-center gap-1 mt-2">
-            <Clock className="w-3 h-3 text-slate-400" />
-            <span className="text-[10px] text-slate-400">AI responds in 0.8 seconds</span>
-          </div>
-        </motion.div>
+        </div>
       </div>
+
+      {/* Floating SaaS Cards - Outside Main Frame */}
+      <motion.div
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.8 }}
+        className="absolute -right-4 top-20 bg-white p-4 rounded-2xl border-2 border-slate-100 shadow-xl shadow-slate-200/50 hidden lg:block z-20 max-w-[200px]"
+      >
+        <div className="flex items-start gap-3">
+            <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center shrink-0">
+                <Users className="w-4 h-4 text-green-600" />
+            </div>
+            <div>
+                <p className="text-xs font-bold text-slate-900">New Lead Captured</p>
+                <p className="text-[10px] text-slate-500 mt-1">Sarah from TechCorp just started a chat</p>
+            </div>
+        </div>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 1 }}
+        className="absolute -left-4 bottom-20 bg-white p-4 rounded-2xl border-2 border-slate-100 shadow-xl shadow-slate-200/50 hidden lg:block z-20"
+      >
+        <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-full bg-[#005bbc]/10 flex items-center justify-center">
+                <BarChart3 className="w-5 h-5 text-[#005bbc]" />
+            </div>
+            <div>
+                <p className="text-xs text-slate-500">Response Time</p>
+                <p className="text-sm font-bold text-slate-900 flex items-center gap-1">
+                    0.8s 
+                    <span className="text-[10px] text-green-500 bg-green-50 px-1.5 py-0.5 rounded-full">+12%</span>
+                </p>
+            </div>
+        </div>
+      </motion.div>
     </div>
   );
 };
