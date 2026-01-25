@@ -49,10 +49,12 @@ export const ActivityLog: React.FC<ActivityLogProps> = ({ activities }) => {
                 <span>{new Date(activity.createdAt).toLocaleString()}</span>
               </div>
             </div>
-            <p className="text-sm text-slate-600 mt-1 whitespace-pre-wrap">{activity.content}</p>
-            <div className="mt-2 text-xs text-slate-400">
-              {t("loggedBy", { name: activity.createdBy })}
-            </div>
+            <p className="text-sm text-slate-600 mt-1 whitespace-pre-wrap">{activity.content || activity.description}</p>
+            {activity.createdBy && (
+              <div className="mt-2 text-xs text-slate-400">
+                {t("loggedBy", { name: activity.createdBy })}
+              </div>
+            )}
           </div>
         </div>
       ))}

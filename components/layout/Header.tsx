@@ -47,7 +47,7 @@ const Header: React.FC = () => {
             <Button variant="ghost" size="sm">
               Log In
             </Button>
-            <Button variant="primary" size="sm" glow>
+            <Button variant="primary" size="sm">
               Get Started
             </Button>
           </div>

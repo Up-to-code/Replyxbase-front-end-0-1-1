@@ -18,19 +18,18 @@ const Card: React.FC<CardProps> = ({
   variant = "default",
 }) => {
   const variantClasses = {
-    default: "bg-white border-slate-200 hover:border-[#005bbc]/20",
-    primary: "bg-[#005bbc]/10 border-[#005bbc]/20 hover:border-[#005bbc] hover:bg-[#005bbc]/15",
-    accent: "bg-[#ffd600]/10 border-[#ffd600]/20 hover:border-[#ffd600] hover:bg-[#ffd600]/15",
-    gradient: "bg-gradient-to-br from-[#005bbc]/10 to-[#ffd600]/10 border-[#005bbc]/20 hover:border-[#005bbc]",
+    default: "bg-white border-slate-200 hover:border-slate-300",
+    primary: "bg-slate-50 border-slate-200 hover:border-slate-300",
+    accent: "bg-slate-50 border-slate-200 hover:border-slate-300",
+    gradient: "bg-slate-50 border-slate-200 hover:border-slate-300",
   };
   
-  const baseClasses = `rounded-2xl border-2 transition-all duration-300 ${variantClasses[variant]}`;
-  const hoverClasses = hover ? "hover:border-[#005bbc]/40 cursor-pointer" : "";
+  const baseClasses = `rounded-xl border border-slate-200 transition-colors duration-200 ${variantClasses[variant]}`;
+  const hoverClasses = hover ? "hover:border-slate-300 cursor-pointer" : "";
   
   const Component = onClick ? motion.div : "div";
   const motionProps = onClick ? {
-    whileHover: { scale: 1.02, y: -2 },
-    whileTap: { scale: 0.98 },
+    whileTap: { scale: 0.99 },
     onClick,
   } : {};
   

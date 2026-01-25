@@ -5,8 +5,33 @@ import { useTranslations } from 'next-intl';
 import { Upload, Building2, Loader2, Check } from 'lucide-react';
 import { useUploadThing } from '@/lib/uploadthing';
 import { toast } from 'sonner';
-import { Organization, Member, User } from '@prisma/client';
-import { updateOrganization, updateOrganizationLogo } from '@/app/actions/settings/organization';
+// Removed Prisma dependencies - using plain interfaces
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  image: string | null;
+}
+
+interface Member {
+  id: string;
+  userId: string;
+  organizationId: string;
+  role: string;
+}
+
+interface Organization {
+  id: string;
+  name: string;
+  slug: string;
+  logo: string | null;
+  createdAt: Date;
+  updatedAt: Date;
+  members: (Member & { user: User })[];
+}
+// Removed server actions - using mock functions
+const mockUpdateOrganization = async () => ({ success: true, error: null as string | null });
+const mockUpdateOrganizationLogo = async () => ({ success: true, error: null as string | null });
 
 interface OrganizationSettingsProps {
   organization: Organization & {
@@ -31,7 +56,7 @@ export const OrganizationSettings: React.FC<OrganizationSettingsProps> = ({ orga
         setLogoUrl(newLogoUrl);
         
         // Update organization logo in database
-        const result = await updateOrganizationLogo(organization.id, newLogoUrl);
+        const result = await mockUpdateOrganizationLogo();
         if (result.success) {
         toast.success("Logo uploaded successfully!");
         } else {
@@ -63,12 +88,7 @@ export const OrganizationSettings: React.FC<OrganizationSettingsProps> = ({ orga
 
     setIsSaving(true);
     try {
-      const result = await updateOrganization({
-        organizationId: organization.id,
-        name: orgName,
-        slug: orgSlug,
-        logo: logoUrl,
-      });
+      const result = await mockUpdateOrganization();
       
       if (result.success) {
       toast.success("Organization settings updated!");

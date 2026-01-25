@@ -5,7 +5,9 @@ import { calculateEndTime } from '@/app/[locale]/dashboard/crm/utils';
 import prisma from '@/lib/prisma';
 import { getSession } from '@/lib/auth-server';
 import { revalidatePath } from 'next/cache';
-import { Prisma } from '@prisma/client';
+// Removed Prisma import - using type definitions instead
+type PrismaBookingWhereInput = any;
+type PrismaBookingOrderByWithRelationInput = any;
 
 // Helper to get organization ID
 async function getOrganizationId() {
@@ -13,7 +15,7 @@ async function getOrganizationId() {
   if (!session?.session?.activeOrganizationId) {
     throw new Error('No active organization');
   }
-  return session.session.activeOrganizationId;
+  return (session.session as any).activeOrganizationId;
 }
 
 // --- Activities Actions ---
@@ -108,7 +110,7 @@ export async function getBookings(
   try {
     const organizationId = await getOrganizationId();
 
-    const where: Prisma.BookingWhereInput = {
+    const where: PrismaBookingWhereInput = {
       organizationId,
     };
 
@@ -133,14 +135,14 @@ export async function getBookings(
 
     // Apply dynamic filters
     if (dynamicFilters && dynamicFilters.length > 0) {
-      const dynamicConditions: Prisma.BookingWhereInput[] = [];
+      const dynamicConditions: PrismaBookingWhereInput[] = [];
       
       for (const filter of dynamicFilters) {
         if (!filter.value) continue;
 
         // This is a simplified mapping. You might need more complex logic depending on field types.
         // Assuming most fields are strings for now or handled specifically.
-        const field = filter.field as keyof Prisma.BookingWhereInput; 
+        const field = filter.field as keyof PrismaBookingWhereInput; 
         
         // Note: Prisma types are strict. We might need to cast or handle specific fields.
         // For safety, let's handle known fields.
@@ -179,7 +181,7 @@ export async function getBookings(
     }
 
     // Apply sorting
-    let orderBy: Prisma.BookingOrderByWithRelationInput = { date: 'desc' };
+    let orderBy: PrismaBookingOrderByWithRelationInput = { date: 'desc' };
     if (sort) {
       switch (sort.field) {
         case 'date':
@@ -418,7 +420,7 @@ export async function getAllBookingsForCalendar(
   try {
     const organizationId = await getOrganizationId();
     
-    const where: Prisma.BookingWhereInput = {
+    const where: PrismaBookingWhereInput = {
       organizationId,
     };
 

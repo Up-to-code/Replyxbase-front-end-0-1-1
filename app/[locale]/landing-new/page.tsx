@@ -345,7 +345,7 @@ export default function DesignSystemShowcase() {
                 <div>
                   <h3 className="text-xl font-bold text-slate-900 mb-4">Button with Glow</h3>
                   <div className="flex flex-wrap gap-4">
-                    <Button variant="primary" glow>Primary with Glow</Button>
+                    <Button variant="primary">Primary</Button>
                   </div>
                 </div>
 
@@ -415,7 +415,6 @@ export default function DesignSystemShowcase() {
                 <Input 
                   label="Input with Glow"
                   placeholder="Enter text here"
-                  glow
                 />
                 
                 <Input 

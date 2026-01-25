@@ -88,7 +88,9 @@ const StatCard = ({ stat }: { stat: any }) => {
         </div>
       </div>
       <div className="space-y-1">
-        <h3 className="text-slate-500 text-xs font-medium uppercase tracking-wide">{t(`stats.${stat.id}`)}</h3>
+        <h3 className="text-slate-500 text-xs font-medium uppercase tracking-wide">
+          {stat.label || t(`stats.${stat.id}`) || stat.id}
+        </h3>
         <p className="text-3xl font-bold text-slate-900">{stat.value}</p>
       </div>
     </Card>
@@ -120,40 +122,7 @@ const PlatformItem = ({ platform }: { platform: any }) => {
   );
 };
 
-const AgentRow = ({ agent }: { agent: any }) => {
-  const router = useRouter();
-  return (
-    <tr 
-      className="border-b-2 border-slate-100 last:border-0 hover:bg-slate-50/50 transition-colors cursor-pointer" 
-      onClick={() => router.push(`/dashboard/agents/${agent.id}`)}
-    >
-      <td className="py-4 px-4">
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full bg-[#005bbc]/10 border-2 border-[#005bbc]/20 flex items-center justify-center text-[#005bbc]">
-            <Bot className="w-4 h-4" />
-          </div>
-          <div>
-            <p className="font-medium text-slate-900 text-sm">{agent.name}</p>
-            <p className="text-xs text-slate-500">{agent.role}</p>
-          </div>
-        </div>
-      </td>
-      <td className="py-4 px-4">
-        <Badge 
-          variant={
-            agent.status === 'active' ? 'success' : 
-            agent.status === 'training' ? 'warning' : 
-            'secondary'
-          }
-        >
-          {agent.status}
-        </Badge>
-      </td>
-      <td className="py-4 px-4 text-sm text-slate-600">{agent.conversations}</td>
-      <td className="py-4 px-4 text-sm text-slate-600">{agent.conversion}</td>
-    </tr>
-  );
-};
+// Removed AgentRow - 1 organization = 1 agent, no agent listing needed
 
 const ActivityItem = ({ item }: { item: any }) => {
   const Icon = IconMap[item.icon] || Zap;
@@ -237,14 +206,7 @@ export default function DashboardClient({
             >
               {t("downloadReport")}
             </Button>
-            <Link href="/dashboard/agents/create">
-              <Button 
-                variant="primary"
-                icon={Bot}
-              >
-                {t("createAgent")}
-              </Button>
-            </Link>
+            {/* Removed agent creation button - 1 organization = 1 agent */}
           </div>
         </div>
 
@@ -329,34 +291,7 @@ export default function DashboardClient({
               </CardContent>
             </Card>
 
-            {/* Active Agents Table */}
-            <Card className="overflow-hidden">
-              <CardHeader className="border-b-2 border-slate-200 flex justify-between items-center">
-                <h2 className="text-lg font-bold text-slate-900">{t("agents.title")}</h2>
-                <Link href="/dashboard/agents" className="text-sm text-[#005bbc] font-medium hover:text-[#004a9f] transition-colors">
-                  {t("agents.viewAll")}
-                </Link>
-              </CardHeader>
-              <CardContent className="p-0">
-                <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead className="bg-slate-50/50">
-                    <tr>
-                      <th className="text-left py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider rtl:text-right">{t("agents.agent")}</th>
-                      <th className="text-left py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider rtl:text-right">{t("agents.status")}</th>
-                      <th className="text-left py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider rtl:text-right">{t("agents.conversations")}</th>
-                      <th className="text-left py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider rtl:text-right">{t("agents.conversion")}</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {agents.map((agent, idx) => (
-                      <AgentRow key={idx} agent={agent} />
-                    ))}
-                  </tbody>
-                </table>
-                </div>
-              </CardContent>
-            </Card>
+            {/* Removed Agents Table - 1 organization = 1 agent, no listing needed */}
 
           </div>
 
@@ -381,10 +316,13 @@ export default function DashboardClient({
               </CardContent>
             </Card>
             
-            {/* Connected Channels */}
+            {/* Active Integrations */}
             <Card>
-              <CardHeader className="pb-4 border-b-2 border-slate-100">
-                <h2 className="text-lg font-bold text-slate-900">{t("channels.title")}</h2>
+              <CardHeader className="pb-4 border-b-2 border-slate-100 flex items-center justify-between">
+                <h2 className="text-lg font-bold text-slate-900">{t("channels.title") || "Active Integrations"}</h2>
+                <Link href="/dashboard/integrations" className="text-sm text-[#005bbc] font-medium hover:text-[#004a9f] transition-colors">
+                  Manage
+                </Link>
               </CardHeader>
               <CardContent className="pt-4">
                 <div className="space-y-1">
@@ -392,9 +330,9 @@ export default function DashboardClient({
                     <PlatformItem key={idx} platform={platform} />
                   ))}
                 </div>
-                <Link href="/dashboard/settings" className="w-full mt-4 py-2.5 border-2 border-dashed border-slate-200 rounded-xl text-sm font-medium text-slate-600 hover:border-[#005bbc]/30 hover:text-slate-900 transition-all duration-200 flex items-center justify-center gap-2 hover:bg-slate-50">
+                <Link href="/dashboard/integrations" className="w-full mt-4 py-2.5 border-2 border-dashed border-slate-200 rounded-xl text-sm font-medium text-slate-600 hover:border-[#005bbc]/30 hover:text-slate-900 transition-all duration-200 flex items-center justify-center gap-2 hover:bg-slate-50">
                   <Zap className="w-4 h-4" />
-                  {t("channels.connectNew")}
+                  {t("channels.connectNew") || "Connect New Integration"}
                 </Link>
               </CardContent>
             </Card>

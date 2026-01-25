@@ -15,7 +15,7 @@ export async function updateOrganization(data: {
     headers: await headers(),
   });
 
-  if (!session?.user || !session.session.activeOrganizationId) {
+  if (!session?.user || !(session.session as any).activeOrganizationId) {
     return { success: false, error: "Unauthorized" };
   }
 

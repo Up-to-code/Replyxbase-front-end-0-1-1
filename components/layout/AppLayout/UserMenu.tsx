@@ -149,7 +149,7 @@ export function UserMenu({
 
         {isOpen && (
           <div
-            className={`absolute ${align === "end" ? "end-0" : "start-0"} top-full mt-2 w-72 sm:w-80 bg-white border-2 border-slate-200 rounded-2xl z-100 overflow-hidden animate-in fade-in zoom-in-95 duration-100 shadow-lg`}
+            className={`absolute ${align === "end" ? "end-0" : "start-0"} top-full mt-2 w-72 sm:w-80 bg-white border border-slate-200 rounded-xl z-100 overflow-hidden animate-in fade-in zoom-in-95 duration-100`}
             role="menu"
             aria-label="User menu"
           >

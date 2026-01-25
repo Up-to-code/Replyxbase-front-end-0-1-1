@@ -41,7 +41,7 @@ const HeroSection = React.memo(({ session: initialSession }: { session?: any }) 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row items-center gap-4">
             <Link href={session ? "/dashboard" : "/signup"}>
-              <button className="h-14 px-8 text-lg font-semibold rounded-2xl bg-[#005bbc] text-white hover:bg-[#004a9f] transition-all flex items-center gap-2 border-2 border-[#005bbc] shadow-none">
+              <button className="h-14 px-8 text-lg font-semibold rounded-xl bg-[#005bbc] text-white hover:bg-[#004a9f] transition-colors flex items-center gap-2 border border-[#005bbc]">
                 {t("cta.buildAgent")}
                 <ArrowRight className="w-5 h-5" />
               </button>

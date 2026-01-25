@@ -4,6 +4,7 @@ import { calculateEndTime } from './utils';
 export const mockCustomers: Customer[] = [
   {
     id: '1',
+    organizationId: 'org-1',
     fullName: 'John Smith',
     email: 'john.smith@email.com',
     phone: '+1 (555) 123-4567',
@@ -14,10 +15,13 @@ export const mockCustomers: Customer[] = [
     totalBookings: 24,
     totalSpent: 3450,
     lastVisit: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
-    preferences: ['morning', 'quiet', 'window seat']
+    preferences: ['morning', 'quiet', 'window seat'],
+    createdAt: new Date(),
+    updatedAt: new Date()
   },
   {
     id: '2',
+    organizationId: 'org-1',
     fullName: 'Sarah Johnson',
     email: 'sarah.j@email.com',
     phone: '+1 (555) 987-6543',
@@ -27,10 +31,13 @@ export const mockCustomers: Customer[] = [
     totalBookings: 15,
     totalSpent: 2100,
     lastVisit: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000),
-    preferences: ['hypoallergenic', 'evening']
+    preferences: ['hypoallergenic', 'evening'],
+    createdAt: new Date(),
+    updatedAt: new Date()
   },
   {
     id: '3',
+    organizationId: 'org-1',
     fullName: 'Mike Wilson',
     email: 'mike.wilson@email.com',
     phone: '+1 (555) 456-7890',
@@ -41,7 +48,9 @@ export const mockCustomers: Customer[] = [
     totalBookings: 8,
     totalSpent: 980,
     lastVisit: new Date(Date.now() - 21 * 24 * 60 * 60 * 1000),
-    preferences: ['weekend', 'group booking']
+    preferences: ['weekend', 'group booking'],
+    createdAt: new Date(),
+    updatedAt: new Date()
   }
 ];
 
@@ -96,6 +105,7 @@ export const generateMinimalBookings = (): Booking[] => {
       
       bookings.push({
         id: `booking-${dayOffset}-${i}`,
+        organizationId: 'org-1',
         customerId: mockCustomers[customerIndex].id,
         customer: mockCustomers[customerIndex],
         date: currentDate,

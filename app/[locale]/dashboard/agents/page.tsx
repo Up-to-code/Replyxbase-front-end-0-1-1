@@ -1,13 +1,15 @@
+'use client';
+
 import React from 'react';
-import { getTranslations } from 'next-intl/server';
+import { useTranslations } from 'next-intl';
 import { Plus, Search, Filter, Bot } from 'lucide-react';
 import Link from 'next/link';
 import { AgentCard } from './components/AgentCard';
-import { getAgents } from '@/app/actions/agent';
 
-export default async function AgentsPage() {
-  const t = await getTranslations("Dashboard.Agents");
-  const agents = await getAgents();
+// Removed backend - using mock data (1 org = 1 agent, so no agents list needed)
+export default function AgentsPage() {
+  const t = useTranslations("Dashboard.Agents");
+  const agents: any[] = []; // Empty - 1 org = 1 agent, no listing needed
 
   return (
     <div className="p-8 max-w-7xl mx-auto animate-fade-in">

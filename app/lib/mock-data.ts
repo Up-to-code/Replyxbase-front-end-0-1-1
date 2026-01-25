@@ -1,34 +1,38 @@
-// No icon imports needed - we'll use string identifiers
+// Redesigned dashboard data - focused on messages and customer handling
 export const dashboardData = {
   stats: [
     { 
       id: 'messages', 
       value: '12,450', 
+      label: 'Total Messages',
       change: '+24%', 
       trend: 'up',
       icon: 'MessageSquare',
       color: 'blue'
     },
     { 
-      id: 'sales', 
-      value: '$4,290', 
+      id: 'messagesPerDay', 
+      value: '1,245', 
+      label: 'Messages Per Day',
       change: '+18%', 
       trend: 'up',
       icon: 'TrendingUp',
       color: 'green'
     },
     { 
-      id: 'csat', 
-      value: '4.8/5', 
-      change: '+0.2', 
+      id: 'customers', 
+      value: '3,420', 
+      label: 'Active Customers',
+      change: '+12%', 
       trend: 'up',
-      icon: 'CheckCircle2',
+      icon: 'Users',
       color: 'purple'
     },
     { 
-      id: 'saved', 
-      value: '142h', 
-      change: '+12h', 
+      id: 'responseTime', 
+      value: '2.4s', 
+      label: 'Avg Response Time',
+      change: '-0.3s', 
       trend: 'up',
       icon: 'Clock',
       color: 'orange'
@@ -36,10 +40,10 @@ export const dashboardData = {
   ],
 
   platforms: [
-    { name: 'WhatsApp', icon: 'Phone', messages: 5230, growth: 24, color: '#25D366', bg: 'bg-green-50' },
-    { name: 'Website', icon: 'Globe', messages: 3450, growth: 15, color: '#3b82f6', bg: 'bg-blue-50' },
-    { name: 'Telegram', icon: 'Send', messages: 2100, growth: 8, color: '#0088cc', bg: 'bg-sky-50' },
-    { name: 'Instagram', icon: 'Instagram', messages: 1670, growth: 32, color: '#E4405F', bg: 'bg-pink-50' },
+    { name: 'WhatsApp', icon: 'Phone', messages: 5230, growth: 24, color: '#25D366', bg: 'bg-green-50', status: 'connected', lastSync: '2 min ago' },
+    { name: 'Website', icon: 'Globe', messages: 3450, growth: 15, color: '#3b82f6', bg: 'bg-blue-50', status: 'connected', lastSync: '1 min ago' },
+    { name: 'Telegram', icon: 'Send', messages: 2100, growth: 8, color: '#0088cc', bg: 'bg-sky-50', status: 'connected', lastSync: '5 min ago' },
+    { name: 'Instagram', icon: 'Instagram', messages: 1670, growth: 32, color: '#E4405F', bg: 'bg-pink-50', status: 'connected', lastSync: '3 min ago' },
   ],
 
   agents: [

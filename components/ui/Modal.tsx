@@ -19,7 +19,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>(
       >
         <div
           ref={ref}
-          className={`bg-white rounded-2xl border-2 border-slate-200 w-full max-w-lg max-h-[90vh] overflow-hidden flex flex-col ${className}`}
+          className={`bg-white rounded-xl border border-slate-200 w-full max-w-lg max-h-[90vh] overflow-hidden flex flex-col ${className}`}
           onClick={(e) => e.stopPropagation()}
           {...props}
         >

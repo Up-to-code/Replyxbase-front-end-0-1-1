@@ -3,8 +3,21 @@ import { ArrowLeft, Copy, Check, Globe, MessageSquare, Palette, Calendar, Phone,
 import { toast } from 'sonner';
 import { useTranslations } from 'next-intl';
 
-import { Agent } from '@prisma/client';
-import { updateAgent } from '@/app/actions/agent';
+// Agent type definition (removed Prisma dependency)
+interface Agent {
+  id: string;
+  name: string;
+  role: string;
+  status: 'active' | 'training' | 'inactive';
+  isWebsiteEnabled: boolean;
+  isWhatsappEnabled: boolean;
+  isDmEnabled: boolean;
+  config: Record<string, any>;
+  organizationId: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 import { useRouter } from 'next/navigation';
 
 interface WebsiteIntegrationProps {
@@ -327,12 +340,13 @@ export const WebsiteIntegration: React.FC<WebsiteIntegrationProps> = ({ agent, o
         }
       };
 
-      await updateAgent(agent.id, { config: newConfig });
+      // TODO: Replace with API call when backend is ready
+      // await updateAgent(agent.id, { config: newConfig });
       
       toast.success(t('settingsSaved'));
       setHasChanges(false);
       setLastSaved(new Date());
-      router.refresh();
+      // router.refresh();
     } catch (error) {
       console.error('Failed to save settings:', error);
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';
@@ -999,7 +1013,7 @@ export const WebsiteIntegration: React.FC<WebsiteIntegrationProps> = ({ agent, o
                     <div>
                       <h4 className="font-bold text-base">{t('preview.supportAgent')}</h4>
                       <div className="flex items-center gap-1.5 opacity-90">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] shadow-[0_0_4px_rgba(16,185,129,0.5)]" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]" />
                         <p className="text-xs font-medium">{t('preview.online')}</p>
                       </div>
                     </div>

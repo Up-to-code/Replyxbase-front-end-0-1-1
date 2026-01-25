@@ -5,7 +5,20 @@ import { toast } from 'sonner';
 import { WebsiteIntegration } from './integrations/WebsiteIntegration';
 import { WhatsAppIntegration } from './integrations/WhatsAppIntegration';
 
-import { Agent } from '@prisma/client';
+// Agent type definition (removed Prisma dependency)
+interface Agent {
+  id: string;
+  name: string;
+  role: string;
+  status: 'active' | 'training' | 'inactive';
+  isWebsiteEnabled: boolean;
+  isWhatsappEnabled: boolean;
+  isDmEnabled: boolean;
+  config: Record<string, any>;
+  organizationId: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
 
 interface IntegrationsTabProps {
   agent: Agent;

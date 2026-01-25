@@ -1,10 +1,17 @@
-import { auth } from "./auth";
-import { headers } from "next/headers";
-
+// Removed Prisma dependency - using mock session
 export const getSession = async () => {
-  return await auth.api.getSession({
-    headers: await headers(),
-  });
+  // Mock session - no backend needed
+  return {
+    user: {
+      id: 'mock-user-id',
+      name: 'Mock User',
+      email: 'user@example.com',
+      image: null,
+    },
+    session: {
+      activeOrganizationId: 'mock-org-id',
+    },
+  };
 };
 
 export const getUser = async () => {

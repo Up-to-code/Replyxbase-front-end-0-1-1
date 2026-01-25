@@ -96,7 +96,7 @@ export function Notifications({ t }: { t: Translator }) {
 
       {isOpen && (
         <div 
-          className="absolute end-0 top-full mt-2 w-80 sm:w-96 bg-white border-2 border-slate-200 rounded-2xl z-100 overflow-hidden animate-in fade-in zoom-in-95 duration-100 shadow-lg"
+          className="absolute end-0 top-full mt-2 w-80 sm:w-96 bg-white border border-slate-200 rounded-xl z-100 overflow-hidden animate-in fade-in zoom-in-95 duration-100"
           role="menu"
           aria-label="Notifications menu"
         >

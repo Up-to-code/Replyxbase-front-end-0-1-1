@@ -63,8 +63,6 @@ const FeaturesSection: React.FC = () => {
                 icon={feature.icon}
                 title={feature.title}
                 description={feature.description}
-                glow={index === 0}
-                delay={feature.delay}
               />
             ))}
           </div>

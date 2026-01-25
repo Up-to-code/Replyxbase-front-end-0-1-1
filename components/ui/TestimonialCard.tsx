@@ -26,7 +26,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay }}
-      className="p-6 bg-white rounded-2xl border-2 border-slate-200 hover:border-[#005bbc]/20 transition-all duration-300 h-full"
+      className="p-6 bg-white rounded-xl border border-slate-200 hover:border-slate-300 transition-colors duration-200 h-full"
     >
       <div className="flex items-start justify-between mb-4">
         <Quote className="w-8 h-8 text-[#005bbc]/20" />

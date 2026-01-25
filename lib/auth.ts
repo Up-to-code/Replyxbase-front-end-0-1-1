@@ -1,12 +1,9 @@
+// Removed Prisma dependency - using mock auth
 import { betterAuth } from "better-auth";
-import { prismaAdapter } from "better-auth/adapters/prisma";
-import { organization } from "better-auth/plugins";
-import prisma from "./prisma";
 
+// Mock auth configuration - no database needed
 export const auth = betterAuth({
-  database: prismaAdapter(prisma, {
-    provider: "postgresql",
-  }),
+  // No database adapter - frontend only
   emailAndPassword: {
     enabled: true,
   },
@@ -22,12 +19,4 @@ export const auth = betterAuth({
       enabled: !!(process.env.GITHUB_CLIENT_ID && process.env.GITHUB_CLIENT_SECRET),
     },
   },
-  plugins: [
-    organization({
-      async sendInvitationEmail(data) {
-        // TODO: Implement email sending
-        console.log("Invitation email:", data);
-      },
-    }),
-  ],
 });

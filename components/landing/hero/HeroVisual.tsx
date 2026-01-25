@@ -11,7 +11,7 @@ const HeroVisual = () => {
 
     <div className="relative w-full aspect-[16/9] select-none">
       {/* Main Dashboard Frame */}
-      <div className="absolute inset-0 bg-white rounded-3xl border-2 border-slate-200 overflow-hidden shadow-none z-10">
+      <div className="absolute inset-0 bg-white rounded-2xl border border-slate-200 overflow-hidden z-10">
         {/* Mock Sidebar */}
         <div className="absolute left-0 top-0 bottom-0 w-64 bg-slate-50 border-r-2 border-slate-200 p-6 hidden md:flex flex-col gap-6">
           <div className="flex items-center gap-3 mb-4">
@@ -61,7 +61,7 @@ const HeroVisual = () => {
           </div>
 
           {/* Active Chat */}
-          <div className="flex-1 bg-white rounded-2xl border-2 border-[#005bbc]/20 flex flex-col overflow-hidden relative shadow-sm">
+          <div className="flex-1 bg-white rounded-xl border border-slate-200 flex flex-col overflow-hidden relative">
               {/* Floating Elements Animation */}
               <motion.div 
                   initial={{ opacity: 0, y: 20 }}
@@ -96,7 +96,7 @@ const HeroVisual = () => {
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.8 }}
-        className="absolute -right-4 top-20 bg-white p-4 rounded-2xl border-2 border-slate-100 shadow-xl shadow-slate-200/50 hidden lg:block z-20 max-w-[200px]"
+        className="absolute -right-4 top-20 bg-white p-4 rounded-xl border border-slate-200 hidden lg:block z-20 max-w-[200px]"
       >
         <div className="flex items-start gap-3">
             <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center shrink-0">
@@ -113,7 +113,7 @@ const HeroVisual = () => {
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 1 }}
-        className="absolute -left-4 bottom-20 bg-white p-4 rounded-2xl border-2 border-slate-100 shadow-xl shadow-slate-200/50 hidden lg:block z-20"
+        className="absolute -left-4 bottom-20 bg-white p-4 rounded-xl border border-slate-200 hidden lg:block z-20"
       >
         <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-[#005bbc]/10 flex items-center justify-center">

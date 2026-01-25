@@ -38,8 +38,15 @@ export function OrganizationSwitcher({ t }: { t: Translator }) {
 
   // Fetch user organizations using Better Auth
   const { data: session } = authClient.useSession();
-  const { data: organizations, isPending: isLoadingOrgs } = authClient.useListOrganizations();
+  const { data: organizationsData, isPending: isLoadingOrgs } = authClient.useListOrganizations();
   const { data: activeOrganization, isPending: isLoadingActive } = authClient.useActiveOrganization();
+  
+  // Ensure organizations is always an array
+  const organizations: Organization[] = Array.isArray(organizationsData) 
+    ? organizationsData 
+    : (Array.isArray((organizationsData as any)?.organizations) 
+        ? (organizationsData as any).organizations 
+        : []);
 
   const handleSwitchOrganization = async (orgId: string) => {
     try {
@@ -66,9 +73,10 @@ export function OrganizationSwitcher({ t }: { t: Translator }) {
       });
       
       // Set the newly created organization as active
-      if (newOrg?.organization?.id) {
+      const orgId = (newOrg as any)?.organization?.id || (newOrg as any)?.id;
+      if (orgId) {
         await authClient.organization.setActive({
-          organizationId: newOrg.organization.id,
+          organizationId: orgId,
         });
       }
       
@@ -99,7 +107,7 @@ export function OrganizationSwitcher({ t }: { t: Translator }) {
           aria-expanded={isOpen}
           aria-haspopup="true"
         >
-          <div className="w-8 h-8 rounded-xl flex items-center justify-center overflow-hidden border-2 border-slate-200 flex-shrink-0">
+          <div className="w-8 h-8 rounded-lg flex items-center justify-center overflow-hidden border border-slate-200 flex-shrink-0">
             {activeOrganization && (
               <img 
                 src={getOrgAvatar(activeOrganization)} 
@@ -124,7 +132,7 @@ export function OrganizationSwitcher({ t }: { t: Translator }) {
 
         {isOpen && (
           <div 
-            className="absolute end-0 top-full mt-2 w-72 sm:w-80 bg-white border-2 border-slate-200 rounded-2xl z-100 overflow-hidden animate-in fade-in zoom-in-95 duration-100 shadow-lg"
+            className="absolute end-0 top-full mt-2 w-72 sm:w-80 bg-white border border-slate-200 rounded-xl z-100 overflow-hidden animate-in fade-in zoom-in-95 duration-100"
             role="menu"
             aria-label="Organizations menu"
           >
@@ -145,12 +153,12 @@ export function OrganizationSwitcher({ t }: { t: Translator }) {
                   <Loader2 className="w-6 h-6 animate-spin text-slate-400" />
                 </div>
               )}
-              {!isLoadingOrgs && organizations && organizations.length === 0 && (
+              {!isLoadingOrgs && (!organizations || organizations.length === 0) && (
                 <div className="text-center p-8 text-slate-500 text-sm">
                   No organizations yet. Create one to get started!
                 </div>
               )}
-              {!isLoadingOrgs && organizations && organizations.map((org) => (
+              {!isLoadingOrgs && organizations && Array.isArray(organizations) && organizations.map((org) => (
                 <button
                   key={org.id}
                   onClick={() => handleSwitchOrganization(org.id)}

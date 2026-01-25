@@ -41,12 +41,13 @@ export function AppLayout({ children, agents }: AppLayoutProps) {
 
   const router = useRouter();
 
-  const handleAgentClick = (agentId: string) => {
-    router.push(`/dashboard/agents/${agentId}`);
+  // Removed agent switching - 1 organization = 1 agent
+  const handleAgentClick = () => {
+    // No-op: agent switching removed
   };
 
   const handleCreateAgent = () => {
-    router.push("/dashboard/agents/new");
+    // No-op: agent creation removed (1 org = 1 agent)
   };
 
   return (

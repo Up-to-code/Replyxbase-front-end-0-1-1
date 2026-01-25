@@ -39,7 +39,7 @@ const HeroSection: React.FC = () => {
               </p>
 
               <div className="flex flex-col sm:flex-row items-start gap-4 pt-4">
-                <Button variant="primary" size="lg" glow>
+                <Button variant="primary" size="lg">
                   Build Your Agent
                   <ArrowRight className="w-5 h-5" />
                 </Button>
@@ -56,7 +56,7 @@ const HeroSection: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="relative"
             >
-              <div className="relative bg-white rounded-2xl border-2 border-slate-200 p-8 shadow-[0_0_40px_rgba(0,91,188,0.15)]">
+              <div className="relative bg-white rounded-xl border border-slate-200 p-8">
                 {/* AI Chat Interface Mockup */}
                 <div className="space-y-4">
                   <div className="h-12 bg-gradient-to-r from-[#005bbc] to-[#004a9f] rounded-xl flex items-center justify-between px-5">

@@ -34,7 +34,7 @@ const AIShowcaseSection: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="p-6 bg-white rounded-2xl border-2 border-slate-200 hover:border-[#005bbc]/20 hover:shadow-lg transition-all text-center"
+                className="p-6 bg-white rounded-xl border border-slate-200 hover:border-slate-300 transition-colors text-center"
               >
                 <div className="w-14 h-14 rounded-xl bg-[#005bbc]/10 flex items-center justify-center mx-auto mb-4 border-2 border-[#005bbc]/20">
                   <stat.icon className="w-7 h-7 text-[#005bbc]" />
@@ -45,7 +45,7 @@ const AIShowcaseSection: React.FC = () => {
             ))}
           </div>
 
-          <div className="bg-white rounded-2xl border-2 border-slate-200 p-8 shadow-[0_0_40px_rgba(0,91,188,0.15)]">
+          <div className="bg-white rounded-xl border border-slate-200 p-8">
             <div className="aspect-video bg-gradient-to-br from-[#005bbc]/10 to-[#ffd600]/10 rounded-xl flex items-center justify-center border-2 border-slate-200">
               <div className="text-center">
                 <Sparkles className="w-16 h-16 text-[#005bbc] mx-auto mb-4" />

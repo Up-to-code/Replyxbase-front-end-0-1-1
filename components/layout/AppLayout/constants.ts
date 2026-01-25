@@ -13,6 +13,10 @@ import {
   Bell,
   MessageCircle,
   Workflow,
+  Plug,
+  Megaphone,
+  FileText,
+  Zap,
 } from "lucide-react";
 import { Agent, NavigationItem, Notification, ProfileMenuItem } from "./types";
 
@@ -70,7 +74,11 @@ export const MOCK_AGENTS: Agent[] = [
 export const NAVIGATION: NavigationItem[] = [
   { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { label: "Inbox", href: "/dashboard/inbox", icon: MessageSquare },
-  { label: "Agents", href: "/dashboard/agents", icon: Bot },
+  { label: "Agent", href: "/dashboard/agent", icon: Bot },
+  { label: "Automation", href: "/dashboard/automation", icon: Zap },
+  { label: "Integrations", href: "/dashboard/integrations", icon: Plug },
+  { label: "Campaigns", href: "/dashboard/campaigns", icon: Megaphone },
+  { label: "Templates", href: "/dashboard/templates", icon: FileText },
   { label: "CRM", href: "/dashboard/crm", icon: Users },
   { label: "Settings", href: "/dashboard/settings", icon: Settings },
 ];

@@ -1,10 +1,23 @@
 import React, { useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { Agent } from '@prisma/client';
-import { updateAgent } from '@/app/actions/agent';
 import { toast } from 'sonner';
 import { Loader2, Trash2, Save, AlertTriangle, User } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+
+// Agent type definition (removed Prisma dependency)
+interface Agent {
+  id: string;
+  name: string;
+  role: string;
+  status: 'active' | 'training' | 'inactive';
+  isWebsiteEnabled: boolean;
+  isWhatsappEnabled: boolean;
+  isDmEnabled: boolean;
+  config: Record<string, any>;
+  organizationId: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
 
 interface SettingsTabProps {
   agent: Agent;

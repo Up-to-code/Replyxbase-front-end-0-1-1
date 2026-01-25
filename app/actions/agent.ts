@@ -13,7 +13,7 @@ export async function getAgents(organizationId?: string) {
     return [];
   }
 
-  const targetOrgId = organizationId || session.session.activeOrganizationId;
+  const targetOrgId = organizationId || (session.session as any).activeOrganizationId;
 
   if (!targetOrgId) {
     return [];
@@ -55,7 +55,7 @@ export async function createAgent(data: {
     headers: await headers(),
   });
 
-  if (!session?.user || !session.session.activeOrganizationId) {
+  if (!session?.user || !(session.session as any).activeOrganizationId) {
     throw new Error("Unauthorized");
   }
 
@@ -63,7 +63,7 @@ export async function createAgent(data: {
   const membership = await prisma.member.findFirst({
     where: {
       userId: session.user.id,
-      organizationId: session.session.activeOrganizationId,
+      organizationId: (session.session as any).activeOrganizationId,
     },
   });
 
@@ -75,7 +75,7 @@ export async function createAgent(data: {
     data: {
       name: data.name,
       role: data.role || "assistant",
-      organizationId: session.session.activeOrganizationId,
+      organizationId: (session.session as any).activeOrganizationId,
       isWebsiteEnabled: data.isWebsiteEnabled || false,
       isWhatsappEnabled: data.isWhatsappEnabled || false,
       isDmEnabled: data.isDmEnabled || false,
@@ -99,7 +99,7 @@ export async function updateAgent(id: string, data: {
     headers: await headers(),
   });
 
-  if (!session?.user || !session.session.activeOrganizationId) {
+  if (!session?.user || !(session.session as any).activeOrganizationId) {
     throw new Error("Unauthorized");
   }
 
@@ -107,7 +107,7 @@ export async function updateAgent(id: string, data: {
   const membership = await prisma.member.findFirst({
     where: {
       userId: session.user.id,
-      organizationId: session.session.activeOrganizationId,
+      organizationId: (session.session as any).activeOrganizationId,
     },
   });
 
@@ -119,7 +119,7 @@ export async function updateAgent(id: string, data: {
   const existingAgent = await prisma.agent.findFirst({
     where: {
       id,
-      organizationId: session.session.activeOrganizationId,
+      organizationId: (session.session as any).activeOrganizationId,
     },
   });
 
@@ -142,7 +142,7 @@ export async function deleteAgent(id: string) {
     headers: await headers(),
   });
 
-  if (!session?.user || !session.session.activeOrganizationId) {
+  if (!session?.user || !(session.session as any).activeOrganizationId) {
     throw new Error("Unauthorized");
   }
 
@@ -150,7 +150,7 @@ export async function deleteAgent(id: string) {
   const membership = await prisma.member.findFirst({
     where: {
       userId: session.user.id,
-      organizationId: session.session.activeOrganizationId,
+      organizationId: (session.session as any).activeOrganizationId,
     },
   });
 
@@ -162,7 +162,7 @@ export async function deleteAgent(id: string) {
   const existingAgent = await prisma.agent.findFirst({
     where: {
       id,
-      organizationId: session.session.activeOrganizationId,
+      organizationId: (session.session as any).activeOrganizationId,
     },
   });
 

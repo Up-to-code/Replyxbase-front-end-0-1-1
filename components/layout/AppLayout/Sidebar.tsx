@@ -83,7 +83,7 @@ function NavigationButton({
       onClick={onClick}
       className={`flex items-center w-full px-4 py-3 rounded-xl transition-all duration-200 group border-2 active:scale-[0.98] ${
         isActive
-          ? "bg-[#005bbc] text-white border-[#005bbc] shadow-sm"
+          ? "bg-[#005bbc] text-white border-[#005bbc]"
           : "text-slate-500 hover:text-slate-900 hover:bg-slate-50 border-transparent hover:border-slate-200"
       }`}
       aria-current={isActive ? "page" : undefined}
@@ -203,51 +203,7 @@ export function Sidebar({
         ))}
         </div>
 
-        {/* Divider */}
-        <div className="border-t-2 border-slate-200 my-4" />
-
-        {/* Create Agent Button */}
-        <button
-          onClick={onCreateAgent}
-          className="flex items-center w-full px-4 py-3 text-slate-500 hover:text-slate-900 hover:bg-slate-50 rounded-xl transition-all duration-200 group border-2 border-transparent hover:border-slate-200 active:scale-[0.98]"
-          aria-label={sidebarOpen ? t("createAgent") : "Create agent"}
-        >
-          <Plus className="w-5 h-5 group-hover:text-[#005bbc] transition-colors flex-shrink-0" />
-          {sidebarOpen && (
-            <span className="ms-3 font-medium">{t("createAgent")}</span>
-          )}
-        </button>
-
-        {/* Existing Agents Section */}
-        {sidebarOpen && agents.length > 0 && (
-          <div className="mt-6">
-            <h3 className="text-slate-400 text-xs font-semibold uppercase tracking-wider mb-3 px-1">
-              {t("existingAgents")}
-            </h3>
-            <div className="space-y-1">
-              {agents.map((agent) => (
-                <AgentButton
-                  key={agent.id}
-                  agent={agent}
-                  isActive={pathname === `/dashboard/agents/${agent.id}`}
-                  onClick={() => onAgentClick(agent.id)}
-                />
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Empty State for Agents */}
-        {sidebarOpen && agents.length === 0 && (
-          <div className="mt-6 p-4 text-center">
-            <p className="text-xs text-slate-400">
-              {t("existingAgents")}
-            </p>
-            <p className="text-xs text-slate-300 mt-1">
-              No agents yet
-            </p>
-          </div>
-        )}
+        {/* Removed agent switching - 1 organization = 1 agent */}
       </nav>
     </aside>
   );

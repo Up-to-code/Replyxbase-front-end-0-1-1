@@ -10,13 +10,39 @@ import { NotificationsSettings } from './NotificationsSettings';
 import { AppearanceSettings } from './AppearanceSettings';
 import { BillingSettings } from './BillingSettings';
 import { Loader2 } from 'lucide-react';
-import { User, Organization, Member } from '@prisma/client';
+// Removed Prisma dependencies - using plain interfaces
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  image: string | null;
+  emailVerified: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+interface Member {
+  id: string;
+  userId: string;
+  organizationId: string;
+  role: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+interface Organization {
+  id: string;
+  name: string;
+  slug: string;
+  logo: string | null;
+  createdAt: Date;
+  updatedAt: Date;
+  members: (Member & { user: User })[];
+}
 
 interface SettingsClientProps {
   user: User;
-  organization: Organization & {
-    members: (Member & { user: User })[];
-  };
+  organization: Organization;
 }
 
 // Loading component for settings content

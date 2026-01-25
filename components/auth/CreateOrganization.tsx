@@ -164,7 +164,7 @@ export function CreateOrganization() {
                             name="slug"
                             type="text"
                             required
-                            error={!!slugError}
+                            error={slugError || undefined}
                             placeholder={t("slugPlaceholder")}
                             value={slug}
                             onChange={(e) => setSlug(e.target.value)}
@@ -200,8 +200,8 @@ export function CreateOrganization() {
                       disabled={loading || !isSlugAvailable || isCheckingSlug}
                       loading={loading}
                       className="w-full"
-                      icon={ArrowRight}
                     >
+                      <ArrowRight className="w-4 h-4 mr-2" />
                       {t("submit")}
                     </Button>
                   </form>

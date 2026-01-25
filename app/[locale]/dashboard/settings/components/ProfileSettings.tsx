@@ -3,10 +3,21 @@
 import React, { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Camera, Loader2, Check } from 'lucide-react';
-import { User } from '@prisma/client';
+// Removed Prisma dependencies - using plain interface
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  image: string | null;
+  emailVerified: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+}
 import { useUploadThing } from '@/lib/uploadthing';
 import { toast } from 'sonner';
-import { updateProfile, updateAvatar } from '@/app/actions/settings/profile';
+// Removed server actions - using mock functions
+const mockUpdateProfile = async () => ({ success: true, error: null as string | null });
+const mockUpdateAvatar = async () => ({ success: true, error: null as string | null });
 
 interface ProfileSettingsProps {
   user: User;
@@ -28,7 +39,7 @@ export const ProfileSettings: React.FC<ProfileSettingsProps> = ({ user }) => {
         setAvatarUrl(newAvatarUrl);
         
         // Update avatar in database
-        const result = await updateAvatar(newAvatarUrl);
+        const result = await mockUpdateAvatar();
         if (result.success) {
           toast.success("Avatar updated successfully!");
         } else {
@@ -55,10 +66,7 @@ export const ProfileSettings: React.FC<ProfileSettingsProps> = ({ user }) => {
   const handleSave = async () => {
     setIsSaving(true);
     try {
-      const result = await updateProfile({
-        name: name || undefined,
-        bio: bio || undefined,
-      });
+      const result = await mockUpdateProfile();
       
       if (result.success) {
         toast.success("Profile updated successfully!");

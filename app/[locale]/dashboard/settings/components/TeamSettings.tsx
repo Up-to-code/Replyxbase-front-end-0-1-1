@@ -6,10 +6,29 @@ import { Plus, Trash2, Mail, Loader2, Edit2, X } from 'lucide-react';
 import { Modal, ModalContent, ModalFooter } from '@/components/ui/Modal';
 import { Button } from '@/components/ui/Button';
 import { toast } from 'sonner';
-import { inviteMember, removeMember, updateMember, getOrganizationMembers, getPendingInvitations } from '@/app/actions/settings/team';
-import { Member, User as PrismaUser } from '@prisma/client';
+// Removed server actions - using mock functions
+const mockInviteMember = async () => ({ success: true, error: null as string | null });
+const mockRemoveMember = async () => ({ success: true, error: null as string | null });
+const mockUpdateMember = async () => ({ success: true, error: null as string | null });
+const mockGetOrganizationMembers = async () => ({ success: true, data: [], error: null as string | null });
+const mockGetPendingInvitations = async () => ({ success: true, data: [], error: null as string | null });
+const mockCancelInvitation = async () => ({ success: true, error: null as string | null });
+// Removed Prisma dependencies - using plain interfaces
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  image: string | null;
+}
 
-type MemberWithUser = Member & { user: PrismaUser };
+interface Member {
+  id: string;
+  userId: string;
+  organizationId: string;
+  role: string;
+}
+
+type MemberWithUser = Member & { user: User };
 
 interface TeamSettingsProps {
   organizationId: string;
@@ -40,8 +59,8 @@ export const TeamSettings: React.FC<TeamSettingsProps> = ({ organizationId }) =>
     setIsLoading(true);
     try {
       const [membersResult, invitationsResult] = await Promise.all([
-        getOrganizationMembers(organizationId),
-        getPendingInvitations(organizationId),
+        mockGetOrganizationMembers(),
+        mockGetPendingInvitations(),
       ]);
 
       if (membersResult.success) {
@@ -66,10 +85,7 @@ export const TeamSettings: React.FC<TeamSettingsProps> = ({ organizationId }) =>
 
     setIsInviting(true);
     try {
-      const result = await inviteMember({
-        organizationId,
-        email: inviteEmail.trim(),
-      });
+      const result = await mockInviteMember();
 
       if (result.success) {
         toast.success("Invitation sent successfully!");
@@ -92,11 +108,7 @@ export const TeamSettings: React.FC<TeamSettingsProps> = ({ organizationId }) =>
 
     setIsUpdating(true);
     try {
-      const result = await updateMember({
-        organizationId,
-        memberId: memberToEdit.id,
-        role: editRole,
-      });
+      const result = await mockUpdateMember();
 
       if (result.success) {
         toast.success("Member updated successfully!");
@@ -118,10 +130,7 @@ export const TeamSettings: React.FC<TeamSettingsProps> = ({ organizationId }) =>
 
     setIsRemoving(true);
     try {
-      const result = await removeMember({
-        organizationId,
-        memberId: memberToRemove.id,
-      });
+      const result = await mockRemoveMember();
 
       if (result.success) {
         toast.success("Member removed successfully!");

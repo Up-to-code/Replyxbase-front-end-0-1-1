@@ -109,7 +109,7 @@ export const BookingDetailsDrawer: React.FC<BookingDetailsDrawerProps> = ({
                         <span className="w-1 h-1 rounded-full bg-slate-300" />
                         <span className="flex items-center gap-1">
                           <Clock className="w-3.5 h-3.5" />
-                          {booking.startTime} - {booking.endTime}
+                          {booking.startTime}{booking.endTime ? ` - ${booking.endTime}` : ''}
                         </span>
                       </div>
                     </div>
@@ -241,7 +241,7 @@ export const BookingDetailsDrawer: React.FC<BookingDetailsDrawerProps> = ({
                       {booking.notes && (
                         <div className="space-y-2">
                           <h4 className="text-xs font-semibold text-slate-500 uppercase tracking-wider">{t("internalNotes")}</h4>
-                          <p className="text-sm text-slate-600 bg-slate-50 p-4 rounded-xl border-2 border-slate-200 leading-relaxed">
+                          <p className="text-sm text-slate-600 bg-slate-50 p-4 rounded-xl border border-slate-200 leading-relaxed">
                             {booking.notes}
                           </p>
                         </div>

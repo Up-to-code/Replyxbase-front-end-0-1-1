@@ -116,8 +116,8 @@ export default function LoginPage() {
             onClick={handleGitHubSignIn}
             disabled={isLoading}
             className="w-full"
-            icon={Github}
           >
+            <Github className="w-4 h-4" />
             {t("github")}
           </Button>
           <Button 

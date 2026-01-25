@@ -34,7 +34,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
     >
       <div
         className={`
-          h-full p-8 rounded-2xl border-2 flex flex-col
+          h-full p-8 rounded-xl border border-slate-200 flex flex-col
           transition-all duration-300
           ${
             highlight

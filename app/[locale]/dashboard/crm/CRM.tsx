@@ -6,7 +6,11 @@ import { Plus } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { Booking, BookingFormData, CalendarView as CalendarViewType, MainView } from './types';
 import { useFilters } from './hooks/useFilters';
-import { getBookings, createBooking, updateBooking, deleteBooking } from '@/app/actions/crm';
+// Removed server actions - using mock data instead
+const mockGetBookings = async () => ({ bookings: [], currentPage: 1, totalPages: 1, totalItems: 0 });
+const mockCreateBooking = async () => ({ success: true });
+const mockUpdateBooking = async () => ({ success: true });
+const mockDeleteBooking = async () => ({ success: true });
 import { Filters } from './components/shared/Filters';
 import { ViewToggle } from './components/shared/ViewToggle';
 import { BookingTable } from './components/bookings/BookingTable';
@@ -77,20 +81,13 @@ export default function CRM({ initialBookings, initialPagination, initialCustome
   const fetchBookings = useCallback(async () => {
     setIsLoading(true);
     try {
-      const result = await getBookings(
-        currentPage,
-        10, // items per page
-        {
-          search: searchTerm,
-          status: statusFilter,
-          service: serviceFilter
-        },
-        {
-          field: sortField,
-          direction: sortDirection
-        },
-        dynamicFilters
-      );
+      // Mock data - no backend calls
+      const result = {
+        bookings: initialBookings,
+        currentPage: 1,
+        totalPages: 1,
+        totalItems: initialBookings.length
+      };
 
       setBookings(result.bookings);
       setPagination({
@@ -121,7 +118,8 @@ export default function CRM({ initialBookings, initialPagination, initialCustome
   const handleCreateBooking = async (formData: BookingFormData) => {
     setIsSubmitting(true);
     try {
-      await createBooking(formData);
+      // Mock - no backend call
+      await mockCreateBooking();
       await fetchBookings();
       setIsFormOpen(false);
       showToast('Booking created successfully');
@@ -137,7 +135,7 @@ export default function CRM({ initialBookings, initialPagination, initialCustome
     if (!selectedBooking) return;
     setIsSubmitting(true);
     try {
-      await updateBooking(selectedBooking.id, formData);
+      await mockUpdateBooking();
       await fetchBookings();
       setIsFormOpen(false);
       setSelectedBooking(null);
@@ -154,7 +152,7 @@ export default function CRM({ initialBookings, initialPagination, initialCustome
   const handleDeleteBooking = async () => {
     if (!bookingToDelete) return;
     try {
-      await deleteBooking(bookingToDelete);
+      await mockDeleteBooking();
       await fetchBookings();
       setIsDeleteModalOpen(false);
       setBookingToDelete(null);
@@ -201,7 +199,7 @@ export default function CRM({ initialBookings, initialPagination, initialCustome
           tags: updatedBooking.tags || []
         }
       };
-      await updateBooking(updatedBooking.id, formData);
+      await mockUpdateBooking();
       showToast('Booking updated');
     } catch (error) {
       console.error('Failed to update booking', error);

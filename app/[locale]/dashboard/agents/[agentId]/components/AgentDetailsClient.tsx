@@ -10,19 +10,31 @@ import { IntegrationsTab } from './IntegrationsTab';
 import { SettingsTab } from './SettingsTab';
 import { StatsSkeleton, CardSkeleton } from '../../components/skeletons';
 
-import { Agent } from '@prisma/client';
+// Agent type definition (removed Prisma dependency)
+interface Agent {
+  id: string;
+  name: string;
+  role: string;
+  status: 'active' | 'training' | 'inactive';
+  isWebsiteEnabled: boolean;
+  isWhatsappEnabled: boolean;
+  isDmEnabled: boolean;
+  config: Record<string, any>;
+  organizationId: string;
+  createdAt: Date;
+  updatedAt: Date;
+  lastActive?: string;
+  conversations?: number;
+  conversion?: string;
+  stats?: {
+    conversations: number;
+    users: number;
+    satisfaction: number;
+  };
+}
 
 interface AgentDetailsClientProps {
-  agent: Agent & {
-    lastActive?: string;
-    conversations?: number;
-    conversion?: string;
-    stats?: {
-        conversations: number;
-        users: number;
-        satisfaction: number;
-    }
-  };
+  agent: Agent;
 }
 
 export default function AgentDetailsClient({ agent }: AgentDetailsClientProps) {
@@ -61,12 +73,12 @@ export default function AgentDetailsClient({ agent }: AgentDetailsClientProps) {
       <div className="px-8 py-6 border-b border-2 border-slate-200 flex-shrink-0">
         <div className="mb-4">
           <Link 
-            href="/dashboard/agents" 
+            href="/dashboard" 
             className="inline-flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-[#005bbc] transition-colors"
           >
             <ArrowLeft className="w-4 h-4 rtl:hidden" />
             <ArrowRight className="w-4 h-4 ltr:hidden" />
-            {t("backToAgents")}
+            {t("backToDashboard") || "Back to Dashboard"}
           </Link>
         </div>
 

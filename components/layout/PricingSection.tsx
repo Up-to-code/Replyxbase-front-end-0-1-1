@@ -80,7 +80,6 @@ const PricingSection: React.FC = () => {
                 description={plan.description}
                 features={plan.features}
                 highlight={plan.highlight}
-                glow={plan.highlight}
                 ctaText={plan.price === "Custom" ? "Contact Sales" : "Get Started"}
               />
             ))}

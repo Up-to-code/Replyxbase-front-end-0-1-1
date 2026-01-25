@@ -1,26 +1,22 @@
+'use client';
+
 import React from 'react'
 import CRM from './CRM'
-import { getBookings, getCustomers } from '@/app/actions/crm'
 
-async function page() {
-  const [bookingsData, customersData] = await Promise.all([
-    getBookings(1, 10),
-    getCustomers()
-  ]);
+// Mock data - no backend needed
+const mockBookings: any[] = [];
+const mockCustomers: any[] = [];
 
-  const customers = customersData.success ? customersData.data : [];
-
+export default function CRMPage() {
   return (
     <CRM 
-      initialBookings={bookingsData.bookings || []} 
+      initialBookings={mockBookings} 
       initialPagination={{
-        currentPage: bookingsData.currentPage || 1,
-        totalPages: bookingsData.totalPages || 1,
-        totalItems: bookingsData.totalItems || 0
+        currentPage: 1,
+        totalPages: 1,
+        totalItems: 0
       }}
-      initialCustomers={customers}
+      initialCustomers={mockCustomers}
     />
   )
 }
-
-export default page

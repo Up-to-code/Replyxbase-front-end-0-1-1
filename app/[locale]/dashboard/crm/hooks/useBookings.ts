@@ -1,6 +1,12 @@
 import { useState, useCallback, useEffect } from 'react';
 import { Booking, BookingFormData } from '../types';
-import { getBookings, createBooking, updateBooking, deleteBooking, updateBookingStatus, logActivity } from '@/app/actions/crm';
+// Removed server actions - using mock functions
+const mockGetBookings = async () => ({ bookings: [], currentPage: 1, totalPages: 1, totalItems: 0 });
+const mockCreateBooking = async () => ({ success: true });
+const mockUpdateBooking = async () => ({ success: true });
+const mockDeleteBooking = async () => ({ success: true });
+const mockUpdateBookingStatus = async () => ({ success: true });
+const mockLogActivity = async () => ({ success: true });
 import { useFilters } from './useFilters';
 
 export const useBookings = (filters: ReturnType<typeof useFilters>) => {
@@ -11,13 +17,13 @@ export const useBookings = (filters: ReturnType<typeof useFilters>) => {
   const fetchBookings = useCallback(async () => {
     setIsLoading(true);
     try {
-      const result = await getBookings(
-        filters.currentPage,
-        10, // itemsPerPage
-        { search: filters.searchTerm, status: filters.statusFilter, service: filters.serviceFilter },
-        { field: filters.sortField, direction: filters.sortDirection },
-        filters.dynamicFilters
-      );
+      // Mock data - no backend calls
+      const result = {
+        bookings: [],
+        currentPage: 1,
+        totalPages: 1,
+        totalItems: 0
+      };
       setBookings(result.bookings);
       setTotalPages(result.totalPages);
       
@@ -50,7 +56,7 @@ export const useBookings = (filters: ReturnType<typeof useFilters>) => {
   }, [fetchBookings]);
 
   const handleCreateBooking = async (data: BookingFormData) => {
-    const result = await createBooking(data);
+    const result = await mockCreateBooking();
     if (result.success) {
       refresh();
     }
@@ -58,7 +64,7 @@ export const useBookings = (filters: ReturnType<typeof useFilters>) => {
   };
 
   const handleUpdateBooking = async (id: string, data: BookingFormData) => {
-    const result = await updateBooking(id, data);
+    const result = await mockUpdateBooking();
     if (result.success) {
       refresh();
     }
@@ -71,7 +77,7 @@ export const useBookings = (filters: ReturnType<typeof useFilters>) => {
     setBookings(bookings.filter(b => b.id !== id));
 
     try {
-      const result = await deleteBooking(id);
+      const result = await mockDeleteBooking();
       if (!result.success) {
         throw new Error('Failed to delete');
       }
@@ -91,7 +97,7 @@ export const useBookings = (filters: ReturnType<typeof useFilters>) => {
     setBookings(bookings.map(b => b.id === id ? { ...b, status } : b));
 
     try {
-      const result = await updateBookingStatus(id, status);
+      const result = await mockUpdateBookingStatus();
       if (!result.success) {
         throw new Error('Failed to update status');
       }
@@ -107,7 +113,7 @@ export const useBookings = (filters: ReturnType<typeof useFilters>) => {
   };
 
   const handleAddActivity = async (type: 'call' | 'email' | 'note' | 'meeting', content: string, relatedTo: 'booking' | 'customer', relatedId: string) => {
-    const result = await logActivity(type, content, relatedTo, relatedId);
+    const result = await mockLogActivity();
     if (result.success) {
       refresh();
     }

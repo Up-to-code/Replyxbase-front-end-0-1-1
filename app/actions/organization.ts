@@ -23,7 +23,7 @@ export async function getOrganizations() {
     },
   });
 
-  return memberships.map((m) => m.organization);
+  return memberships.map((m: any) => m.organization);
 }
 
 export async function getActiveOrganization() {
@@ -35,7 +35,7 @@ export async function getActiveOrganization() {
     return null;
   }
 
-  const activeOrgId = session.session.activeOrganizationId;
+  const activeOrgId = (session.session as any)?.activeOrganizationId;
 
   if (!activeOrgId) {
     // If no active org, try to find the first one
@@ -68,7 +68,7 @@ export async function getOrganizationMembers(organizationId?: string) {
     return [];
   }
 
-  const targetOrgId = organizationId || session.session.activeOrganizationId;
+  const targetOrgId = organizationId || (session.session as any).activeOrganizationId;
 
   if (!targetOrgId) {
     return [];
@@ -108,7 +108,7 @@ export async function createOrganization(data: { name: string; slug: string }) {
   }
 
   try {
-    const org = await auth.api.createOrganization({
+    const org = await (auth.api as any).createOrganization({
         headers: await headers(),
         body: {
             name: data.name,
@@ -131,7 +131,7 @@ export async function setActiveOrganization(organizationId: string) {
         throw new Error("Unauthorized");
     }
 
-    await auth.api.setActiveOrganization({
+    await (auth.api as any).setActiveOrganization({
         headers: await headers(),
         body: {
             organizationId

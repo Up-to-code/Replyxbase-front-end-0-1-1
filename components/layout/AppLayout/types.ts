@@ -49,9 +49,9 @@ export interface Organization {
   id: string;
   name: string;
   slug: string;
-  logo: string | null;
+  logo?: string | null;
   createdAt: Date;
-  metadata: string | null;
+  metadata?: string | null;
 }
 
 export interface OrganizationMember {

@@ -37,7 +37,7 @@ export async function inviteMember(data: {
     headers: await headers(),
   });
 
-  if (!session?.user || !session.session.activeOrganizationId) {
+  if (!session?.user || !(session.session as any).activeOrganizationId) {
     return { success: false, error: "Unauthorized" };
   }
 
@@ -125,7 +125,7 @@ export async function updateMember(data: {
     headers: await headers(),
   });
 
-  if (!session?.user || !session.session.activeOrganizationId) {
+  if (!session?.user || !(session.session as any).activeOrganizationId) {
     return { success: false, error: "Unauthorized" };
   }
 
@@ -164,7 +164,7 @@ export async function removeMember(data: {
     headers: await headers(),
   });
 
-  if (!session?.user || !session.session.activeOrganizationId) {
+  if (!session?.user || !(session.session as any).activeOrganizationId) {
     return { success: false, error: "Unauthorized" };
   }
 
@@ -208,7 +208,7 @@ export async function getOrganizationMembers(organizationId?: string) {
     return { success: false, error: "Unauthorized", data: [] };
   }
 
-  const targetOrgId = organizationId || session.session.activeOrganizationId;
+  const targetOrgId = organizationId || (session.session as any).activeOrganizationId;
 
   if (!targetOrgId) {
     return { success: false, error: "No organization selected", data: [] };
@@ -259,7 +259,7 @@ export async function getPendingInvitations(organizationId?: string) {
     return { success: false, error: "Unauthorized", data: [] };
   }
 
-  const targetOrgId = organizationId || session.session.activeOrganizationId;
+  const targetOrgId = organizationId || (session.session as any).activeOrganizationId;
 
   if (!targetOrgId) {
     return { success: false, error: "No organization selected", data: [] };

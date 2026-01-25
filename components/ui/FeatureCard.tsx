@@ -26,13 +26,13 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
     >
       <div
         className={`
-          p-6 bg-white rounded-2xl border-2 border-slate-200
-          hover:border-[#005bbc]/20
-          transition-all duration-300 h-full
+          p-6 bg-white rounded-xl border border-slate-200
+          hover:border-slate-300
+          transition-colors duration-200 h-full
         `}
       >
-        <div className="w-14 h-14 rounded-xl bg-[#005bbc]/10 flex items-center justify-center mb-4 border-2 border-[#005bbc]/20 group-hover:scale-110 transition-transform">
-          <Icon className="w-7 h-7 text-[#005bbc]" />
+        <div className="w-14 h-14 rounded-lg bg-slate-100 flex items-center justify-center mb-4 border border-slate-200 transition-colors">
+          <Icon className="w-7 h-7 text-slate-600" />
         </div>
         <h3 className="text-xl font-bold text-slate-900 mb-2">{title}</h3>
         <p className="text-slate-600 leading-relaxed">{description}</p>

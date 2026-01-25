@@ -19,7 +19,7 @@ const Button: React.FC<ButtonProps> = ({
   disabled,
   ...props
 }) => {
-  const baseClasses = "font-semibold rounded-xl transition-all duration-300 flex items-center justify-center gap-2 border-2 focus:outline-none focus:ring-4 disabled:opacity-50 disabled:cursor-not-allowed";
+  const baseClasses = "font-semibold rounded-lg transition-colors duration-200 flex items-center justify-center gap-2 border focus:outline-none focus:ring-2 disabled:opacity-50 disabled:cursor-not-allowed";
   
   const variantClasses = {
     primary: "bg-[#005bbc] text-white hover:bg-[#004a9f] border-[#005bbc] hover:border-[#004a9f] focus:ring-[#005bbc]/20",
@@ -36,11 +36,10 @@ const Button: React.FC<ButtonProps> = ({
   
   return (
     <motion.button
-      whileHover={{ scale: disabled || loading ? 1 : 1.02 }}
-      whileTap={{ scale: disabled || loading ? 1 : 0.98 }}
+      whileTap={{ scale: disabled || loading ? 1 : 0.99 }}
       className={`${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`}
       disabled={disabled || loading}
-      {...props}
+      {...(props as any)}
     >
       {loading && <Loader2 className="w-4 h-4 animate-spin" />}
       {children}
